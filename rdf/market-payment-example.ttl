@@ -1,0 +1,62 @@
+@base <http://example.org/the-bank/transaction_1> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix vocab: <http://example.org/banking-vocabulary#> .
+@prefix addr: <http://schemas.talis.com/2005/address/schema#> .
+
+<#> 
+    a vocab:transaction ;
+    rdfs:label "This is a random transaction" ;
+
+    vocab:origin <#sender> ;
+    vocab:destination <#recipient> ;
+    vocab:money <#cash> ;
+    vocab:executionDate "2013-12-31"^^xsd:date .
+     
+<#sender>
+    a vocab:bankCustomer ;
+    rdfs:label "Sender of the money" ;
+
+    vocab:account <#sender-account> ;
+
+    vocab:accountHolder "Tom Sender";
+    addr:streetAddress "Example Street 23" ;
+    addr:postalCode "2342" ;
+    addr:localityName "Examplington" ;
+    addr:countryName "Examplea" .
+
+<#sender-account>
+    a vocab:bankAccount ;
+    rdfs:label "Sender's bank account information" ;
+
+    vocab:accountNumber "1-2342-15" ;
+    vocab:clearingNumber "232342" ; 
+    vocab:iban "EX 2342 4223 2323 4242" .
+
+<#recipient>
+    a vocab:bankCustomer ;
+    rdfs:label "Recipient of the money" ;
+
+    vocab:account <#recipient-account> ;
+
+    vocab:accountHolder "Alex Recipient";
+    addr:streetAddress "Demo Place 42" ;
+    addr:postalCode "4223" ;
+    addr:localityName "Demoville" ;
+    addr:countryName "Examplea" .
+
+<#recipient-account>
+    a vocab:bankAccount ;
+    rdfs:label "Recipient's bank account information" ;
+
+    vocab:accountNumber "2-4223-51" ;
+    vocab:clearingNumber "1753" ; 
+    vocab:iban "EX 1753 4223 2323 4242" .
+
+<#cash>
+    a vocab:moneyValue ;
+    rdfs:label "The money to be transfered" ;
+
+    vocab:amount 123.42 ;
+    vocab:currency "BTC" .
+
