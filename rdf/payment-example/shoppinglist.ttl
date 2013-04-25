@@ -1,7 +1,8 @@
 @base <http://example.org/the-ui-designer/transaction/shoppinglist> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sl: <http://uduvudu.me/vocab/shoppinglist#> .
+
 @prefix bank: <http://example.org/banking-vocabulary#> .
+@prefix sl: <http://uduvudu.me/vocab/shoppinglist#> .
 
 <#>
     a sl:shoppingList ;
@@ -19,27 +20,25 @@
     a sl:item ;
     rdfs:label "Item for all bank:transaction-objects" ;
 
-    # adds all objects of type bank:transaction to the basket using name "transaction"
-    sl:itemName "transaction" ;
-    sl:addObject bank:transaction .
+    sl:addObject bank:transaction ;
+
+    # no matter what, we only take the first we get...
+    sl:addCount 1 .
 
 <#customers>
     a sl:item ;
     rdfs:label "Item for all bank:customer-objects" ;
 
-    # adds all objects of type bank:bankCustomer to the basket using name "customer" ...
-    sl:itemName "customer" ;
     sl:addObject bank:bankCustomer ;
     
     # ... and everything connected to those one level deep
     sl:recurse 1 ;
 
     # ... or alternative version using some pathspec, either LD-Path or SPARQL-propertypaths (TBD)
-    sl:followPath "./*" ;
+    sl:followPath "./*" .
 
 <#cash>
     a sl:item ;
     rdfs:label "Item for all bank:moneyValue-objects" ;
 
-    sl:itemName "moneyvalue" ;
     sl:addObject bank:moneyValue . 
