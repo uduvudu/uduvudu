@@ -1,0 +1,82 @@
+@base <http://example.org/generated/course> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix addr: <http://schemas.talis.com/2005/address/schema#> .
+
+@prefix bank: <http://example.org/banking-bankulary#> . 
+@prefix c: <http://uduvudu.me/vocab/course#> .
+@prefix il: <http://uduvudu.me/vocab/ingredientlist#> .
+@prefix il_instance: <http://example.org/the-ui-designer/transaction/ingredientlist> .    # additional namespace for the ingredientlist which generated this
+
+<#> 
+    a c:course ;
+    rdfs:label "The cooked course" ;
+
+    c:contents (
+        (
+            c:cookedIngredient [
+                il:ingredient il_instance:origin ;    # which ingredient is this in the ingredientlist ?
+
+                a bank:bankCustomer ;
+                rdfs:label "Sender of the money" ;
+
+                bank:account <#sender-account> ;
+
+                bank:accountHolder "Tom Sender";
+                addr:streetAddress "Example Street 23" ;
+                addr:postalCode "2342" ;
+                addr:localityName "Examplington" ;
+                addr:countryName "Examplea" 
+            ]
+
+            c:cookedIngredient [
+                il:ingredient il_instance:origin-account ;    # which ingredient is this in the ingredientlist ?
+
+                a bank:bankAccount ;
+                rdfs:label "Sender's bank account information" ;
+
+                bank:accountNumber "1-2342-15" ;
+                bank:clearingNumber "232342" ; 
+                bank:iban "EX 2342 4223 2323 4242"
+            ]
+
+        )
+
+        (
+            c:cookedIngredient [
+                il:ingredient il_instance:destination ;    # which ingredient is this in the ingredientlist ?
+
+                a bank:bankCustomer ;
+                rdfs:label "Recipient of the money" ;
+
+                bank:account <#recipient-account> ;
+
+                bank:accountHolder "Alex Recipient";
+                addr:streetAddress "Demo Place 42" ;
+                addr:postalCode "4223" ;
+                addr:localityName "Demoville" ;
+                addr:countryName "Examplea"
+            ]
+
+            c:cookedIngredient [
+                il:ingredient il_instance:destination-account ;    # which ingredient is this in the ingredientlist ?
+
+                a bank:bankAccount ;
+                rdfs:label "Recipient's bank account information" ;
+
+                bank:accountNumber "2-4223-51" ;
+                bank:clearingNumber "1753" ; 
+                bank:iban "EX 1753 4223 2323 4242"
+            ]
+        )
+
+        c:cookedIngredient [
+            il:ingredient il_instance:cash ;    # which ingredient is this in the ingredientlist ?
+
+            a bank:moneyValue ;
+            rdfs:label "The money to be transfered" ;
+
+            bank:amount 123.42 ;
+            bank:currency "BTC" 
+        ]
+    ) .  

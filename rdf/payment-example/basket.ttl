@@ -1,0 +1,78 @@
+@base <http://example.org/generated/basket> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix addr: <http://schemas.talis.com/2005/address/schema#> .
+
+@prefix bank: <http://example.org/banking-bankulary#> .         # namespace according to shoppinglist
+@prefix sl: <http://uduvudu.me/vocab/shoppinglist#> .
+@prefix sl_instance: <http://example.org/the-ui-designer/transaction/shoppinglist> .    # additional namespace for the shoppinglist which generated this
+
+<#> 
+    a bank:transaction ;
+    rdfs:label "This is a random transaction" ;
+
+    bank:origin <#sender> ;
+    bank:originBank <#sender-bank> ;               # not included, as not in shoppinglist
+    bank:destination <#recipient> ;
+    bank:destinationBank <#recipient-bank> ;       # not included, as not in shoppinglist
+    bank:money <#cash> ;
+    bank:executionDate "2013-12-31"^^xsd:date ; 
+     
+    sl:item sl_instance:transactions .    # which shoppinglist-item found us?
+
+<#sender>
+    a bank:bankCustomer ;
+    rdfs:label "Sender of the money" ;
+
+    bank:account <#sender-account> ;
+
+    bank:accountHolder "Tom Sender";
+    addr:streetAddress "Example Street 23" ;
+    addr:postalCode "2342" ;
+    addr:localityName "Examplington" ;
+    addr:countryName "Examplea" ;
+
+    sl:item sl_instance:customers .    # which shoppinglist-item found us?
+
+<#sender-account>
+    a bank:bankAccount ;
+    rdfs:label "Sender's bank account information" ;
+
+    bank:accountNumber "1-2342-15" ;
+    bank:clearingNumber "232342" ; 
+    bank:iban "EX 2342 4223 2323 4242" ;
+
+    sl:partOf sl_instance:customers .   # indirect match
+
+<#recipient>
+    a bank:bankCustomer ;
+    rdfs:label "Recipient of the money" ;
+
+    bank:account <#recipient-account> ;
+
+    bank:accountHolder "Alex Recipient";
+    addr:streetAddress "Demo Place 42" ;
+    addr:postalCode "4223" ;
+    addr:localityName "Demoville" ;
+    addr:countryName "Examplea" ;
+
+    sl:item sl_instance:customers .    # which shoppinglist-item found us?
+
+<#recipient-account>
+    a bank:bankAccount ;
+    rdfs:label "Recipient's bank account information" ;
+
+    bank:accountNumber "2-4223-51" ;
+    bank:clearingNumber "1753" ; 
+    bank:iban "EX 1753 4223 2323 4242" ;
+
+    sl:partOf sl_instance:customers .   # indirect match
+
+<#cash>
+    a bank:moneyValue ;
+    rdfs:label "The money to be transfered" ;
+
+    bank:amount 123.42 ;
+    bank:currency "BTC" ;
+
+    sl:item sl_instance:cash .    # which shoppinglist-item found us?
