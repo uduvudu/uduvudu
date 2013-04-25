@@ -1,15 +1,18 @@
 @base <http://example.org/the-bank/transaction_1> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix vocab: <http://example.org/banking-vocabulary#> .
 @prefix addr: <http://schemas.talis.com/2005/address/schema#> .
+
+@prefix vocab: <http://example.org/banking-vocabulary#> .
 
 <#> 
     a vocab:transaction ;
     rdfs:label "This is a random transaction" ;
 
     vocab:origin <#sender> ;
+    vocab:originBank <#sender-bank> ;
     vocab:destination <#recipient> ;
+    vocab:destinationBank <#recipient-bank> ;
     vocab:money <#cash> ;
     vocab:executionDate "2013-12-31"^^xsd:date .
      
@@ -21,6 +24,16 @@
 
     vocab:accountHolder "Tom Sender";
     addr:streetAddress "Example Street 23" ;
+    addr:postalCode "2342" ;
+    addr:localityName "Examplington" ;
+    addr:countryName "Examplea" .
+
+<#sender-bank>
+    a vocab:bank ;
+    rdfs:label "Bank of the sender" ;
+
+    vocab:bankName "United Bank of Examplea" ;
+    addr:streetAddress "Cash plaza 31" ;
     addr:postalCode "2342" ;
     addr:localityName "Examplington" ;
     addr:countryName "Examplea" .
@@ -41,6 +54,16 @@
 
     vocab:accountHolder "Alex Recipient";
     addr:streetAddress "Demo Place 42" ;
+    addr:postalCode "4223" ;
+    addr:localityName "Demoville" ;
+    addr:countryName "Examplea" .
+
+<#recipient-bank>
+    a vocab:bank ;
+    rdfs:label "Bank of the recipient" ;
+
+    vocab:bankName "Credit Examplean" ;
+    addr:streetAddress "Goldstreet 17" ;
     addr:postalCode "4223" ;
     addr:localityName "Demoville" ;
     addr:countryName "Examplea" .
