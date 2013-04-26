@@ -1,4 +1,4 @@
-@base <http://example.org/the-ui-designer/transaction/shoppinglist> .
+@base <http://example.org/the-ui-designer/transaction/shoppinglist> .       # here we are at the UI-designer
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 @prefix bank: <http://example.org/banking-vocabulary#> .

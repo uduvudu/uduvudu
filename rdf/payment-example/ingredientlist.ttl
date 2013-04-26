@@ -1,4 +1,4 @@
-@base <http://example.org/the-ui-designer/transaction/ingredientlist> .
+@base <http://example.org/the-ui-designer/transaction/ingredientlist> .       # here we are at the UI-designer
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 @prefix bank: <http://example.org/banking-vocabulary#> .
@@ -7,7 +7,7 @@
 
 <#>
     a il:ingredientList ;
-    rdfs:label "An ingredientlist, specifying what to take out of the basket and in which order to put it" ;
+    rdfs:label "An ingredientlist, specifying what to take out of the basket and in which order to 'cook' it" ;
 
     il:ingredients (
         (

@@ -1,4 +1,4 @@
-@base <http://example.org/the-bank/transaction_1> .
+@base <http://example.org/the-bank/transaction_1> .     # here we are at the bank
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix addr: <http://schemas.talis.com/2005/address/schema#> .
