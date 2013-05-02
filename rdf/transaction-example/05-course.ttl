@@ -9,18 +9,18 @@
 @prefix il_instance: <http://example.org/the-ui-designer/transaction/ingredientlist> .    # additional namespace for the ingredientlist which generated this
 
 <#> 
-    a c:course ;
+    a c:Course ;
     rdfs:label "The cooked course" ;
 
     c:contents (
         (
             c:cookedIngredient [
-                il:ingredient il_instance:origin ;    # which ingredient is this in the ingredientlist ?
+                il:ingredient il_instance:Origin ;    # which ingredient is this in the ingredientlist ?
 
-                a bank:bankCustomer ;
+                a bank:BankCustomer ;
                 rdfs:label "Sender of the money" ;
 
-                bank:account <#sender-account> ;
+                bank:account <#SenderAccount> ;
 
                 bank:accountHolder "Tom Sender";
                 addr:streetAddress "Example Street 23" ;
@@ -30,9 +30,9 @@
             ]
 
             c:cookedIngredient [
-                il:ingredient il_instance:origin-account ;    # which ingredient is this in the ingredientlist ?
+                il:ingredient il_instance:OriginAccount ;    # which ingredient is this in the ingredientlist ?
 
-                a bank:bankAccount ;
+                a bank:BankAccount ;
                 rdfs:label "Sender's bank account information" ;
 
                 bank:accountNumber "1-2342-15" ;
@@ -44,12 +44,12 @@
 
         (
             c:cookedIngredient [
-                il:ingredient il_instance:destination ;    # which ingredient is this in the ingredientlist ?
+                il:ingredient il_instance:Destination ;    # which ingredient is this in the ingredientlist ?
 
-                a bank:bankCustomer ;
+                a bank:BankCustomer ;
                 rdfs:label "Recipient of the money" ;
 
-                bank:account <#recipient-account> ;
+                bank:account <#RecipientAccount> ;
 
                 bank:accountHolder "Alex Recipient";
                 addr:streetAddress "Demo Place 42" ;
@@ -59,9 +59,9 @@
             ]
 
             c:cookedIngredient [
-                il:ingredient il_instance:destination-account ;    # which ingredient is this in the ingredientlist ?
+                il:ingredient il_instance:DestinationAccount ;    # which ingredient is this in the ingredientlist ?
 
-                a bank:bankAccount ;
+                a bank:BankAccount ;
                 rdfs:label "Recipient's bank account information" ;
 
                 bank:accountNumber "2-4223-51" ;
@@ -71,9 +71,9 @@
         )
 
         c:cookedIngredient [
-            il:ingredient il_instance:cash ;    # which ingredient is this in the ingredientlist ?
+            il:ingredient il_instance:Cash ;    # which ingredient is this in the ingredientlist ?
 
-            a bank:moneyValue ;
+            a bank:MoneyValue ;
             rdfs:label "The money to be transfered" ;
 
             bank:amount 123.42 ;

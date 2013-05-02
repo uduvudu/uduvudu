@@ -6,51 +6,51 @@
 @prefix sl_instance: <http://example.org/the-ui-designer/transaction/shoppinglist> .    # additional namespace for referring to stuff purchased with *that* shoppinglist
 
 <#>
-    a il:ingredientList ;
+    a il:IngredientList ;
     rdfs:label "An ingredientlist, specifying what to take out of the basket and in which order to 'cook' it" ;
 
     il:ingredients (
         (
-            <#origin> 
-            <#origin-account> 
+            <#Origin> 
+            <#OriginAccount> 
         ) 
         (
-            <#destination> 
-            <#destination-account> 
+            <#Destination> 
+            <#DestinationAccount> 
         ) 
-        <#cash> 
+        <#Cash> 
     ) .
 
-<#origin>
-    a il:ingredient ;
+<#Origin>
+    a il:Ingredient ;
     rdfs:label "Ingredient for the origin" ;
 
-    il:basketItem sl_instance:transactions ;
+    il:basketItem sl_instance:Transactions ;
     il:selectPath "bank:origin" .     # some SPARQL property-path or LD-Path (TBD)
 
-<#origin-acccount>
-    a il:ingredient ;
+<#OriginAcccount>
+    a il:Ingredient ;
     rdfs:label "Ingredient for the account of the origin";
 
-    il:basketItem sl_instance:transactions ;
+    il:basketItem sl_instance:Transactions ;
     il:selectPath "bank:origin/bank:account" .     # some SPARQL property-path or LD-Path (TBD)
 
-<#destination>
-    a il:ingredient ;
+<#Destination>
+    a il:Ingredient ;
     rdfs:label "Ingredient for the destination" ;
 
-    il:basketItem sl_instance:transactions ;
+    il:basketItem sl_instance:Transactions ;
     il:selectPath "bank:destination" .     # some SPARQL property-path or LD-Path (TBD)
 
-<#destination-account>
-    a il:ingredient ;
+<#DestinationAccount>
+    a il:Ingredient ;
     rdfs:label "Ingredient for the account of the destination" ;
 
-    il:basketItem sl_instance:transactions ;
+    il:basketItem sl_instance:Transactions ;
     il:selectPath "bank:origin/bank:account" .     # some SPARQL property-path or LD-Path (TBD)
 
-<#cash>
-    a il:ingredient ;
+<#Cash>
+    a il:Ingredient ;
     rdfs:label "Ingredient for the money transfered" ;
 
-    il:basketItem sl_instance:cash .
+    il:basketItem sl_instance:Cash .

@@ -5,28 +5,28 @@
 @prefix sl: <http://uduvudu.me/vocab/shoppinglist#> .
 
 <#>
-    a sl:shoppingList ;
+    a sl:ShoppingList ;
     rdfs:label "A shoppinglist for shopping in a bank-market..." ;
 
-    sl:purchase <#transactionbasket> .
+    sl:purchase <#TransactionBasket> .
 
-<#transactionbasket>
-    a sl:basket ;
+<#TransactionBasket>
+    a sl:Basket ;
     rdfs:label "The basket describes everything we want to 'purchase' at the market." ;
 
-    sl:contents ( <#transactions> <#customers> <#cash> ) .
+    sl:contents ( <#Transactions> <#Customers> <#Cash> ) .
 
-<#transactions>
-    a sl:item ;
-    rdfs:label "Item for all bank:transaction-objects" ;
+<#Transactions>
+    a sl:Item ;
+    rdfs:label "Item for all bank:Transaction-objects" ;
 
-    sl:addObject bank:transaction ;
+    sl:addObject bank:Transaction ;
 
     # no matter what, we only take the first we get...
     sl:addCount 1 .
 
-<#customers>
-    a sl:item ;
+<#Customers>
+    a sl:Item ;
     rdfs:label "Item for all bank:customer-objects" ;
 
     sl:addObject bank:bankCustomer ;
@@ -38,7 +38,7 @@
     sl:followPath "./*" .
 
 <#cash>
-    a sl:item ;
+    a sl:Item ;
     rdfs:label "Item for all bank:moneyValue-objects" ;
 
     sl:addObject bank:moneyValue . 

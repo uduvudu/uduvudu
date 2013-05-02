@@ -6,17 +6,17 @@
 @prefix ss: <http://uduvudu.me/vocab/serving-suggestion#> .
 @prefix il_instance: <http://example.org/the-ui-designer/transaction/ingredientlist> .    # additional namespace for referring to ingredients added with *that* ingredientlist
 
-# this is a simple serving-suggestion for serving as some plain text
+# this is a simple servingSuggestion for serving as some plain text
 
 <#>
-    a ss:suggestion ;
-    rdfs:label "Top-suggestion used for defining global properties" ;
+    a ss:Suggestion ;
+    rdfs:label "TopSuggestion used for defining global properties" ;
     
     ss:serveUnknown 0 ; # don't serve what has explicitely been defined here
-    ss:serve ( <#header> <#cash-suggestion> <#customer-suggestion> <#footer> ) .
+    ss:serve ( <#Header> <#CustomerSuggestion> <#CashSuggestion> <#Footer> ) .
 
-<#header>
-    a ss:suggestion;
+<#Header>
+    a ss:Suggestion;
     rdfs:label "Draw some nice header..." ;
 
     ss:serve (
@@ -24,24 +24,24 @@
         [ ss:serveString "----------------\n\n" ]
     ) .
 
-<#cash-suggestion>
-    a ss:suggestion ;
-    rdfs:label "Serving-suggestion for rendering bank:moneyValue" ;
+<#CashSuggestion>
+    a ss:Suggestion ;
+    rdfs:label "ServingSuggestion for rendering bank:moneyValue" ;
 
-    ss:serve ( <#amount-serving> bank:currency ) ;
+    ss:serve ( <#AmountServing> bank:currency ) ;
 
     # for "matching", we have multiple possibilities here
     # either no explicit match declared -> search course for everything that applies
     # or match on ingredient:
 
-    ss:ingredient il_instance:cash ;
+    ss:ingredient il_instance:Cash ;
 
     # or match directly on the data:
 
-    ss:ingredient bank:moneyValue .
+    ss:ingredient bank:MoneyValue .
 
-<#amount-serving>
-    a ss:serving ;
+<#AmountServing>
+    a ss:Serving ;
     rdfs:label "Serving for the amount-value" ;
 
     ss:serve (
@@ -50,8 +50,8 @@
         [ ss:serveString " " ]
     ) .
 
-<#customer-suggestion>
-    a ss:serving ;
+<#CustomerSuggestion>
+    a ss:Serving ;
     rdfs:label "Suggestion for serving a customer" ;
 
     ss:serve (
@@ -70,8 +70,8 @@
         [ ss:servestring "\n\n\n" ]
     ) .
     
-<#footer>
-    a ss:suggestion;
+<#Footer>
+    a ss:Suggestion;
     rdfs:label "Draw some nice footer" ;
 
     ss:serve (

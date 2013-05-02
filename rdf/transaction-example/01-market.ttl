@@ -6,21 +6,21 @@
 @prefix vocab: <http://example.org/banking-vocabulary#> .
 
 <#> 
-    a vocab:transaction ;
+    a vocab:Transaction ;
     rdfs:label "This is a random transaction" ;
 
-    vocab:origin <#sender> ;
-    vocab:originBank <#sender-bank> ;
-    vocab:destination <#recipient> ;
-    vocab:destinationBank <#recipient-bank> ;
-    vocab:money <#cash> ;
+    vocab:origin <#Sender> ;
+    vocab:originBank <#SenderBank> ;
+    vocab:destination <#Recipient> ;
+    vocab:destinationBank <#RecipientBank> ;
+    vocab:money <#Cash> ;
     vocab:executionDate "2013-12-31"^^xsd:date .
      
-<#sender>
-    a vocab:bankCustomer ;
+<#Sender>
+    a vocab:BankCustomer ;
     rdfs:label "Sender of the money" ;
 
-    vocab:account <#sender-account> ;
+    vocab:account <#SenderAccount> ;
 
     vocab:accountHolder "Tom Sender";
     addr:streetAddress "Example Street 23" ;
@@ -28,8 +28,8 @@
     addr:localityName "Examplington" ;
     addr:countryName "Examplea" .
 
-<#sender-bank>
-    a vocab:bank ;
+<#SenderBank>
+    a vocab:Bank ;
     rdfs:label "Bank of the sender" ;
 
     vocab:bankName "United Bank of Examplea" ;
@@ -38,19 +38,19 @@
     addr:localityName "Examplington" ;
     addr:countryName "Examplea" .
 
-<#sender-account>
-    a vocab:bankAccount ;
+<#SenderAccount>
+    a vocab:BankAccount ;
     rdfs:label "Sender's bank account information" ;
 
     vocab:accountNumber "1-2342-15" ;
     vocab:clearingNumber "232342" ; 
     vocab:iban "EX 2342 4223 2323 4242" .
 
-<#recipient>
-    a vocab:bankCustomer ;
+<#Recipient>
+    a vocab:BankCustomer ;
     rdfs:label "Recipient of the money" ;
 
-    vocab:account <#recipient-account> ;
+    vocab:account <#RecipientAccount> ;
 
     vocab:accountHolder "Alex Recipient";
     addr:streetAddress "Demo Place 42" ;
@@ -58,8 +58,8 @@
     addr:localityName "Demoville" ;
     addr:countryName "Examplea" .
 
-<#recipient-bank>
-    a vocab:bank ;
+<#RecipientBank>
+    a vocab:Bank ;
     rdfs:label "Bank of the recipient" ;
 
     vocab:bankName "Credit Examplean" ;
@@ -68,16 +68,16 @@
     addr:localityName "Demoville" ;
     addr:countryName "Examplea" .
 
-<#recipient-account>
-    a vocab:bankAccount ;
+<#RecipientAccount>
+    a vocab:BankAccount ;
     rdfs:label "Recipient's bank account information" ;
 
     vocab:accountNumber "2-4223-51" ;
     vocab:clearingNumber "1753" ; 
     vocab:iban "EX 1753 4223 2323 4242" .
 
-<#cash>
-    a vocab:moneyValue ;
+<#Cash>
+    a vocab:MoneyValue ;
     rdfs:label "The money to be transfered" ;
 
     vocab:amount 123.42 ;
