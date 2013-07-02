@@ -1,0 +1,45 @@
+#
+# SPARQL-query for parsing the main part of a shoppinglist and accordingly match from the market.
+#
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sl: <http://uduvudu.me/vocab/shoppinglist#>
+PREFIX purchaser: <http://uduvudu.me/purchaser#>
+
+CONSTRUCT {
+
+    # Metadata containing instructions from the shoppinglist
+    ?item a sl:Item ;
+        a purchaser:Meta ;
+        sl:addObject ?add_object ;
+        sl:addCount ?add_count ;
+        sl:recurse ?recurse ;
+        sl:followPath ?follow_path .
+
+    # Data matched by the shoppinglist on the market
+    ?data_subject ?data_predicate ?data_object ;
+        a purchaser:Data ;
+        sl:item ?item .
+}
+
+WHERE {
+        # give us the sl:ShoppingList(s!) and what they indicate to purchase
+        ?list a sl:ShoppingList ;
+            sl:purchase ?purchase .
+
+        # ensure that we get a sl:Basket, get it's contents and iterate over it's items
+        ?purchase a sl:Basket ;
+            sl:contents ?contents .
+        ?contents  rdf:rest*/rdf:first ?item .
+
+        # for each item of the basket, fetch uduvudu-commands for matching/processing the market
+        ?item a sl:Item ;
+            sl:addObject ?add_object .
+            OPTIONAL { ?item sl:addCount ?add_count . }
+            OPTIONAL { ?item sl:recurse ?recurse . }
+            OPTIONAL { ?item sl:followPath ?follow_path . }
+        
+        # finally, add the data from the market itself
+        ?data_subject a ?add_object ;
+            ?data_predicate ?data_object .
+}
