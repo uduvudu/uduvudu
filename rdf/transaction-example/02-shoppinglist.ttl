@@ -37,7 +37,7 @@
     # ... or alternative version using some pathspec, either LD-Path or SPARQL-propertypaths (TBD)
     sl:followPath "./*" .
 
-<#cash>
+<#Cash>
     a sl:Item ;
     rdfs:label "Item for all bank:moneyValue-objects" ;
 
