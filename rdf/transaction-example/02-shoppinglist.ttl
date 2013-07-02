@@ -29,7 +29,7 @@
     a sl:Item ;
     rdfs:label "Item for all bank:customer-objects" ;
 
-    sl:addObject bank:bankCustomer ;
+    sl:addObject bank:BankCustomer ;
     
     # ... and everything connected to those one level deep
     sl:recurse 1 ;
@@ -41,4 +41,4 @@
     a sl:Item ;
     rdfs:label "Item for all bank:moneyValue-objects" ;
 
-    sl:addObject bank:moneyValue . 
+    sl:addObject bank:MoneyValue . 
