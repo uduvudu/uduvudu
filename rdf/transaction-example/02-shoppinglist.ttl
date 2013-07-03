@@ -4,18 +4,6 @@
 @prefix bank: <http://example.org/banking-vocabulary#> .
 @prefix sl: <http://uduvudu.me/vocab/shoppinglist#> .
 
-<#>
-    a sl:ShoppingList ;
-    rdfs:label "A shoppinglist for shopping in a bank-market..." ;
-
-    sl:purchase <#TransactionBasket> .
-
-<#TransactionBasket>
-    a sl:Basket ;
-    rdfs:label "The basket describes everything we want to 'purchase' at the market." ;
-
-    sl:contents ( <#Transactions> <#Customers> <#Cash> ) .
-
 <#Transactions>
     a sl:Item ;
     rdfs:label "Item for all bank:Transaction-objects" ;
