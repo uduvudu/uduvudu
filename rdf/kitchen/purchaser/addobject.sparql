@@ -1,0 +1,33 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX sl: <http://uduvudu.me/vocab/shoppinglist#>
+PREFIX : <http://uduvudu.me/process#>
+
+CONSTRUCT {
+    []    a       sp:Construct ;
+          sp:templates ([ sp:object :objectVar ;
+                  sp:predicate :predicateVar ;
+                  sp:subject ?data_subject
+          ]) ;
+          sp:where ([ sp:object :objectVar ;
+                  sp:predicate :predicateVar ;
+                  sp:subject ?data_subject
+          ]) .
+
+    :predicateVar  sp:varName "p"^^xsd:string .
+    :objectVar  sp:varName "o"^^xsd:string .
+}
+
+WHERE {
+        ?item a sl:Item ;
+            sl:addObject ?add_object .
+
+        MINUS { ?item sl:addCount ?x }
+        MINUS { ?item sl:recurse ?x }
+        MINUS { ?item sl:followPath ?x }
+            
+        ?data_subject a ?add_object .
+}
+
