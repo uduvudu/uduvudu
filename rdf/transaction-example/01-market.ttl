@@ -15,6 +15,17 @@
     vocab:destinationBank <#RecipientBank> ;
     vocab:money <#Cash> ;
     vocab:executionDate "2013-12-31"^^xsd:date .
+
+ <#Transaction2> 
+    a vocab:Transaction ;
+    rdfs:label "This is yet another random transaction between the same parties" ;
+
+    vocab:origin <#Sender> ;
+    vocab:originBank <#SenderBank> ;               # not included, as not in shoppinglist
+    vocab:destination <#Recipient> ;
+    vocab:destinationBank <#RecipientBank> ;       # not included, as not in shoppinglist
+    vocab:money <#Cash2> ;
+    vocab:executionDate "2014-06-22"^^xsd:date . 
      
 <#Sender>
     a vocab:BankCustomer ;
@@ -83,3 +94,7 @@
     vocab:amount 123.42 ;
     vocab:currency "BTC" .
 
+<#Cash2>
+    a vocab:MoneyValue ;
+    vocab:amount 666.66 ;
+    vocab:currency "BTC" ;
