@@ -21,6 +21,7 @@ CONSTRUCT {
 }
 
 WHERE {
+    GRAPH <http://uduvudu.me/shoppinglist> {
         ?item a sl:Item ;
             sl:addObject ?add_object .
 
@@ -28,6 +29,10 @@ WHERE {
         MINUS { ?item sl:recurse ?x }
         MINUS { ?item sl:followPath ?x }
             
+    }
+
+    GRAPH <http://uduvudu.me/market> {
         ?data_subject a ?add_object .
+    }
 }
 
