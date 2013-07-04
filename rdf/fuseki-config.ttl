@@ -1,0 +1,105 @@
+@prefix :        <#> .
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tdb:     <http://jena.hpl.hp.com/2008/tdb#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+
+[] rdf:type fuseki:Server ;
+   # Timeout - server-wide default: milliseconds.
+   # Format 1: "1000" -- 1 second timeout
+   # Format 2: "10000,60000" -- 10s timeout to first result, then 60s timeout for the rest of query.
+   # See java doc for ARQ.queryTimeout
+   # ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "10000" ] ;
+   # ja:loadClass "your.code.Class" ;
+
+   fuseki:services (
+     <#UduvuduService>
+   ) .
+
+<#UduvuduService> 
+    rdf:type fuseki:Service ;
+    fuseki:name                        "uduvudu" ;
+    fuseki:serviceQuery                "sparql" ;
+    fuseki:serviceQuery                "query" ;
+    fuseki:serviceUpdate               "update" ;
+    fuseki:serviceUpload               "upload" ;
+    fuseki:serviceReadWriteGraphStore  "data" ;
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset                   <#UduvuduDataSet> ;
+    .
+
+<#UduvuduDataSet>    
+    rdf:type ja:RDFDataset ;
+    rdfs:label "uduvudu" ;
+
+    ja:defaultGraph <#DefaultGraph> ;
+
+    ja:namedGraph
+        [ ja:graphName      <http://uduvudu.me/market> ;
+          ja:graph <#MarketGraph>
+        ] ;
+
+    ja:namedGraph
+        [ ja:graphName      <http://uduvudu.me/shoppinglist> ;
+          ja:graph <#ShoppingListGraph>
+        ] ;
+
+    ja:namedGraph
+        [ ja:graphName      <http://uduvudu.me/basket> ;
+          ja:graph <#BasketGraph>
+        ] ;
+
+    ja:namedGraph
+        [ ja:graphName      <http://uduvudu.me/ingredientlist> ;
+          ja:graph <#IngredientListGraph>
+        ] ;
+
+    ja:namedGraph
+        [ ja:graphName      <http://uduvudu.me/course> ;
+          ja:graph <#CourseGraph>
+        ] ;
+
+    ja:namedGraph
+        [ ja:graphName      <http://uduvudu.me/servingsuggestion> ;
+          ja:graph <#ServingSuggestionGraph>
+        ] .
+
+<#DefaultGraph> 
+    rdf:type ja:MemoryModel .
+
+<#MarketGraph>
+    rdf:type ja:MemoryModel ;
+    ja:content [
+        ja:externalContent <file:///home/gurke/bfh/dev/uduvudu-prototype/rdf/transaction-example/01-market.ttl>
+    ] .
+
+<#ShoppingListGraph>
+    rdf:type ja:MemoryModel ;
+    ja:content [
+        ja:externalContent <file://home/gurke/bfh/dev/uduvudu-prototype/rdf/transaction-example/02-shoppinglist.ttl>
+    ] .
+
+<#BasketGraph>
+    rdf:type ja:MemoryModel ;
+    ja:content [
+        ja:externalContent <file:///home/gurke/bfh/dev/uduvudu-prototype/rdf/transaction-example/03-basket.ttl>
+    ] .
+
+<#IngredientListGraph>
+    rdf:type ja:MemoryModel ;
+    ja:content [
+        ja:externalContent <file:///home/gurke/bfh/dev/uduvudu-prototype/rdf/transaction-example/04-ingredientlist.ttl>
+    ] .
+
+<#CourseGraph>
+    rdf:type ja:MemoryModel ;
+    ja:content [
+        ja:externalContent <file:///home/gurke/bfh/dev/uduvudu-prototype/rdf/transaction-example/05-course.ttl>
+    ] .
+
+<#ServingSuggestionGraph>
+    rdf:type ja:MemoryModel ;
+    ja:content [
+        ja:externalContent <file:///home/gurke/bfh/dev/uduvudu-prototype/rdf/transaction-example/06-serving-suggestion.ttl>
+    ] .
