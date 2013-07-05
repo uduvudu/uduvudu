@@ -23,15 +23,40 @@
 'use strict';
 
 var request = require('request'),
-  querystring = require('querystring');
+  querystring = require('querystring'),
+  filesystem = require('fs');
 
 
 /***********************************************************
  * Function definitions
  **********************************************************/
 
-var _receiveData = function _receiveData (error, response, body) {
-  console.log(body);
+var _fusekiQuery = function _fusekiQuery(query, accept, callback) {
+  var options = {
+      method: 'POST',
+      uri: 'http://localhost:3030/uduvudu/query',
+      headers: {
+        'Accept': accept,
+        'Content-type': 'application/x-www-form-urlencoded'
+      } ,
+      body: querystring.stringify({query: query})
+  };
+
+  request(options, callback);
+};
+
+var _spinQuery = function _spinQuery(query, accept, callback) {
+  var options = {
+      method: 'GET',
+      uri: 'http://spinservices.org:8080/spin/sparqlmotion?' +
+        querystring.stringify({rdf: query, format: 'turtle', id: 'spin2sparql'}),
+      headers: {
+        'Accept': accept,
+        'Content-type': 'application/x-www-form-urlencoded'
+      }
+  };
+
+  request(options, callback);
 };
 
 
@@ -39,16 +64,13 @@ var _receiveData = function _receiveData (error, response, body) {
  * Main script
  **********************************************************/
 
-var query = 'SELECT * WHERE { GRAPH ?g { ?s ?p ?o }}';
+filesystem.readFile('../rdf/kitchen/purchaser/addobject.sparql', 'utf8', function _readErr (err, query) {
+  _fusekiQuery(query, 'text/turtle', function _receiveFuseki (error, response, data) {
+    _spinQuery(data, 'text/turtle', function _receiveSpin (error, response, data) {
+      _fusekiQuery(data, 'text/turtle', function _receiveFuseki (error, response, data) {
+        console.log(data);
+      });
+    });
+  });
+});
 
-var options = {
-    method: 'POST',
-    uri: 'http://localhost:3030/uduvudu/query',
-    headers: {
-      accept: 'application/sparql-results+json , application/sparql-results+xml;q=0.9 , application/rdf+xml;q=0.9 , text/turtle;charset=utf-8 , /*;q=0.1',
-      'content-type': 'application/x-www-form-urlencoded'
-    } ,
-    body: querystring.stringify({query: query})
-};
-
-request(options, _receiveData);
