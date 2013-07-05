@@ -11,10 +11,13 @@ CONSTRUCT {
                   sp:predicate :predicateVar ;
                   sp:subject ?data_subject
           ]) ;
-          sp:where ([ sp:object :objectVar ;
-                  sp:predicate :predicateVar ;
-                  sp:subject ?data_subject
-          ]) .
+          sp:where ([ a       sp:NamedGraph ;
+                  sp:elements ([ sp:object :objectVar ;
+                              sp:predicate :predicateVar ;
+                              sp:subject ?data_subject
+                            ]) ;
+                  sp:graphNameNode <http://uduvudu.me/market>
+                ]) .
 
     :predicateVar  sp:varName "p"^^xsd:string .
     :objectVar  sp:varName "o"^^xsd:string .
