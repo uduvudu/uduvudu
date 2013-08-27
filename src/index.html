@@ -10,14 +10,17 @@
 <body>
     <div id="main">
     </div>
-
+    <div id="templates">
+    </div>
     <script type="text/javascript">
-        var element = document.getElementById('main');
+        // prepare templates
+        $("#templates").load("templates.html");
+
         var store = rdfstore.create();
         store.execute('LOAD <http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1006123-A2>\
                        INTO GRAPH <inputgraph>', function(success){
           if(success) {
-                element.innerHTML = main(store);
+                $("#main").html(main(store));
             }
         })
 

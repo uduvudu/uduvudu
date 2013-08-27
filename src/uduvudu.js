@@ -1,14 +1,20 @@
-
-
+/**
+ * Main Function of Uduvudu taking an RDF Graph as Input and using the available recipes and serving suggestions to transform to a visualization. 
+ * @param {store} store The input graph as an rdfStore Object.
+ * @returns {String} oputut Returns the object as a String.
+ */
 function main(store) {
     
     var visuals = matcher(store);
-
     var output = visualizer(visuals);
     return output;
 };
 
 
+/**
+ * Recipes as an Array of functions.
+ *
+ */
 var matchFuncs = [
     //NAME: title
     function (graph) {
@@ -37,7 +43,7 @@ var matchFuncs = [
 
         graph.execute(query, function(success, results) {
             if(success && (! _.isEmpty(results))) {
-                proposal = {elements: 2, context:{title: _.first(results).title.value, text: _.first(results).text.value}, template:{name: "text_title"}};
+                proposal = {elements: 2, context:{title: _.first(results).title.value, text: _.first(results).text.value}, template:{name: "title_text"}};
             }
             else
             {
@@ -67,12 +73,15 @@ function matcher(inputGraph) {
 };
 
 
+
 function visualizer(visuals) {
     console.log(visuals);
     var output = "";
+
     _.each(visuals,
         function (visual){
-           output += "<h1>" + visual.context.title + "</h1>";
+           var template = Handlebars.compile($("#"+visual.template.name).html());
+           output += template(visual.context);
         });
     return output;
 };
