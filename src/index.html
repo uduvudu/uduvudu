@@ -1,6 +1,7 @@
 <html>
 <head>
     <script src="../lib/underscore.js" type="text/javascript"></script>
+    <script src="../lib/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="../lib/handlebars.runtime.js" type="text/javascript"></script>
     <script src="../lib/rdf_store.js" type="text/javascript"></script>
     <script src="uduvudu.js" type="text/javascript"></script>
@@ -12,7 +13,14 @@
 
     <script type="text/javascript">
         var element = document.getElementById('main');
-        element.innerHTML = main();
+        var store = rdfstore.create();
+        store.execute('LOAD <http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1006123-A2>\
+                       INTO GRAPH <inputgraph>', function(success){
+          if(success) {
+                element.innerHTML = main(store);
+            }
+        })
+
     </script>
 </body>
 </html>

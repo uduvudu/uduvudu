@@ -1,14 +1,25 @@
 
 
-function main() {
-    var visuals = matcher("graph");
+function main(store) {
+    
+    var visuals = matcher(store);
+
     var output = visualizer(visuals);
     return output;
 };
 
 
 function matcher(inputGraph) {
-    return ([{context:{title: inputGraph, content:"none"}, template:{name: "tempSimple"}}]);
+
+      var query = 'SELECT ?o \
+                     FROM NAMED <inputgraph> { GRAPH <inputgraph> { ?s <http://purl.org/dc/terms/title> ?o} \
+                     FILTER(LANGMATCHES(LANG(?o), \"en\"))}';
+
+      inputGraph.execute(query, function(success, results) {
+            console.log(results); 
+        });
+
+    return ([{context:{title: "test", content:"none"}, template:{name: "tempSimple"}}]);
 };
 
 
