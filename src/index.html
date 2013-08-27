@@ -1,5 +1,7 @@
 <html>
 <head>
+
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css" rel="stylesheet">
     <script src="../lib/underscore.js" type="text/javascript"></script>
     <script src="../lib/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="../lib/handlebars.js" type="text/javascript"></script>
@@ -8,7 +10,19 @@
 
 </head>
 <body>
-    <div id="main">
+    <div class="container">
+        <div id="chooser">
+            <form class="form-inline" role="form">
+                <select id="selectRDF" class="form-control">
+                    <option>Select a sample RDF URI</option>
+                    <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1006123-A2</option>
+                    <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpmc%2F3276788</option>
+                    <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1012647-A1</option>
+                </select>
+            </form> 
+        </div>
+        <div id="main">
+        </div>
     </div>
     <div id="templates">
     </div>
@@ -16,13 +30,16 @@
         // prepare templates
         $("#templates").load("templates.html");
 
-        var store = rdfstore.create();
-        store.execute('LOAD <http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1006123-A2>\
-                       INTO GRAPH <inputgraph>', function(success){
-          if(success) {
-                $("#main").html(main(store));
-            }
-        })
+        $('#selectRDF').on('change', function() {
+            var store = rdfstore.create();
+            store.execute('LOAD <'+this.value+'>\
+                           INTO GRAPH <inputgraph>', function(success){
+                if(success) {
+                    $("#main").html(main(store));
+                };
+            })
+        });
+
 
     </script>
 </body>
