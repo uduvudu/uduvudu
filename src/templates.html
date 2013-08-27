@@ -27,9 +27,24 @@
   </table>
 </script>
 
-  <div id="content-placeholder"/>
+<script id="foaf:img" type="text/x-handlebars-template">
+  <img src="{{img}}" />
+</script>
 
+<script id="title" type="text/x-handlebars-template">
+  <h1>{{title}}</h1>
+</script>
 
+<script id="title_text" type="text/x-handlebars-template">
+  <div>
+    <h1>{{title}}</h1>
+    <p>{{text}}</p>
+  </div>
+</script>
+
+<div id="content-placeholder"/>
+
+<!--
 <script type="text/javascript">
 	
 	var source = $("#entry-template").html();
@@ -43,7 +58,7 @@
   $("#content-placeholder").html(template(data));
 
 </script>
-
+-->
 
 
 </body>
