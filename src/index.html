@@ -19,6 +19,7 @@
                     <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1006123-A2</option>
                     <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpmc%2F3276788</option>
                     <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1012647-A1</option>
+                    <option>http://vmikarus.bfh.ch/data/messages/b1bdf255-ed5a-43b1-b968-1e27991f2c02</option>
                 </select>
             </form> 
         </div>
@@ -46,6 +47,7 @@
             store.execute('LOAD <'+this.value+'>\
                            INTO GRAPH <inputgraph>', function(success){
                 if(success) {
+                    console.log("stuff seems to be loaded successfully");
                     $("#main").html(main(store));
                 };
             })

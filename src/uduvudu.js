@@ -4,7 +4,7 @@
  * @returns {String} oputut Returns the object as a String.
  */
 function main(store) {
-    
+    console.log(store);
     var visuals = matcher(store);
     var output = visualizer(visuals);
     return output;
@@ -24,6 +24,24 @@ var matchFuncs = [
         graph.execute(query, function(success, results) {
             if(success && (! _.isEmpty(results))) {
                 proposal = {elements: 2, context:{title: _.first(results).title.value, text: _.first(results).text.value}, template:{name: "title_text"}};
+            }
+            else
+            {
+                 proposal = false;
+            }
+        
+        });
+          return proposal;
+        },
+    //NAME: Incident
+    function (graph) {
+        var query = 'SELECT *\
+                     FROM NAMED <inputgraph> { GRAPH <inputgraph> { ?s <http://www.w3.org/2000/01/rdf-schema#label> ?label ; <http://www.w3.org/2000/01/rdf-schema#comment> ?comment.} }';
+
+        graph.execute(query, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+                console.log(results);
+                proposal = {elements: 2, context:{label: _.first(results).label.value, comment: _.first(results).comment.value}, template:{name: "label_comment"}};
             }
             else
             {
