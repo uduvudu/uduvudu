@@ -22,7 +22,7 @@
 tdb:DatasetTDB  rdfs:subClassOf  ja:RDFDataset .
 tdb:GraphTDB    rdfs:subClassOf  ja:Model .
 
-<#UduvuduServices> rdf:type fuseki:Service ;
+<#UduvuduService> rdf:type fuseki:Service ;
     rdfs:label                         "TDB Service (RW) for Uduvudu" ;
     fuseki:name                        "uduvudu" ;
     fuseki:serviceQuery                "sparql" ;
