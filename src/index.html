@@ -34,9 +34,9 @@
 
         $('#setRDF').on('keyup', function() {
             var store = rdfstore.create();
-            store.execute('LOAD <'+this.value+'>\
-                           INTO GRAPH <inputgraph>', function(success){
+            store.load('remote',this.value, function(success, amountTriples){
                 if(success) {
+                    console.debug("successfully loaded "+amountTriples+" triples");
                     $("#main").html(main(store));
                 };
             })
@@ -44,10 +44,9 @@
 
         $('#selectRDF').on('change', function() {
             var store = rdfstore.create();
-            store.execute('LOAD <'+this.value+'>\
-                           INTO GRAPH <inputgraph>', function(success){
+            store.load('remote',this.value, function(success, amountTriples){
                 if(success) {
-                    console.log("stuff seems to be loaded successfully");
+                    console.debug("successfully loaded "+amountTriples+" triples");
                     $("#main").html(main(store));
                 };
             })
