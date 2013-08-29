@@ -1,3 +1,44 @@
+<!--
+
+# BASE TYPE DEFINITIONS
+
+URI in comment refers to the class of the object in rdf:range 
+
+
+-->
+
+<!-- foaf:Image -->
+<script id="img" type="text/x-handlebars-template">
+  <img src="{{img}}" />
+</script>
+
+<!-- foaf:Image -->
+<script id="img_alt" type="text/x-handlebars-template">
+  <img src="{{img}}" alt="{{alt}}"/>
+</script>
+
+<!-- foaf:Document -->
+<script id="uri" type="text/x-handlebars-template">
+  <a href="{{uri}}" />
+</script>
+
+<!-- foaf:Document -->
+<script id="uri_text" type="text/x-handlebars-template">
+  <a href="{{uri}}">{{text}}</a>
+</script>
+
+<!-- rdfs:Literal -->
+<script id="text" type="text/x-handlebars-template">
+  <div>{{text}}</div>
+</script>
+
+
+<!--
+
+# EVERYTHING ELSE
+
+-->
+
 <script id="entry-template" type="text/x-handlebars-template">
   <table>
     <thead>
@@ -17,7 +58,9 @@
   </table>
 </script>
 
-
+<script id="name_givenname" type="text/x-handlebars-template">
+  <div>{{name}} {{givenname}}</div>
+</script>
 
 <script id="title" type="text/x-handlebars-template">
   <h1>{{title}}</h1>
