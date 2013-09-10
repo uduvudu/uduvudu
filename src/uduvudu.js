@@ -13,6 +13,8 @@ function main (store) {
 /**
  * Recipies helper functions
  */
+
+
 function createQueries (where, limit) {
     limit = limit || '';
     return  {
@@ -34,7 +36,7 @@ function prepareTriple (element) {
     if (element.token === 'literal')
         return element.value;
     else
-        return '<a href="'+element.value+'">'+_.last(getName.exec(element.value))+'</a>';
+        return '<a href="?uri='+element.value+'">'+_.last(getName.exec(element.value))+'</a>';
 };
 
 function showGraph (graph) {
@@ -70,6 +72,44 @@ var matchFuncs = [
         });
         return proposal;
     },
+    //NAME: citedBy, List
+    function (graph) {
+        var query = createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> ?o.}');
+        var cGraph = cutGraph(query.construct, graph); 
+
+        var proposal = false;
+        graph.execute(query.select, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+                proposal =  {
+                                elements: results.length,
+                                context: {citedBy: _.map(results,function(result) {return result.cites.value;})},
+                                template: {name: "citedBy"},
+                                graph: cGraph,
+                                prio: 90000
+                            };
+            };
+        });
+        return proposal;
+    },
+   //NAME: pmid, PubMedID
+    function (graph) {
+        var query = createQueries('{ ?s <http://purl.org/ontology/bibo/pmid> ?pmid.}');
+        var cGraph = cutGraph(query.construct, graph); 
+
+        var proposal = false;
+        graph.execute(query.select, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+                proposal =  {
+                                elements: 1,
+                                context: {pmid: _.first(results).pmid.value},
+                                template: {name: "pmid"},
+                                graph: cGraph,
+                                prio: 90000
+                            };
+            };
+        });
+        return proposal;
+    },
     //NAME: last resort, unknown triple
     function (graph) {
         var query = createQueries('{ ?s ?p ?o.}',' LIMIT 1');
@@ -87,7 +127,7 @@ var matchFuncs = [
                                             },
                                 template: {name: "unknown"},
                                 graph: cGraph,
-                                prio: 100000
+                                prio: 0
                             };
             };
         });
@@ -137,7 +177,7 @@ function matcher(inputGraph) {
 
 function visualizer(visuals) {
     var output = "";
-
+    visuals = _.sortBy(visuals, function (visual) {return -visual.prio;});
     _.each(visuals,
         function (visual){
            var template = Handlebars.compile($("#"+visual.template.name).html());

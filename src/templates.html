@@ -7,32 +7,6 @@ URI in comment refers to the class of the object in rdf:range
 
 -->
 
-<!-- foaf:Image -->
-<script id="img" type="text/x-handlebars-template">
-  <img src="{{img}}" />
-</script>
-
-<!-- foaf:Image -->
-<script id="img_alt" type="text/x-handlebars-template">
-  <img src="{{img}}" alt="{{alt}}"/>
-</script>
-
-<!-- foaf:Document -->
-<script id="uri" type="text/x-handlebars-template">
-  <a href="{{uri}}" />
-</script>
-
-<!-- foaf:Document -->
-<script id="uri_text" type="text/x-handlebars-template">
-  <a href="{{uri}}">{{text}}</a>
-</script>
-
-<!-- rdfs:Literal -->
-<script id="text" type="text/x-handlebars-template">
-  <div>{{text}}</div>
-</script>
-
-
 <!--
 
 # EVERYTHING ELSE
@@ -66,6 +40,15 @@ URI in comment refers to the class of the object in rdf:range
   <h1>{{title}}</h1>
 </script>
 
+<script id="citedBy" type="text/x-handlebars-template">
+  <h2>Cited by the following</h2>
+  <ul>
+  {{#each citedBy}}
+    <li>{{this}}</li>
+  {{/each}}
+  </ul>
+</script>
+
 <script id="title_text" type="text/x-handlebars-template">
   <div>
     <h1>{{title}}</h1>
@@ -79,6 +62,13 @@ URI in comment refers to the class of the object in rdf:range
     <p>{{comment}}</p>
   </div>
 </script>
+
+<script id="pmid" type="text/x-handlebars-template">
+  <div>
+    <p>Online at <a href="http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}">http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}</a></p>
+  </div>
+</script>
+
 
 <!-- foaf:Image -->
 <script id="img" type="text/x-handlebars-template">

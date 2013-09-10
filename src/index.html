@@ -32,7 +32,32 @@
         // prepare templates
         $("#templates").load("templates.html");
 
+        // helper to get the get query
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        // if uri is specified in title get it
+        var uri = getParameterByName('uri');
+        if (uri != '') {
+            $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+uri+' is being loaded ...</div>');
+            var store = rdfstore.create();
+            store.load('remote', uri, function(success, amountTriples){
+                if(success) {
+                    console.debug("successfully loaded "+amountTriples+" triples");
+                    $("#main").html(main(store));
+                } else {
+                    $("#main").html('<div class="alert"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Error</strong> '+uri+' can unfortunately not be loaded.</div>');
+                }
+            })
+        }
+
         $('#setRDF').on('keyup', function() {
+            var store = rdfstore.create();
+            $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+this.value+' is being loaded ...</div>');
             var store = rdfstore.create();
             store.load('remote',this.value, function(success, amountTriples){
                 if(success) {
@@ -43,6 +68,7 @@
         });
 
         $('#selectRDF').on('change', function() {
+            $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+this.value+' is being loaded ...</div>');
             var store = rdfstore.create();
             store.load('remote',this.value, function(success, amountTriples){
                 if(success) {
