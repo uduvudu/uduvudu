@@ -41,12 +41,10 @@ URI in comment refers to the class of the object in rdf:range
 </script>
 
 <script id="citedBy" type="text/x-handlebars-template">
-  <h2>Cited by the following</h2>
-  <ul>
-  {{#each citedBy}}
-    <li>{{this}}</li>
-  {{/each}}
-  </ul>
+  <h3>Cited by the following:</h3>
+  <p>
+  {{#each citedBy}}{{#if @index}}, {{/if}}<a href="?uri={{this}}">{{this}}</a>{{/each}}
+  </p>
 </script>
 
 <script id="title_text" type="text/x-handlebars-template">

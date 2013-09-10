@@ -85,7 +85,7 @@ var matchFuncs = [
                                 context: {citedBy: _.map(results,function(result) {return result.cites.value;})},
                                 template: {name: "citedBy"},
                                 graph: cGraph,
-                                prio: 90000
+                                prio: 80000
                             };
             };
         });
