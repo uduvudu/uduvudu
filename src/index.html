@@ -1,7 +1,7 @@
 <html>
 <head>
 
-    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/bootstrap.min.css" rel="stylesheet">
     <script src="../lib/underscore.js" type="text/javascript"></script>
     <script src="../lib/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="../lib/handlebars.js" type="text/javascript"></script>
@@ -16,10 +16,16 @@
                 <input id="setRDF" type="text" class="form-control"></input>
                 <select id="selectRDF" class="form-control">
                     <option>Select a sample RDF URI</option>
+                    <option>examples/Bern_University_of_Applied_Sciences.ttl</option>
+                    <option>examples/Rolex.ttl</option>
+                    <option>examples/Test.ttl</option>
+                    <option>examples/TimBernersLee.ttl</option>
+                    <option>examples/Brig-Glis.ttl</option>
+                    <option>http://vmikarus.bfh.ch/data/messages/b1bdf255-ed5a-43b1-b968-1e27991f2c02</option>
+                    <option>http://dbpedia.org/data/Bern.ttl</option>
                     <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1006123-A2</option>
                     <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpmc%2F3276788</option>
                     <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1012647-A1</option>
-                    <option>http://vmikarus.bfh.ch/data/messages/b1bdf255-ed5a-43b1-b968-1e27991f2c02</option>
                 </select>
             </form> 
         </div>
@@ -40,42 +46,40 @@
             return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
+        function loadFromSource(source) {
+            var store = rdfstore.create();
+            $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+source+' is being loaded ...</div>');
+            if (source.substring(0,4) === "http") {
+                store.load('remote',source, function(success, amountTriples){
+                    if(success) {
+                        console.debug("successfully loaded "+amountTriples+" triples");
+                        $("#main").html(main(store));
+                    }; 
+                })
+            } else {
+                $.get(source, function(response) {
+                    store.load('text/turtle',response, function(success, amountTriples){
+                        if(success) {
+                            console.debug("successfully loaded "+amountTriples+" triples");
+                            $("#main").html(main(store));
+                        };
+                    }) 
+                });
+            };
+        };
+
         // if uri is specified in title get it
         var uri = getParameterByName('uri');
         if (uri != '') {
-            $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+uri+' is being loaded ...</div>');
-            var store = rdfstore.create();
-            store.load('remote', uri, function(success, amountTriples){
-                if(success) {
-                    console.debug("successfully loaded "+amountTriples+" triples");
-                    $("#main").html(main(store));
-                } else {
-                    $("#main").html('<div class="alert"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Error</strong> '+uri+' can unfortunately not be loaded.</div>');
-                }
-            })
-        }
+            loadFromSource(uri);
+            }
 
         $('#setRDF').on('keyup', function() {
-            var store = rdfstore.create();
-            $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+this.value+' is being loaded ...</div>');
-            var store = rdfstore.create();
-            store.load('remote',this.value, function(success, amountTriples){
-                if(success) {
-                    console.debug("successfully loaded "+amountTriples+" triples");
-                    $("#main").html(main(store));
-                };
-            })
+            loadFromSource(this.value);
         });
 
         $('#selectRDF').on('change', function() {
-            $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+this.value+' is being loaded ...</div>');
-            var store = rdfstore.create();
-            store.load('remote',this.value, function(success, amountTriples){
-                if(success) {
-                    console.debug("successfully loaded "+amountTriples+" triples");
-                    $("#main").html(main(store));
-                };
-            })
+            loadFromSource(this.value);
         });
 
 
