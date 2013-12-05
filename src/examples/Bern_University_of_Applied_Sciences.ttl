@@ -1,0 +1,93 @@
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix ns1:	<http://fr.dbpedia.org/resource/> .
+@prefix dbpedia:	<http://dbpedia.org/resource/> .
+ns1:Haute_École_spécialisée_bernoise	owl:sameAs	dbpedia:Bern_University_of_Applied_Sciences .
+@prefix ns3:	<http://de.dbpedia.org/resource/> .
+ns3:Berner_Fachhochschule	owl:sameAs	dbpedia:Bern_University_of_Applied_Sciences .
+@prefix ns4:	<http://ru.dbpedia.org/resource/> .
+ns4:Бернский_университет_прикладных_наук	owl:sameAs	dbpedia:Bern_University_of_Applied_Sciences .
+@prefix foaf:	<http://xmlns.com/foaf/0.1/> .
+@prefix ns6:	<http://en.wikipedia.org/wiki/> .
+ns6:Bern_University_of_Applied_Sciences	foaf:primaryTopic	dbpedia:Bern_University_of_Applied_Sciences .
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ns8:	<http://schema.org/> .
+dbpedia:Bern_University_of_Applied_Sciences	rdf:type	ns8:EducationalOrganization .
+@prefix yago:	<http://dbpedia.org/class/yago/> .
+dbpedia:Bern_University_of_Applied_Sciences	rdf:type	yago:Institution108053576 ,
+		ns8:CollegeOrUniversity ,
+		yago:YagoPermanentlyLocatedEntity ,
+		ns8:Organization ,
+		yago:YagoLegalActorGeo .
+@prefix dbpedia-owl:	<http://dbpedia.org/ontology/> .
+dbpedia:Bern_University_of_Applied_Sciences	rdf:type	dbpedia-owl:University ,
+		dbpedia-owl:EducationalInstitution ,
+		dbpedia-owl:Agent ,
+		yago:SocialGroup107950920 ,
+		yago:YagoLegalActor ,
+		dbpedia-owl:Organisation ,
+		yago:UniversitiesOfAppliedSciencesInSwitzerland ,
+		yago:Group100031264 ,
+		yago:University108286569 ,
+		owl:Thing ,
+		yago:EducationalInstitution108276342 ,
+		yago:Organization108008335 ,
+		yago:Abstraction100002137 ;
+	owl:sameAs	ns1:Haute_École_spécialisée_bernoise ,
+		ns4:Бернский_университет_прикладных_наук .
+@prefix ns11:	<http://www.wikidata.org/entity/> .
+dbpedia:Bern_University_of_Applied_Sciences	owl:sameAs	ns11:Q466455 ,
+		dbpedia:Bern_University_of_Applied_Sciences ,
+		ns3:Berner_Fachhochschule ,
+		<http://rdf.freebase.com/ns/m.0bzc9g> .
+@prefix ns12:	<http://yago-knowledge.org/resource/> .
+dbpedia:Bern_University_of_Applied_Sciences	owl:sameAs	ns12:Bern_University_of_Applied_Sciences .
+@prefix dcterms:	<http://purl.org/dc/terms/> .
+@prefix category:	<http://dbpedia.org/resource/Category:> .
+dbpedia:Bern_University_of_Applied_Sciences	dcterms:subject	category:Education_in_Bern ,
+		category:Universities_of_Applied_Sciences_in_Switzerland .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+dbpedia:Bern_University_of_Applied_Sciences	rdfs:label	"Bern University of Applied Sciences"@en ,
+		"Berner Fachhochschule"@de ,
+		"Haute \u00C9cole sp\u00E9cialis\u00E9e bernoise"@fr ,
+		"\u0411\u0435\u0440\u043D\u0441\u043A\u0438\u0439 \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442 \u043F\u0440\u0438\u043A\u043B\u0430\u0434\u043D\u044B\u0445 \u043D\u0430\u0443\u043A"@ru ;
+	rdfs:comment	"La Haute \u00C9cole sp\u00E9cialis\u00E9e bernoise (HESB, en allemand Berner Fachhochschule, BFH), est un \u00E9tablissement enseignement sup\u00E9rieur suisse de niveau universitaire et appartient au r\u00E9seau des hautes \u00E9coles sp\u00E9cialis\u00E9es."@fr ,
+		"Die Berner Fachhochschule (BFH) ist das Dach, unter dem in Bern, Biel/Bienne und Burgdorf verschiedene Fachbereiche untergeordnet sind."@de ,
+		"Bern University of Applied Sciences (BUAS) is a public vocational university with campuses in Bern, Biel, Burgdorf, Magglingen, and Zollikofen, Switzerland. It is made up of six schools: the School of Engineering and Information Technology; the School of Architecture, Civil and Wood Engineering; the School of Management, Administration and Social Work; Bern University of the Arts; Swiss College of Agriculture; and the College of Sports Magglingen."@en ,
+		"\u0411\u0435\u0440\u043D\u0441\u043A\u0438\u0439 \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442 \u043F\u0440\u0438\u043A\u043B\u0430\u0434\u043D\u044B\u0445 \u043D\u0430\u0443\u043A\u00A0\u2014 \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442, \u0440\u0430\u0441\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0439 \u0432 \u0411\u0435\u0440\u043D\u0435, \u0432 \u043D\u0435\u043C\u0435\u0446\u043A\u043E\u0439 \u0447\u0430\u0441\u0442\u0438 \u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u0438."@ru ;
+	foaf:name	"Berner Fachhochschule"@en ,
+		"Bern University of Applied Sciences"@en ;
+	foaf:homepage	<http://www.bfh.ch/> .
+@prefix dbpprop:	<http://dbpedia.org/property/> .
+dbpedia:Bern_University_of_Applied_Sciences	dbpprop:nativeName	"Berner Fachhochschule"@en ;
+	dbpedia-owl:wikiPageID	4365265 ;
+	dbpedia-owl:wikiPageRevisionID	542454070 ;
+	dbpprop:rector	"Dr. Rudolf Gerber"@en ;
+	foaf:isPrimaryTopicOf	ns6:Bern_University_of_Applied_Sciences .
+@prefix ns17:	<http://www.w3.org/ns/prov#> .
+dbpedia:Bern_University_of_Applied_Sciences	ns17:wasDerivedFrom	<http://en.wikipedia.org/wiki/Bern_University_of_Applied_Sciences?oldid=542454070> ;
+	dbpedia-owl:abstract	"Bern University of Applied Sciences (BUAS) is a public vocational university with campuses in Bern, Biel, Burgdorf, Magglingen, and Zollikofen, Switzerland. It is made up of six schools: the School of Engineering and Information Technology; the School of Architecture, Civil and Wood Engineering; the School of Management, Administration and Social Work; Bern University of the Arts; Swiss College of Agriculture; and the College of Sports Magglingen."@en ,
+		"\u0411\u0435\u0440\u043D\u0441\u043A\u0438\u0439 \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442 \u043F\u0440\u0438\u043A\u043B\u0430\u0434\u043D\u044B\u0445 \u043D\u0430\u0443\u043A\u00A0\u2014 \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442, \u0440\u0430\u0441\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0439 \u0432 \u0411\u0435\u0440\u043D\u0435, \u0432 \u043D\u0435\u043C\u0435\u0446\u043A\u043E\u0439 \u0447\u0430\u0441\u0442\u0438 \u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u0438."@ru ,
+		"Die Berner Fachhochschule (BFH) ist das Dach, unter dem in Bern, Biel/Bienne und Burgdorf verschiedene Fachbereiche untergeordnet sind."@de ,
+		"La Haute \u00C9cole sp\u00E9cialis\u00E9e bernoise (HESB, en allemand Berner Fachhochschule, BFH), est un \u00E9tablissement enseignement sup\u00E9rieur suisse de niveau universitaire et appartient au r\u00E9seau des hautes \u00E9coles sp\u00E9cialis\u00E9es."@fr ;
+	dbpedia-owl:wikiPageExternalLink	<http://www.universitieshandbook.com/index.php?option=com_mtree&link_id=29&task=viewlink&Itemid=53> ,
+		<http://www.bfh.ch/> ,
+		<http://www.kfh.ch/uploads/inst/doku/115266_factsheet_bfh_low.pdf> ;
+	dbpprop:name	"Bern University of Applied Sciences"@en .
+@prefix ns18:	<http://wifo5-03.informatik.uni-mannheim.de/flickrwrappr/photos/> .
+dbpedia:Bern_University_of_Applied_Sciences	dbpprop:hasPhotoCollection	ns18:Bern_University_of_Applied_Sciences ;
+	dbpedia-owl:country	dbpedia:Switzerland ;
+	dbpprop:website	<http://www.bfh.ch/> ;
+	dbpprop:type	"Public university"@en ;
+	dbpprop:country	dbpedia:Switzerland ;
+	dbpedia-owl:city	dbpedia:Bern ;
+	dbpprop:city	dbpedia:Bern ;
+	dbpedia-owl:numberOfStudents	5500 ;
+	dbpprop:students	5500 ;
+	dbpprop:established	1997 .
+dbpedia:Berne_University_of_Applied_Sciences	dbpedia-owl:wikiPageRedirects	dbpedia:Bern_University_of_Applied_Sciences .
+dbpedia:Berner_Fachhochschule	dbpedia-owl:wikiPageRedirects	dbpedia:Bern_University_of_Applied_Sciences .
+dbpedia:Biel_School_of_Engineering	dbpedia-owl:wikiPageRedirects	dbpedia:Bern_University_of_Applied_Sciences .
+dbpedia:Berne_university_of_applied_sciences	dbpedia-owl:wikiPageRedirects	dbpedia:Bern_University_of_Applied_Sciences .
+@prefix ns19:	<http://wikidata.dbpedia.org/resource/> .
+ns19:Q466455	owl:sameAs	dbpedia:Bern_University_of_Applied_Sciences .
+<http://dbpedia.org/resource/School_of_Agricultural,_Forest_and_Food_Sciences_HAFL>	dbpedia-owl:wikiPageRedirects	dbpedia:Bern_University_of_Applied_Sciences .
