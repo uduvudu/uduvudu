@@ -13,7 +13,7 @@ URI in comment refers to the class of the object in rdf:range
 
 -->
 
-<script id="entry-template_en" type="text/x-handlebars-template">
+<script id="entry-template" type="text/x-handlebars-template">
   <table>
     <thead>
       <th>Username</th>
@@ -33,54 +33,61 @@ URI in comment refers to the class of the object in rdf:range
 </script>
 
 
-<script id="person_name_en" type="text/x-handlebars-template">
-  <div>{{lastName}} {{firstName}}</div>
+<script id="person_name" type="text/x-handlebars-template">
+  <div>{{lastName.u}} {{firstName.u}}</div>
 </script>
 
-<script id="title_en" type="text/x-handlebars-template">
-  <h1>{{#if title.en}}{{title.en}}{{else}}{{title.undefined}}{{/if}}</h1>
+<script id="title" type="text/x-handlebars-template">
+  <h1>{{title.u}}</h1>
 </script>
 
 <script id="title_de" type="text/x-handlebars-template">
-  <h1>{{title.de}}</h1>
+  <h1>{{title.l.de}}</h1>
 </script>
 
-<script id="text_en" type="text/x-handlebars-template">
-  <p>{{text.en}}</p>
+<script id="text" type="text/x-handlebars-template">
+  <p>{{text.u}}</p>
 </script>
 
-<script id="citedBy_en" type="text/x-handlebars-template">
+<script id="citedBy" type="text/x-handlebars-template">
    <p><b>Cited by:</b> 
   {{#each citedBy}}{{#if @index}}, {{/if}}<a href="?uri={{this}}">{{this}}</a>{{/each}}
   </p>
 </script>
 
-<script id="license_en" type="text/x-handlebars-template">
+<script id="neighboringMunicipalities" type="text/x-handlebars-template">
+   <p><b>Neighboring Municipalities:</b> 
+  {{#each neighboringMunicipalities.u}}<a href="?uri={{this}}">&#9608;</a> {{/each}}
+  </p>
+</script>
+
+
+<script id="license" type="text/x-handlebars-template">
     <p><small>{{#if license}}&copy; {{license}}{{else}}&copy; <a href="{{uri}}">{{uri}}</a>{{/if}}</small></p>
 </script>
 
-<script id="title_text_en" type="text/x-handlebars-template">
+<script id="title_text" type="text/x-handlebars-template">
   <div>
     <h1>{{title}}</h1>
     <p>{{text}}</p>
   </div>
 </script>
 
-<script id="label_comment_en" type="text/x-handlebars-template">
+<script id="label_comment" type="text/x-handlebars-template">
   <div>
     <h1>{{label}}</h1>
     <p>{{comment}}</p>
   </div>
 </script>
 
-<script id="location_en" type="text/x-handlebars-template">
+<script id="location" type="text/x-handlebars-template">
     <div id="map-canvas">
-        <big>&#8982;</big> {{lat}} / {{long}}
+        <big>&#8982;</big> {{lat.u}} / {{long.u}}
     </div> 
 </script>
 
 
-<script id="pmid_en" type="text/x-handlebars-template">
+<script id="pmid" type="text/x-handlebars-template">
   <div>
     <p>Online at <a href="http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}">http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}</a></p>
   </div>
@@ -88,36 +95,36 @@ URI in comment refers to the class of the object in rdf:range
 
 
 <!-- foaf:Image -->
-<script id="img_en" type="text/x-handlebars-template">
+<script id="img" type="text/x-handlebars-template">
   <img src="{{img}}" />
 </script>
 
 <!-- foaf:Image -->
-<script id="img_alt_en" type="text/x-handlebars-template">
+<script id="img_alt" type="text/x-handlebars-template">
   <img src="{{img}}" alt="{{alt}}"/>
 </script>
 
 <!-- foaf:Document -->
-<script id="uri_en" type="text/x-handlebars-template">
+<script id="uri" type="text/x-handlebars-template">
   <a href="{{uri}}}" />
 </script>
 
 <!-- foaf:Document -->
-<script id="uri_text_en" type="text/x-handlebars-template">
-  <a href="{{uri}}">{{text}}</a>
+<script id="uri_text" type="text/x-handlebars-template">
+  <a href="{{uri.u}}">{{text.u}}</a>
 </script>
 
 <!-- rdfs:Literal -->
-<script id="text_en" type="text/x-handlebars-template">
-  <div>{{text}}</div>
+<script id="text" type="text/x-handlebars-template">
+  <div>{{text.u}}</div>
 </script>
 
 <!-- unknown -->
-<script id="unknown_en" type="text/x-handlebars-template">
-  <small><p>{{{subject}}} &#9608; {{{predicate}}} &#9608; {{{object}}}</p></small>
+<script id="unknown" type="text/x-handlebars-template">
+  <small><p>{{{subject.u}}} &#9608; {{{predicate.u}}} &#9608; {{{object.u}}}</p></small>
 </script>
 
 <!-- void -->
-<script id="void_en" type="text/x-handlebars-template">
+<script id="void" type="text/x-handlebars-template">
 </script>
 

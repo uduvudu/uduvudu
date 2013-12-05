@@ -53,7 +53,7 @@
                 store.load('remote',source, function(success, amountTriples){
                     if(success) {
                         console.debug("successfully loaded "+amountTriples+" triples");
-                        $("#main").html(main(store));
+                        $("#main").html(Uduvudu().process(store));
                     }; 
                 })
             } else {
@@ -61,7 +61,7 @@
                     store.load('text/turtle',response, function(success, amountTriples){
                         if(success) {
                             console.debug("successfully loaded "+amountTriples+" triples");
-                            $("#main").html(main(store));
+                            $("#main").html(Uduvudu().process(store));
                         };
                     }) 
                 });
