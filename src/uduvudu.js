@@ -14,10 +14,16 @@ Uduvudu.prototype = {
     process: function (store, resource, language, device) {
         var u = this;
 
+        if (resource) {
+            resource = '<'+resource+'>'; 
+        } else {
+            resource = '?s';
+        }
+
         var language = language || navigator.language.substring(0,2) || "en";
         var device = device || "desktop";
 
-        var visuals = u.matcher(store);
+        var visuals = u.matcher(store, resource);
         var output = u.visualizer(visuals, language, device);
         return output;
     },
@@ -47,9 +53,9 @@ Uduvudu.prototype = {
             // the proposal to use
             finalprop = _.first(sorted);
             // get out the used triples and rerun matcher
-            inputGraph.delete(finalprop.graph);
+                inputGraph.delete(finalprop.graph);
             // return the union of all graphs
-            return _.union([finalprop],this.matcher(inputGraph));
+            return _.union([finalprop],this.matcher(inputGraph, resource));
         }
     },
 
@@ -140,7 +146,7 @@ var languageFlattener = function(context, language) {
  */
 var matchFuncs = [
     //NAME: title, text
-    {"title,text": function (graph) {
+    {"title,text": function (graph, resource) {
 /*
         var proposal = false;
         var proposals = matchArrayOfFuncs(graph,['title','text']);
@@ -200,8 +206,8 @@ var matchFuncs = [
         return proposal;
     }},
     //NAME: person_name
-    {"person_name": function (graph) {
-        var query = createQueries('{ ?s <http://xmlns.com/foaf/0.1/firstName> ?firstName. ?s <http://xmlns.com/foaf/0.1/lastName> ?lastName.}');
+    {"person_name": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/firstName> ?firstName. '+resource+' <http://xmlns.com/foaf/0.1/lastName> ?lastName.}');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -219,8 +225,8 @@ var matchFuncs = [
         return proposal;
     }},
     //NAME: location
-    {"location": function (graph) {
-        var query = createQueries('{ ?s <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long. ?s <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat.}','LIMIT 1');
+    {"location": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long. '+resource+' <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat.}','LIMIT 1');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -237,9 +243,9 @@ var matchFuncs = [
         });
         return proposal;
     }},
-   //NAME: license
-    {"license": function (graph) {
-        var query = createQueries('{ ?s <http://purl.org/dc/terms/license> ?license. }');
+    //NAME: license
+    {"license": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://purl.org/dc/terms/license> ?license. }');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -263,8 +269,8 @@ var matchFuncs = [
         return proposal;
     }},
     //NAME: comment
-    {"comment": function (graph) {
-        var query = createQueries('{ ?s <http://dbpedia.org/ontology/abstract> ?text. }');
+    {"comment": function (graph,resource) {
+        var query = createQueries('{ '+resource+' <http://dbpedia.org/ontology/abstract> ?text. }');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -282,8 +288,8 @@ var matchFuncs = [
         return proposal;
     }},
     //NAME: text
-    {"text": function (graph) {
-        var query = createQueries('{ ?s <http://rdfs.org/sioc/ns#content> ?text. }');
+    {"text": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://rdfs.org/sioc/ns#content> ?text. }');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -301,8 +307,8 @@ var matchFuncs = [
         return proposal;
     }},
     //NAME: label
-    {"label": function (graph) {
-        var query = createQueries('{ ?s <http://www.w3.org/2000/01/rdf-schema#label> ?title. }');
+    {"label": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://www.w3.org/2000/01/rdf-schema#label> ?title. }');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -319,10 +325,9 @@ var matchFuncs = [
         });
         return proposal;
     }},
-
     //NAME: title
-    {"title": function (graph) {
-        var query = createQueries('{ ?s <http://purl.org/dc/terms/title> ?title. }');
+    {"title": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://purl.org/dc/terms/title> ?title. }');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -340,14 +345,13 @@ var matchFuncs = [
         return proposal;
     }},
     //NAME: neighboringMunicipality, List
-    {"neighboringMunicipality": function (graph) {
-        var query = createQueries('{ ?s <http://dbpedia.org/ontology/neighboringMunicipality> ?cities.}');
+    {"neighboringMunicipality": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://dbpedia.org/ontology/neighboringMunicipality> ?cities.}');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
             if(success && (! _.isEmpty(results))) {
-                console.log(results);
                 proposal =  {
                                 elements: results.length,
                                 context: {neighboringMunicipalities: _.map(results,function(result) {return result.cities.value;})},
@@ -359,10 +363,9 @@ var matchFuncs = [
         });
         return proposal;
     }},
-
     //NAME: citedBy, List
-    {"citedBy": function (graph) {
-        var query = createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> ?o.}');
+    {"citedBy": function (graph, resource) {
+        var query = createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> '+resource+'.}');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -379,9 +382,9 @@ var matchFuncs = [
         });
         return proposal;
     }},
-   //NAME: pmid, PubMedID
-    {"pmid": function (graph) {
-        var query = createQueries('{ ?s <http://purl.org/ontology/bibo/pmid> ?pmid.}');
+    //NAME: pmid, PubMedID
+    {"pmid": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://purl.org/ontology/bibo/pmid> ?pmid.}');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -391,6 +394,25 @@ var matchFuncs = [
                                 elements: 1,
                                 context: {pmid: _.first(results).pmid.value},
                                 template: {name: "pmid"},
+                                graph: cGraph,
+                                prio: 90000
+                            };
+            };
+        });
+        return proposal;
+    }},
+    //NAME: depiction
+    {"depiction": function (graph, resource) {
+        var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/depiction> ?img_url.}');
+        var cGraph = cutGraph(query.construct, graph);
+
+        var proposal = false;
+        graph.execute(query.select, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+                proposal =  {
+                                elements: 1,
+                                context: {img_url: _.first(results).img_url.value},
+                                template: {name: "img"},
                                 graph: cGraph,
                                 prio: 90000
                             };

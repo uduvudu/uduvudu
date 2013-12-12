@@ -63,7 +63,7 @@ URI in comment refers to the class of the object in rdf:range
 
 
 <script id="license" type="text/x-handlebars-template">
-    <p><small>{{#if license}}&copy; {{license}}{{else}}&copy; <a href="{{uri}}">{{uri}}</a>{{/if}}</small></p>
+    <p><small>{{#if license.u}}&copy; {{license.u}}{{else}}&copy; <a href="{{uri.u}}">{{uri.u}}</a>{{/if}}</small></p>
 </script>
 
 <script id="title_text" type="text/x-handlebars-template">
@@ -96,7 +96,7 @@ URI in comment refers to the class of the object in rdf:range
 
 <!-- foaf:Image -->
 <script id="img" type="text/x-handlebars-template">
-  <img src="{{img}}" />
+  <img style="max-width: 400px" src="{{img_url.u}}" class="img-responsive" />
 </script>
 
 <!-- foaf:Image -->

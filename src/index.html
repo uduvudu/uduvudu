@@ -16,12 +16,12 @@
                 <input id="setRDF" type="text" class="form-control"></input>
                 <select id="selectRDF" class="form-control">
                     <option>Select a sample RDF URI</option>
-                    <option>examples/Bern_University_of_Applied_Sciences.ttl</option>
+                    <option data-res="http://dbpedia.org/resource/Bern_University_of_Applied_Sciences">examples/Bern_University_of_Applied_Sciences.ttl</option>
                     <option>examples/Rolex.ttl</option>
                     <option>examples/Test.ttl</option>
                     <option>examples/TimBernersLee.ttl</option>
-                    <option>examples/Brig-Glis.ttl</option>
-                    <option>http://vmikarus.bfh.ch/data/messages/b1bdf255-ed5a-43b1-b968-1e27991f2c02</option>
+                    <option data-res="http://dbpedia.org/resource/Brig-Glis">examples/Brig-Glis.ttl</option>
+                    <option data-res="http://vmikarus.bfh.ch/data/messages/b1bdf255-ed5a-43b1-b968-1e27991f2c02">http://vmikarus.bfh.ch/data/messages/b1bdf255-ed5a-43b1-b968-1e27991f2c02</option>
                     <option>http://dbpedia.org/data/Bern.ttl</option>
                     <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpatent%2FEP-1006123-A2</option>
                     <option>http://beta.fusepool.com/ecs/meta?iri=http%3A%2F%2Ffusepool.info%2Fdoc%2Fpmc%2F3276788</option>
@@ -46,14 +46,14 @@
             return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
-        function loadFromSource(source) {
+        function loadFromSource(source, resource) {
             var store = rdfstore.create();
             $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+source+' is being loaded ...</div>');
             if (source.substring(0,4) === "http") {
                 store.load('remote',source, function(success, amountTriples){
                     if(success) {
                         console.debug("successfully loaded "+amountTriples+" triples");
-                        $("#main").html(Uduvudu().process(store));
+                        $("#main").html(Uduvudu().process(store, resource));
                     }; 
                 })
             } else {
@@ -61,7 +61,7 @@
                     store.load('text/turtle',response, function(success, amountTriples){
                         if(success) {
                             console.debug("successfully loaded "+amountTriples+" triples");
-                            $("#main").html(Uduvudu().process(store));
+                            $("#main").html(Uduvudu().process(store, resource));
                         };
                     }) 
                 });
@@ -71,15 +71,16 @@
         // if uri is specified in title get it
         var uri = getParameterByName('uri');
         if (uri != '') {
-            loadFromSource(uri);
+            loadFromSource(uri, uri);
             }
 
         $('#setRDF').on('keyup', function() {
             loadFromSource(this.value);
         });
 
-        $('#selectRDF').on('change', function() {
-            loadFromSource(this.value);
+        $('#selectRDF').on('change', function(event) {
+
+            loadFromSource(this.value, event.target.selectedOptions[0].attributes['data-res'].nodeValue);
         });
 
 
