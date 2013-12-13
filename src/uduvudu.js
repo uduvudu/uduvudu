@@ -73,6 +73,7 @@ Uduvudu.prototype = {
         _.each(visuals,
             function (visual){
                var template = Handlebars.compile($("#"+visual.template.name).html());
+               console.log(visual.context, languageFlattener(visual.context));
                output += template(languageFlattener(visual.context, language));
             });
         return output;
@@ -102,8 +103,8 @@ function findMatchFunc(name) {
     return _.first(_.values(_.find(matchFuncs, function (func) {return _.first(_.keys(func)) == name;})));
 }
 
-function matchArrayOfFuncs(graph, names) {
-    return _.map(names, function (name) {return findMatchFunc(name)(graph);});
+function matchArrayOfFuncs(graph, resource, names) {
+    return _.map(names, function (name) {return findMatchFunc(name)(graph, resource);});
 }
 
 function prepareTriple (element) {
@@ -112,6 +113,13 @@ function prepareTriple (element) {
         return element.value;
     else
         return '<a href="?uri='+element.value+'">'+_.last(getName.exec(element.value))+'</a>';
+};
+
+function nameFromPredicate (element) {
+    var getName = /(#|\/)([^#\/]*)$/
+    if (element.token === 'uri') {
+        return _.last(getName.exec(element.value));
+    }
 };
 
 function showGraph (graph) {
@@ -145,46 +153,35 @@ var languageFlattener = function(context, language) {
  *
  */
 var matchFuncs = [
-    //NAME: title, text
-    {"title,text": function (graph, resource) {
-/*
+    //NAME: community
+    {"community": function (graph, resource) {
         var proposal = false;
-        var proposals = matchArrayOfFuncs(graph,['title','text']);
+        var proposals = matchArrayOfFuncs(graph,resource,['depiction','label_comment']);
         if (_.every(proposals, _.identity)) {
-            console.log(proposals);
             proposal = {
                                 elements: _.map(proposals, function (proposal) {return _.reduce(proposal.elements, function (m,n){return m+n;},0);}),
-                                context: _.extend(proposals),
-                                template: {name: "title_text"},
-                                graph: cGraph,
+                                context: _.reduce(_.rest(proposals), function(memo,num){return _.extend(memo,num.context);},_.first(proposals).context),
+                                template: {name: "community"},
+                                graph: _.reduce(_.rest(proposals), function(memo,num){return memo.addAll(num.graph);},_.first(proposals).graph),
                                 prio: 100000
                             };
         }
-
-        console.log(proposal);
-*/
-//        titleProposal = findMatchFunc("title")(graph);
- //       textProposal = findMatchFunc("text")(graph);
-  //      console.log(textProposal, titleProposal);
-
-        return false;
-/*        var query = createQueries('{ ?s <http://purl.org/dc/terms/title> ?title. ?s <http://rdfs.org/sioc/ns#content> ?text.}');
-        var cGraph = cutGraph(query.construct, graph);
-
+        return proposal;
+    }},
+    //NAME: title, text
+    {"label_comment": function (graph, resource) {
         var proposal = false;
-        graph.execute(query.select, function(success, results) {
-            if(success && (! _.isEmpty(results))) {
-                proposal =  {
-                                elements: 2,
-                                context: {title: _.first(results).title.value, text: _.first(results).text.value},
-                                template: {name: "title_text"},
-                                graph: cGraph,
+        var proposals = matchArrayOfFuncs(graph,resource,['label','comment']);
+        if (_.every(proposals, _.identity)) {
+            proposal = {
+                                elements: _.map(proposals, function (proposal) {return _.reduce(proposal.elements, function (m,n){return m+n;},0);}),
+                                context: _.reduce(_.rest(proposals), function(memo,num){return _.extend(memo,num.context);},_.first(proposals).context),
+                                template: {name: "label_comment"},
+                                graph: _.reduce(_.rest(proposals), function(memo,num){return memo.addAll(num.graph);},_.first(proposals).graph),
                                 prio: 100000
                             };
-            };
-        });
+        }
         return proposal;
-*/
     }},
     //NAME: sameAs
     {"sameAs": function (graph) {
@@ -268,9 +265,28 @@ var matchFuncs = [
         });
         return proposal;
     }},
+    //NAME: abstract
+    {"abstract": function (graph,resource) {
+        var query = createQueries('{ '+resource+' <http://dbpedia.org/ontology/abstract> ?text. }');
+        var cGraph = cutGraph(query.construct, graph);
+
+        var proposal = false;
+        graph.execute(query.select, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+                proposal =  {
+                                elements: results.length,
+                                context: {text: _.object(_.map(results, function(r){return [r.text.lang,r.text.value]}))},
+                                template: {name: "text"},
+                                graph: cGraph,
+                                prio: 100000
+                            };
+            };
+        });
+        return proposal;
+    }},
     //NAME: comment
     {"comment": function (graph,resource) {
-        var query = createQueries('{ '+resource+' <http://dbpedia.org/ontology/abstract> ?text. }');
+        var query = createQueries('{ '+resource+' <http://www.w3.org/2000/01/rdf-schema#comment> ?text. }');
         var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
@@ -416,6 +432,30 @@ var matchFuncs = [
                                 graph: cGraph,
                                 prio: 90000
                             };
+            };
+        });
+        return proposal;
+    }},
+    //NAME: literal
+    {"literal": function (graph) {
+        var query = createQueries('{ ?s ?p ?o.}',' LIMIT 1');
+        var cGraph = cutGraph(query.construct, graph);
+
+        var proposal = false;
+        graph.execute(query.select, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+                if(_.first(results).o.token === "literal") {
+                     proposal =  {
+                                    elements: 1,
+                                    context:    {
+                                                    name: nameFromPredicate(_.first(results).p),
+                                                    text: _.first(results).o.value
+                                                },
+                                    template: {name: "literal"},
+                                    graph: cGraph,
+                                    prio: 0
+                                };
+                };
             };
         });
         return proposal;

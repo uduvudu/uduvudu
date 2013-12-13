@@ -73,10 +73,18 @@ URI in comment refers to the class of the object in rdf:range
   </div>
 </script>
 
-<script id="label_comment" type="text/x-handlebars-template">
+<script id="community" type="text/x-handlebars-template">
   <div>
-    <h1>{{label}}</h1>
-    <p>{{comment}}</p>
+    <img style="max-width: 400px" src="{{img_url.u}}" class="img-responsive pull-right" />
+    <h1>{{title.u}}</h1>
+    <p>{{text.u}}</p>
+  </div>
+</script>
+
+<script id="label_comment" type="text/x-handlebars-template">
+    <div>
+    <h1>{{title.u}}</h1>
+    <p>{{text.u}}</p>
   </div>
 </script>
 
@@ -119,12 +127,15 @@ URI in comment refers to the class of the object in rdf:range
   <div>{{text.u}}</div>
 </script>
 
-<!-- unknown -->
-<script id="unknown" type="text/x-handlebars-template">
-  <small><p>{{{subject.u}}} &#9608; {{{predicate.u}}} &#9608; {{{object.u}}}</p></small>
+<!-- literal -->
+<script id="literal" type="text/x-handlebars-template">
+    <p><b>{{{name.u}}}</b>: {{{text.u}}}</p>
 </script>
 
 <!-- void -->
 <script id="void" type="text/x-handlebars-template">
 </script>
-
+<!-- unknown -->
+<script id="unknown" type="text/x-handlebars-template">
+<!--  <small><p>{{{subject.u}}} &#9608; {{{predicate.u}}} &#9608; {{{object.u}}}</p></small> -->
+</script>
