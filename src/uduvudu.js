@@ -13,9 +13,9 @@ Uduvudu.prototype = {
  */
     process: function (store, resource, language, device) {
         var u = this;
-
+        
         if (resource) {
-            resource = '<'+resource+'>'; 
+            resource = '<'+encodeURI(resource)+'>'; 
         } else {
             resource = '?s';
         }
@@ -73,9 +73,13 @@ Uduvudu.prototype = {
         _.each(visuals,
             function (visual){
                var template = Handlebars.compile($("#"+visual.template.name).html());
-               console.log(visual.context, languageFlattener(visual.context));
+               var javascript = $("#"+visual.template.name+"_js").html();
                output += template(languageFlattener(visual.context, language));
-            });
+               if (javascript) {
+                   javascriptTemplate = Handlebars.compile(javascript);
+                   output += "<script type=\"text/javascript\">"+javascriptTemplate(languageFlattener(visual.context, language))+"</script>";
+               }
+           });
         return output;
     }
 }
@@ -379,7 +383,7 @@ var matchFuncs = [
         });
         return proposal;
     }},
-    //NAME: citedBy, List
+    /*NAME: citedBy, List
     {"citedBy": function (graph, resource) {
         var query = createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> '+resource+'.}');
         var cGraph = cutGraph(query.construct, graph);
@@ -397,8 +401,8 @@ var matchFuncs = [
             };
         });
         return proposal;
-    }},
-    //NAME: pmid, PubMedID
+    }},*/
+    /*NAME: pmid, PubMedID
     {"pmid": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://purl.org/ontology/bibo/pmid> ?pmid.}');
         var cGraph = cutGraph(query.construct, graph);
@@ -416,7 +420,7 @@ var matchFuncs = [
             };
         });
         return proposal;
-    }},
+    }},*/
     //NAME: depiction
     {"depiction": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/depiction> ?img_url.}');
@@ -498,6 +502,28 @@ var matchFuncs = [
     }},
 ];
 
+
+/* idea to create visualDesc object
+var extendVisualDesc = function(visualDesc){
+    return _.map(visualDesc, function(vD) {
+        var name = _.first(_.keys(vD));
+        vD.template = $("#"+name).html();
+        vD.javascript = $("#"+name+"_js").html();
+        return vD;
+    });
+}
+
+var visualDesc = [
+    {"title": {} },
+    {"text": {} },
+    {"license": {} },
+    {"location": {} },
+    {"person_name": {} },
+    {"community": {} },
+    {"label_comment": {} },
+    {"neighboringMunicipalities": {} }
+]
+*/
 
 // ## Exports
 //
