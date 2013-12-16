@@ -3,40 +3,7 @@
 # BASE TYPE DEFINITIONS
 
 URI in comment refers to the class of the object in rdf:range 
-
-
 -->
-
-<!--
-
-# EVERYTHING ELSE
-
--->
-
-<script id="entry-template" type="text/x-handlebars-template">
-  <table>
-    <thead>
-      <th>Username</th>
-      <th>Real Name</th>
-      <th>Email</th>
-    </thead>
-    <tbody>
-      {{#users}}
-        <tr>
-          <td>{{username}}</td>
-          <td>{{firstName}} {{lastName}}</td>
-          <td>{{email}}</td>
-        </tr>
-      {{/users}}
-    </tbody>
-  </table>
-</script>
-
-
-<script id="person_name" type="text/x-handlebars-template">
-  <div>{{lastName.u}} {{firstName.u}}</div>
-</script>
-
 <script id="title" type="text/x-handlebars-template">
   <h1>{{title.u}}</h1>
 </script>
@@ -47,6 +14,10 @@ URI in comment refers to the class of the object in rdf:range
 
 <script id="text" type="text/x-handlebars-template">
   <p>{{text.u}}</p>
+</script>
+
+<script id="person_name" type="text/x-handlebars-template">
+  <div>{{lastName.u}} {{firstName.u}}</div>
 </script>
 
 <script id="citedBy" type="text/x-handlebars-template">
@@ -60,7 +31,6 @@ URI in comment refers to the class of the object in rdf:range
   {{#each neighboringMunicipalities.u}}<a href="?uri={{this}}">&#9608;</a> {{/each}}
   </p>
 </script>
-
 
 <script id="license" type="text/x-handlebars-template">
     <p><small>{{#if license.u}}&copy; {{license.u}}{{else}}&copy; <a href="{{uri.u}}">{{uri.u}}</a>{{/if}}</small></p>
@@ -89,45 +59,43 @@ URI in comment refers to the class of the object in rdf:range
 </script>
 
 <script id="location" type="text/x-handlebars-template">
-    <div id="map-canvas">
+    <div id="map-canvas" style="height: 200px; width: 200px">
         <big>&#8982;</big> {{lat.u}} / {{long.u}}
     </div> 
 </script>
 
+<script id="location_js" type="text/x-handlebars-template">
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAFRTcPPyYit9ERj9COlgpgYW-Ve-lUeUs&sensor=false&callback=initializeMap";
+        document.body.appendChild(script);
+        
+        initializeMap = function () {
+            var myLatlng = new google.maps.LatLng({{lat.u}}, {{long.u}});
+            var mapOptions = { center: myLatlng, disableDefaultUI: true, zoomControl: true, zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP };
+            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        };
+</script>
 
-<script id="pmid" type="text/x-handlebars-template">
+
+<!--<script id="pmid" type="text/x-handlebars-template">
   <div>
     <p>Online at <a href="http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}">http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}</a></p>
   </div>
-</script>
+</script>-->
 
-
-<!-- foaf:Image -->
-<script id="img" type="text/x-handlebars-template">
+<!-- <script id="img" type="text/x-handlebars-template">
   <img style="max-width: 400px" src="{{img_url.u}}" class="img-responsive" />
-</script>
+</script>-->
 
-<!-- foaf:Image -->
-<script id="img_alt" type="text/x-handlebars-template">
-  <img src="{{img}}" alt="{{alt}}"/>
-</script>
-
-<!-- foaf:Document -->
-<script id="uri" type="text/x-handlebars-template">
-  <a href="{{uri}}}" />
-</script>
-
-<!-- foaf:Document -->
 <script id="uri_text" type="text/x-handlebars-template">
   <a href="{{uri.u}}">{{text.u}}</a>
 </script>
 
-<!-- rdfs:Literal -->
 <script id="text" type="text/x-handlebars-template">
   <div>{{text.u}}</div>
 </script>
 
-<!-- literal -->
 <script id="literal" type="text/x-handlebars-template">
     <p><b>{{{name.u}}}</b>: {{{text.u}}}</p>
 </script>
@@ -135,6 +103,7 @@ URI in comment refers to the class of the object in rdf:range
 <!-- void -->
 <script id="void" type="text/x-handlebars-template">
 </script>
+
 <!-- unknown -->
 <script id="unknown" type="text/x-handlebars-template">
 <!--  <small><p>{{{subject.u}}} &#9608; {{{predicate.u}}} &#9608; {{{object.u}}}</p></small> -->
