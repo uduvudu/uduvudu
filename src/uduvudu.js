@@ -53,7 +53,7 @@ Uduvudu.prototype = {
             // the proposal to use
             finalprop = _.first(sorted);
             // get out the used triples and rerun matcher
-                inputGraph.delete(finalprop.graph);
+            inputGraph.delete(finalprop.graph);
             // return the union of all graphs
             return _.union([finalprop],this.matcher(inputGraph, resource));
         }
@@ -172,6 +172,7 @@ var matchFuncs = [
         }
         return proposal;
     }},
+    
     //NAME: title, text
     {"label_comment": function (graph, resource) {
         var proposal = false;
@@ -488,7 +489,7 @@ var matchFuncs = [
         return proposal;
     }},
     //NAME: zero graph / for logging purpose
-    {"zero": function (graph) {
+/*    {"zero": function (graph) {
         var query = 'SELECT * WHERE { ?s ?p ?o.}';
         var getName = /(#|\/)([^#\/]*)$/
         graph.execute(query, function(success, results) {
@@ -499,7 +500,7 @@ var matchFuncs = [
             }
         });
         return false;
-    }},
+    }},*/
 ];
 
 
