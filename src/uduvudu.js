@@ -147,15 +147,17 @@ var languageFlattener = function(context, language) {
             }
             return {u: user, l: lang}
         }));
-}
+};
 
 /**{
  * Recipies as an Array of functions.
- *
  */
+
+
+
 var matchFuncs = [
     //NAME: community
-/*    {"community": function (graph, resource) {
+    {"community": function (graph, resource) {
         var proposal = false;
         var proposals = matchArrayOfFuncs(graph,resource,['depiction','label_comment']);
         if (_.every(proposals, _.identity)) {
@@ -163,13 +165,13 @@ var matchFuncs = [
                                 elements: _.map(proposals, function (proposal) {return _.reduce(proposal.elements, function (m,n){return m+n;},0);}),
                                 context: _.reduce(_.rest(proposals), function(memo,num){return _.extend(memo,num.context);},_.first(proposals).context),
                                 template: {name: "community"},
-                                graph: _.reduce(_.rest(proposals), function(memo,num){return memo.addAll(num.graph);},_.first(proposals).graph),
+                                cquery: _.flatten(_.map(proposals, function(p) {return p.cquery;})),
+//                                graph: _.reduce(_.rest(proposals), function(memo,num){return memo.addAll(num.graph);},_.first(proposals).graph),
                                 prio: 100000
                             };
         }
         return proposal;
     }},
-    
     //NAME: title, text
     {"label_comment": function (graph, resource) {
         var proposal = false;
@@ -179,13 +181,12 @@ var matchFuncs = [
                                 elements: _.map(proposals, function (proposal) {return _.reduce(proposal.elements, function (m,n){return m+n;},0);}),
                                 context: _.reduce(_.rest(proposals), function(memo,num){return _.extend(memo,num.context);},_.first(proposals).context),
                                 template: {name: "label_comment"},
-                                graph: _.reduce(_.rest(proposals), function(memo,num){return memo.addAll(num.graph);},_.first(proposals).graph),
+                                cquery: _.flatten(_.map(proposals, function(p) {return p.cquery;})),
                                 prio: 100000
                             };
         }
         return proposal;
     }},
-    */
     //NAME: sameAs
     {"sameAs": function (graph) {
         var query = createQueries('{ ?s <http://www.w3.org/2002/07/owl#sameAs> ?sameAs.}');
@@ -414,7 +415,6 @@ var matchFuncs = [
     //NAME: depiction
     {"depiction": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/depiction> ?img_url.}');
-
         var proposal = false;
         graph.execute(query.select, function(success, results) {
             if(success && (! _.isEmpty(results))) {
