@@ -62,7 +62,9 @@
                     store.load('text/turtle',response, function(success, amountTriples){
                         if(success) {
                             console.debug("successfully loaded "+amountTriples+" triples");
+                            var startTime = new Date(); 
                             $("#main").html(Uduvudu().process(store, resource));
+                            console.log("rendered in " + ((new Date()) - startTime) + "ms");
                         };
                     }) 
                 });
