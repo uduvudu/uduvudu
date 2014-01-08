@@ -4,7 +4,6 @@ function Uduvudu(language, device) {
       return new Uduvudu(language, device);
 };
 
-
 Uduvudu.prototype = {
 /**
  * Main Function of Uduvudu taking an RDF Graph as Input and using the available recipes and serving suggestions to transform to a visualization.
@@ -52,8 +51,14 @@ Uduvudu.prototype = {
         } else {
             // the proposal to use
             finalprop = _.first(sorted);
-            // get out the used triples and rerun matcher
-            inputGraph.delete(finalprop.graph);
+            // get out the used triples
+            _.each(finalprop.cquery, function (query) {
+                var cutGraph;
+                inputGraph.execute(query, function(success, graph) {
+                    cutGraph = graph;
+                });
+                inputGraph.delete(cutGraph);
+            });
             // return the union of all graphs
             return _.union([finalprop],this.matcher(inputGraph, resource));
         }
@@ -93,14 +98,6 @@ function createQueries (where, modifier) {
                 construct:'CONSTRUCT '+where+' WHERE '+where+' '+modifier,
                 select: 'SELECT * WHERE '+where+' '+modifier
             }
-};
-
-function cutGraph (query, graph) {
-    var cutGraph
-    graph.execute(query, function(success, graph) {
-        cutGraph = graph;
-    });
-    return cutGraph;
 };
 
 function findMatchFunc(name) {
@@ -158,7 +155,7 @@ var languageFlattener = function(context, language) {
  */
 var matchFuncs = [
     //NAME: community
-    {"community": function (graph, resource) {
+/*    {"community": function (graph, resource) {
         var proposal = false;
         var proposals = matchArrayOfFuncs(graph,resource,['depiction','label_comment']);
         if (_.every(proposals, _.identity)) {
@@ -188,10 +185,10 @@ var matchFuncs = [
         }
         return proposal;
     }},
+    */
     //NAME: sameAs
     {"sameAs": function (graph) {
         var query = createQueries('{ ?s <http://www.w3.org/2002/07/owl#sameAs> ?sameAs.}');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -200,7 +197,7 @@ var matchFuncs = [
                                 elements: results.length,
                                 context: {},
                                 template: {name: "void"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 90000
                             };
             };
@@ -210,7 +207,6 @@ var matchFuncs = [
     //NAME: person_name
     {"person_name": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/firstName> ?firstName. '+resource+' <http://xmlns.com/foaf/0.1/lastName> ?lastName.}');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -219,6 +215,7 @@ var matchFuncs = [
                                 elements: 2,
                                 context: {firstName: _.first(results).firstName.value, lastName: _.first(results).lastName.value},
                                 template: {name: "person_name"},
+                                cquery: [query.construct],
                                 graph: cGraph,
                                 prio: 71000
                             };
@@ -229,7 +226,6 @@ var matchFuncs = [
     //NAME: location
     {"location": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long. '+resource+' <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat.}','LIMIT 1');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -238,7 +234,7 @@ var matchFuncs = [
                                 elements: 2,
                                 context: {long: _.first(results).long.value, lat: _.first(results).lat.value},
                                 template: {name: "location"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 71000
                             };
             };
@@ -248,7 +244,6 @@ var matchFuncs = [
     //NAME: license
     {"license": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://purl.org/dc/terms/license> ?license. }');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -263,7 +258,7 @@ var matchFuncs = [
                                 elements: 1,
                                 context: context,
                                 template: {name: "license"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 1000
                             };
             };
@@ -273,7 +268,6 @@ var matchFuncs = [
     //NAME: abstract
     {"abstract": function (graph,resource) {
         var query = createQueries('{ '+resource+' <http://dbpedia.org/ontology/abstract> ?text. }');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -282,7 +276,7 @@ var matchFuncs = [
                                 elements: results.length,
                                 context: {text: _.object(_.map(results, function(r){return [r.text.lang,r.text.value]}))},
                                 template: {name: "text"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 100000
                             };
             };
@@ -292,7 +286,6 @@ var matchFuncs = [
     //NAME: comment
     {"comment": function (graph,resource) {
         var query = createQueries('{ '+resource+' <http://www.w3.org/2000/01/rdf-schema#comment> ?text. }');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -301,7 +294,7 @@ var matchFuncs = [
                                 elements: results.length,
                                 context: {text: _.object(_.map(results, function(r){return [r.text.lang,r.text.value]}))},
                                 template: {name: "text"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 100000
                             };
             };
@@ -311,7 +304,6 @@ var matchFuncs = [
     //NAME: text
     {"text": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://rdfs.org/sioc/ns#content> ?text. }');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -320,7 +312,7 @@ var matchFuncs = [
                                 elements: 1,
                                 context: {text: _.first(results).text.value},
                                 template: {name: "text"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 100000
                             };
             };
@@ -330,7 +322,6 @@ var matchFuncs = [
     //NAME: label
     {"label": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://www.w3.org/2000/01/rdf-schema#label> ?title. }');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -339,7 +330,7 @@ var matchFuncs = [
                                 elements: results.length,
                                 context: {title: _.object(_.map(results, function(r){return [r.title.lang,r.title.value]}))},
                                 template: {name: "title"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 100100
                             };
             };
@@ -349,16 +340,15 @@ var matchFuncs = [
     //NAME: title
     {"title": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://purl.org/dc/terms/title> ?title. }');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
             if(success && (! _.isEmpty(results))) {
                 proposal =  {
-                                elements: 1,
+                                elements: results.length,
                                 context: {title: _.first(results).title.value},
                                 template: {name: "title"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 100100
                             };
             };
@@ -368,7 +358,6 @@ var matchFuncs = [
     //NAME: neighboringMunicipality, List
     {"neighboringMunicipality": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://dbpedia.org/ontology/neighboringMunicipality> ?cities.}');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -377,7 +366,7 @@ var matchFuncs = [
                                 elements: results.length,
                                 context: {neighboringMunicipalities: _.map(results,function(result) {return result.cities.value;})},
                                 template: {name: "neighboringMunicipalities"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 80000
                             };
             };
@@ -387,7 +376,7 @@ var matchFuncs = [
     /*NAME: citedBy, List
     {"citedBy": function (graph, resource) {
         var query = createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> '+resource+'.}');
-        var cGraph = cutGraph(query.construct, graph);
+        var cGraph = cutGraph([query.construct], graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -406,7 +395,7 @@ var matchFuncs = [
     /*NAME: pmid, PubMedID
     {"pmid": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://purl.org/ontology/bibo/pmid> ?pmid.}');
-        var cGraph = cutGraph(query.construct, graph);
+        var cGraph = cutGraph([query.construct], graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -425,7 +414,6 @@ var matchFuncs = [
     //NAME: depiction
     {"depiction": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/depiction> ?img_url.}');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -434,7 +422,7 @@ var matchFuncs = [
                                 elements: 1,
                                 context: {img_url: _.first(results).img_url.value},
                                 template: {name: "img"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 90000
                             };
             };
@@ -444,7 +432,6 @@ var matchFuncs = [
     //NAME: literal
     {"literal": function (graph) {
         var query = createQueries('{ ?s ?p ?o.}',' LIMIT 1');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -457,7 +444,7 @@ var matchFuncs = [
                                                     text: _.first(results).o.value
                                                 },
                                     template: {name: "literal"},
-                                    graph: cGraph,
+                                    cquery: [query.construct],
                                     prio: 0
                                 };
                 };
@@ -468,7 +455,6 @@ var matchFuncs = [
     //NAME: last resort, unknown triple
     {"unknown": function (graph) {
         var query = createQueries('{ ?s ?p ?o.}',' LIMIT 1');
-        var cGraph = cutGraph(query.construct, graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -481,7 +467,7 @@ var matchFuncs = [
                                                 object: prepareTriple(_.first(results).o)
                                             },
                                 template: {name: "unknown"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 0
                             };
             };
@@ -503,28 +489,6 @@ var matchFuncs = [
     }},*/
 ];
 
-
-/* idea to create visualDesc object
-var extendVisualDesc = function(visualDesc){
-    return _.map(visualDesc, function(vD) {
-        var name = _.first(_.keys(vD));
-        vD.template = $("#"+name).html();
-        vD.javascript = $("#"+name+"_js").html();
-        return vD;
-    });
-}
-
-var visualDesc = [
-    {"title": {} },
-    {"text": {} },
-    {"license": {} },
-    {"location": {} },
-    {"person_name": {} },
-    {"community": {} },
-    {"label_comment": {} },
-    {"neighboringMunicipalities": {} }
-]
-*/
 
 // ## Exports
 //
