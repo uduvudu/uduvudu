@@ -1,2 +1,3 @@
-- match on two predicate connected through BlankNodes which are multiple times there
-- look for multiple attributes but with same language
+# Open Issues
+
+- Match on two predicate connected through BlankNodes which are multiple times there.
