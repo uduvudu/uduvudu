@@ -123,6 +123,19 @@ The targeted output is mainly HTML, this for we need to make sure that we can al
 ### User Preferences
 User preferences can be included into the system simply by adding additional matching and/or visualization descriptions which have higher priority and overload system defined descriptions. 
 
+
+## Related Work
+
+### Fresnel - Display Vocabulary for RDF
+
+People knowing Fresnel will see multiple analogies to Uduvudu. This chapter shall in short manner show the differencens and mainly practical advantages of Uduvudu in contrast to Fresnel.
+
+- Complicated implementation through multiple selector language which are in itself each quite demanding.
+
+- Need to fully understand the RDF data structure to use the selection process.
+
+- The visualization part of the Fresnel vocabulary is bound to representation of literals. It is difficult to make more complex visualisations based on the display part of the language.
+
 ## Annex
 
 #### Glossar
