@@ -217,7 +217,6 @@ var matchFuncs = [
                                 context: {firstName: _.first(results).firstName.value, lastName: _.first(results).lastName.value},
                                 template: {name: "person_name"},
                                 cquery: [query.construct],
-                                graph: cGraph,
                                 prio: 71000
                             };
             };
