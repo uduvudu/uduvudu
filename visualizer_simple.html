@@ -1,0 +1,106 @@
+<!--
+
+# BASE TYPE DEFINITIONS
+
+URI in comment refers to the class of the object in rdf:range 
+-->
+<script id="title" type="text/x-handlebars-template">
+  <h1>{{title.u}}</h1>
+</script>
+
+<script id="title_de" type="text/x-handlebars-template">
+  <h1>{{title.l.de}}</h1>
+</script>
+
+<script id="text" type="text/x-handlebars-template">
+  <p>{{text.u}}</p>
+</script>
+
+<script id="person_name" type="text/x-handlebars-template">
+  <div>{{lastName.u}} {{firstName.u}}</div>
+</script>
+
+<script id="citedBy" type="text/x-handlebars-template">
+   <p><b>Cited by:</b> 
+  {{#each citedBy}}{{#if @index}}, {{/if}}<a href="?uri={{this}}">{{this}}</a>{{/each}}
+  </p>
+</script>
+
+<script id="neighboringMunicipalities" type="text/x-handlebars-template">
+   <p><b>Neighboring Municipalities:</b> 
+  {{#each neighboringMunicipalities.u}}<a href="?uri={{this}}">&#9608;</a> {{/each}}
+  </p>
+</script>
+
+<script id="license" type="text/x-handlebars-template">
+    <p><small>{{#if license.u}}&copy; {{license.u}}{{else}}&copy; <a href="{{uri.u}}">{{uri.u}}</a>{{/if}}</small></p>
+</script>
+
+<script id="title_text" type="text/x-handlebars-template">
+  <div>
+    <h1>{{title}}</h1>
+    <p>{{text}}</p>
+  </div>
+</script>
+
+<script id="community" type="text/x-handlebars-template">
+  <div style="height: 200px">
+  <div style="width: 200px; height: 200px; overflow: hidden" class="pull-right">
+    <img style="min-width: 200px; min-height: 200px; max-width: 300px; max-height: 300px" src="{{img_url.u}}" />
+  </div>
+    <h1>{{title.u}}</h1>
+    <p>{{text.u}}</p>
+  </div>
+</script>
+
+<script id="label_comment" type="text/x-handlebars-template">
+    <div>
+    <h1>{{title.u}}</h1>
+    <p>{{text.u}}</p>
+  </div>
+</script>
+
+<script id="location" type="text/x-handlebars-template">
+    <div id="map-canvas" style="height: 200px; width: 400px">
+        <big>&#8982;</big> {{lat.u}} / {{long.u}}
+    </div> 
+</script>
+
+<script id="location_js" type="text/x-handlebars-template">
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAFRTcPPyYit9ERj9COlgpgYW-Ve-lUeUs&sensor=false&callback=initializeMap";
+        document.body.appendChild(script);
+        
+        initializeMap = function () {
+            var myLatlng = new google.maps.LatLng({{lat.u}}, {{long.u}});
+            var mapOptions = { center: myLatlng, disableDefaultUI: true, zoomControl: true, zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP };
+            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        };
+</script>
+
+
+<!--<script id="pmid" type="text/x-handlebars-template">
+  <div>
+    <p>Online at <a href="http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}">http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}</a></p>
+  </div>
+</script>-->
+
+<script id="img" type="text/x-handlebars-template">
+  <div style="width: 200px; height: 200px;">
+  <img style="min-width: 200px; min-height: 200px;" src="{{img_url.u}}" class="img-responsive" />
+  </div>
+</script>
+
+<script id="literal" type="text/x-handlebars-template">
+    <p><b>{{{name.u}}}</b>: {{{text.u}}}</p>
+</script>
+
+<!-- void -->
+<script id="void" type="text/x-handlebars-template">
+</script>
+
+<!-- unknown -->
+<script id="unknown" type="text/x-handlebars-template">
+<!--  <small><p>{{{subject.u}}} &#9608; {{{predicate.u}}} &#9608; {{{object.u}}}</p></small> -->
+</script>
