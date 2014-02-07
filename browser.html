@@ -10,22 +10,6 @@
 </head>
 <body>
     <div class="container">
-        <div id="chooser">
-            <form class="form-inline" role="form">
-                <input id="setRDF" type="text" class="form-control"></input>
-                <select id="selectRDF" class="form-control">
-                    <option>Select a sample RDF URI</option>
-                    <option data-res="http://dbpedia.org/resource/Brig-Glis">examples/Brig-Glis.ttl</option>
-                    <option data-res="http://data.admin.ch/bfs/municipality/13228">http://data.admin.ch/bfs/municipality/13228</option>
-                    <option data-res="http://dbpedia.org/resource/Brig-Glis">http://dbpedia.org/data/Brig-Glis.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Bern_University_of_Applied_Sciences">examples/Bern_University_of_Applied_Sciences.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Bern_University_of_Applied_Sciences">http://dbpedia.org/data/Bern_University_of_Applied_Sciences.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Rolex">examples/Rolex.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Rolex">http://dbpedia.org/data/Rolex.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Bern">http://dbpedia.org/data/Bern.ttl</option>
-                </select>
-            </form> 
-        </div>
         <div id="main">
         </div>
     </div>
@@ -33,7 +17,7 @@
     </div>
     <script type="text/javascript">
         // prepare visualizer templates for uduvudu
-        $("#visualizer").load("visualizer.html");
+        $("#visualizer").load("visualizer_browser.html");
 
         // helper to decipher the get query
         function getParameterByName(name) {
@@ -70,19 +54,8 @@
         // if uri is specified in title get it
         var uri = getParameterByName('uri');
         if (uri != '') {
-            loadFromSource(uri, uri);
+            loadFromSource(uri);
             }
-
-        $('#setRDF').on('keyup', function() {
-            loadFromSource(this.value);
-        });
-
-        $('#selectRDF').on('change', function(event) {
-            //loadFromSource(this.value, event.target.selectedOptions[0].attributes['data-res'].nodeValue);
-            loadFromSource(this.value);
-        });
-
-
     </script>
 </body>
 </html>
