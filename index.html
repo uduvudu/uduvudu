@@ -50,7 +50,7 @@
                 store.load('remote',source, function(success, amountTriples){
                     if(success) {
                         console.debug("successfully loaded "+amountTriples+" triples");
-                        $("#main").html(Uduvudu().process(store, resource));
+                        $("#main").html(uduvudu.process(store, resource));
                     }; 
                 })
             } else {
@@ -59,7 +59,7 @@
                         if(success) {
                             console.debug("successfully loaded "+amountTriples+" triples");
                             var startTime = new Date(); 
-                            $("#main").html(Uduvudu().process(store, resource));
+                            $("#main").html(uduvudu.process(store, resource));
                             console.log("rendered in " + ((new Date()) - startTime) + "ms");
                         };
                     }) 

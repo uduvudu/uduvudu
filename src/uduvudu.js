@@ -1,18 +1,18 @@
-// ## Constructor
-function Uduvudu(language, device) {
-  if (!(this instanceof Uduvudu))
-      return new Uduvudu(language, device);
-};
+!function() {
+    var uduvudu = {
+        version: "0.1"
+    };
 
-Uduvudu.prototype = {
 /**
  * Main Function of Uduvudu taking an RDF Graph as Input and using the available recipes and serving suggestions to transform to a visualization.
  * @param {store} store The input graph as an rdfStore Object.
  * @returns {String} oputut Returns the object as a String.
  */
-    process: function (store, resource, language, device) {
-        var u = this;
+    uduvudu.process = function (store, resource, language, device) {
+        var u = uduvudu;
         
+        //if no resource is specified, use open variable
+        //TODO: try to find intelligently start resource if no resource is delivered
         if (resource) {
             resource = '<'+encodeURI(resource)+'>'; 
         } else {
@@ -25,7 +25,7 @@ Uduvudu.prototype = {
         var visuals = u.matcher(store, resource);
         var output = u.visualizer(visuals, language, device);
         return output;
-    },
+    }
 
 /*
  * The matcher (cook) is looking for known structures of basket.
@@ -33,7 +33,7 @@ Uduvudu.prototype = {
  * @param {resource} The resource this store is about.
  * @returns {renderables} output a list of objects with all information to get rendered
  */
-    matcher: function (inputGraph, resource) {
+    uduvudu.matcher = function (inputGraph, resource) {
         // use all functions to see what matches
         var proposals = _.compact( //delete unmatched ones
                             _.map(matchFuncs, function (func){ //map whole function array
@@ -62,7 +62,7 @@ Uduvudu.prototype = {
             // return the union of all graphs
             return _.union([finalprop],this.matcher(inputGraph, resource));
         }
-    },
+    };
 
  /*
  * The visualizer (server) takes the renderables and renders it regarding language and device.
@@ -71,7 +71,7 @@ Uduvudu.prototype = {
  * @param {device} The device the html shall be rendered for.
  * @returns {string} outputs the string representing the rendred graph.
  */
-    visualizer: function (visuals, language, device) {
+    uduvudu.visualizer = function (visuals, language, device) {
         var output = "";
         // order visuals
         visuals = _.sortBy(visuals, function (visual) {return -visual.prio;});
@@ -86,8 +86,7 @@ Uduvudu.prototype = {
                }
            });
         return output;
-    }
-}
+    };
 
 /**
  * Recipies helper functions
@@ -489,7 +488,6 @@ var matchFuncs = [
 ];
 
 
-// ## Exports
-//
-// Export the `Uduvudu` class as a whole.
-// module.exports = Uduvudu;
+    this.uduvudu = uduvudu;
+
+}();
