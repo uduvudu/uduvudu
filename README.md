@@ -7,11 +7,45 @@ Current State
 -------------
 Please consider this project right now in alpha stage. There is no release available.
 
+Include in your project
+-----------------------
+
+You need to include the following scripts:
+
+    <head>
+        <script src="lib/underscore-1.5.1.js" type="text/javascript"></script>
+        <script src="lib/handlebars-v1.3.0.js" type="text/javascript"></script>
+        <script src="lib/rdf_store.js" type="text/javascript"></script>
+        <script src="matcher.js" type="text/javascript"></script>
+        <script src="src/uduvudu.js" type="text/javascript"></script>
+    </head>
+
+Where '''matcher.js''' is the database of matchers defined in JS.
+
+The visualizers you load best with jQuery or you include them inside the HTML itself. Needs to be done before uduvudu is called.
+
+    $("#visualizer").load("visualizer.html");
+
+The final call '''Uduvudu().process(store, resource)''' to the Uduvudu library can done with help of jQuery like the following. It returns HTML which can be load into the current document.
+
+    var store = rdfstore.create();
+    store.load('remote',source, function(success, amountTriples){
+        if(success) {
+            console.debug("successfully loaded "+amountTriples+" triples");
+            $("#main").html(Uduvudu().process(store, resource));
+        }; 
+    })
+
+You need to have a '''div'' defined like the following where the rendered content is loaded into.
+
+    <div id="main">
+    </div>
+
 Prerequisites
 -------------
 The code is currently based on rdfstore-js, handlebars and underscore. The demo uses bootstrap for a basic design.
 
-Currently it works only with a fixed version of the [rdfstore-js](https://raw2.github.com/l00mi/rdfstore-js/master/dist/browser/rdf_store.js "rdf_store.js") which needs to be checked out aside this project or put manualy into the lib folder.
+Currently it works only with a fixed version of the [rdfstore-js](https://raw2.github.com/l00mi/rdfstore-js/master/dist/browser/rdf_store.js "rdf_store.js") which you find in the lib directory.
 
 
 Running the included demo
