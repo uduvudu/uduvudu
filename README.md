@@ -20,23 +20,28 @@ You need to include the following scripts:
         <script src="src/uduvudu.js" type="text/javascript"></script>
     </head>
 
-Where '''matcher.js''' is the database of matchers defined in JS.
+Where `matcher.js` is the database of matchers defined in JS.
 
 The visualizers you load best with jQuery or you include them inside the HTML itself. Needs to be done before uduvudu is called.
 
     $("#visualizer").load("visualizer.html");
 
-The final call '''Uduvudu().process(store, resource)''' to the Uduvudu library can done with help of jQuery like the following. It returns HTML which can be load into the current document.
+Needs a `div` with `id="visualizer"`
+
+    <div id="visualizer">
+    </div>
+
+The final call `uduvudu.process(store, resource)` to the Uduvudu library can done with help of jQuery like the following. It returns HTML which can be load into the current document.
 
     var store = rdfstore.create();
     store.load('remote',source, function(success, amountTriples){
         if(success) {
             console.debug("successfully loaded "+amountTriples+" triples");
-            $("#main").html(Uduvudu().process(store, resource));
+            $("#main").html(uduvudu.process(store, resource));
         }; 
     })
 
-You need to have a '''div'' defined like the following where the rendered content is loaded into.
+You need to have a `div` defined like the following where the rendered content is loaded into.
 
     <div id="main">
     </div>
