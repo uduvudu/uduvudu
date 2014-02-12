@@ -2,8 +2,6 @@
  * Recipies as an Array of functions.
  */
 
-
-
 var matchFuncs = [
     //NAME: community
     {"community": function (graph, resource) {
@@ -15,7 +13,6 @@ var matchFuncs = [
                                 context: _.reduce(_.rest(proposals), function(memo,num){return _.extend(memo,num.context);},_.first(proposals).context),
                                 template: {name: "community"},
                                 cquery: _.flatten(_.map(proposals, function(p) {return p.cquery;})),
-//                                graph: _.reduce(_.rest(proposals), function(memo,num){return memo.addAll(num.graph);},_.first(proposals).graph),
                                 prio: 100000
                             };
         }
@@ -222,6 +219,8 @@ var matchFuncs = [
         });
         return proposal;
     }},
+
+
     /*NAME: citedBy, List
     {"citedBy": function (graph, resource) {
         var query = createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> '+resource+'.}');
@@ -234,13 +233,15 @@ var matchFuncs = [
                                 elements: results.length,
                                 context: {citedBy: _.map(results,function(result) {return result.cites.value;})},
                                 template: {name: "citedBy"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 80000
                             };
             };
         });
         return proposal;
     }},*/
+    
+
     /*NAME: pmid, PubMedID
     {"pmid": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://purl.org/ontology/bibo/pmid> ?pmid.}');
@@ -253,13 +254,15 @@ var matchFuncs = [
                                 elements: 1,
                                 context: {pmid: _.first(results).pmid.value},
                                 template: {name: "pmid"},
-                                graph: cGraph,
+                                cquery: [query.construct],
                                 prio: 90000
                             };
             };
         });
         return proposal;
     }},*/
+
+
     //NAME: depiction
     {"depiction": function (graph, resource) {
         var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/depiction> ?img_url.}');
