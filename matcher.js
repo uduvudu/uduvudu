@@ -6,7 +6,7 @@ var matchFuncs = [
     //NAME: community
     {"community": function (graph, resource) {
         var proposal = false;
-        var proposals = matchArrayOfFuncs(graph,resource,['depiction','label_comment']);
+        var proposals = uduvudu.helper.matchArrayOfFuncs(graph,resource,['depiction','label_comment']);
         if (_.every(proposals, _.identity)) {
             proposal = {
                                 elements: _.map(proposals, function (proposal) {return _.reduce(proposal.elements, function (m,n){return m+n;},0);}),
@@ -21,7 +21,7 @@ var matchFuncs = [
     //NAME: title, text
     {"label_comment": function (graph, resource) {
         var proposal = false;
-        var proposals = matchArrayOfFuncs(graph,resource,['label','comment']);
+        var proposals = uduvudu.helper.matchArrayOfFuncs(graph,resource,['label','comment']);
         if (_.every(proposals, _.identity)) {
             proposal = {
                                 elements: _.map(proposals, function (proposal) {return _.reduce(proposal.elements, function (m,n){return m+n;},0);}),
@@ -35,7 +35,7 @@ var matchFuncs = [
     }},
     //NAME: sameAs
     {"sameAs": function (graph) {
-        var query = createQueries('{ ?s <http://www.w3.org/2002/07/owl#sameAs> ?sameAs.}');
+        var query = uduvudu.helper.createQueries('{ ?s <http://www.w3.org/2002/07/owl#sameAs> ?sameAs.}');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -53,7 +53,7 @@ var matchFuncs = [
     }},
     //NAME: person_name
     {"person_name": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/firstName> ?firstName. '+resource+' <http://xmlns.com/foaf/0.1/lastName> ?lastName.}');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/firstName> ?firstName. '+resource+' <http://xmlns.com/foaf/0.1/lastName> ?lastName.}');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -71,7 +71,7 @@ var matchFuncs = [
     }},
     //NAME: location
     {"location": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long. '+resource+' <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat.}','LIMIT 1');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long. '+resource+' <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat.}','LIMIT 1');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -89,7 +89,7 @@ var matchFuncs = [
     }},
     //NAME: license
     {"license": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://purl.org/dc/terms/license> ?license. }');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://purl.org/dc/terms/license> ?license. }');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -113,7 +113,7 @@ var matchFuncs = [
     }},
     //NAME: abstract
     {"abstract": function (graph,resource) {
-        var query = createQueries('{ '+resource+' <http://dbpedia.org/ontology/abstract> ?text. }');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://dbpedia.org/ontology/abstract> ?text. }');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -131,7 +131,7 @@ var matchFuncs = [
     }},
     //NAME: comment
     {"comment": function (graph,resource) {
-        var query = createQueries('{ '+resource+' <http://www.w3.org/2000/01/rdf-schema#comment> ?text. }');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://www.w3.org/2000/01/rdf-schema#comment> ?text. }');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -149,7 +149,7 @@ var matchFuncs = [
     }},
     //NAME: text
     {"text": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://rdfs.org/sioc/ns#content> ?text. }');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://rdfs.org/sioc/ns#content> ?text. }');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -167,7 +167,7 @@ var matchFuncs = [
     }},
     //NAME: label
     {"label": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://www.w3.org/2000/01/rdf-schema#label> ?title. }');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://www.w3.org/2000/01/rdf-schema#label> ?title. }');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -185,7 +185,7 @@ var matchFuncs = [
     }},
     //NAME: title
     {"title": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://purl.org/dc/terms/title> ?title. }');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://purl.org/dc/terms/title> ?title. }');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -203,7 +203,7 @@ var matchFuncs = [
     }},
     //NAME: neighboringMunicipality, List
     {"neighboringMunicipality": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://dbpedia.org/ontology/neighboringMunicipality> ?cities.}');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://dbpedia.org/ontology/neighboringMunicipality> ?cities.}');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -223,7 +223,7 @@ var matchFuncs = [
 
     /*NAME: citedBy, List
     {"citedBy": function (graph, resource) {
-        var query = createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> '+resource+'.}');
+        var query = uduvudu.helper.createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> '+resource+'.}');
         var cGraph = cutGraph([query.construct], graph);
 
         var proposal = false;
@@ -244,7 +244,7 @@ var matchFuncs = [
 
     /*NAME: pmid, PubMedID
     {"pmid": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://purl.org/ontology/bibo/pmid> ?pmid.}');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://purl.org/ontology/bibo/pmid> ?pmid.}');
         var cGraph = cutGraph([query.construct], graph);
 
         var proposal = false;
@@ -265,7 +265,7 @@ var matchFuncs = [
 
     //NAME: depiction
     {"depiction": function (graph, resource) {
-        var query = createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/depiction> ?img_url.}');
+        var query = uduvudu.helper.createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/depiction> ?img_url.}');
         var proposal = false;
         graph.execute(query.select, function(success, results) {
             if(success && (! _.isEmpty(results))) {
@@ -282,7 +282,7 @@ var matchFuncs = [
     }},
     //NAME: literal
     {"literal": function (graph) {
-        var query = createQueries('{ ?s ?p ?o.}',' LIMIT 1');
+        var query = uduvudu.helper.createQueries('{ ?s ?p ?o.}',' LIMIT 1');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -291,7 +291,7 @@ var matchFuncs = [
                      proposal =  {
                                     elements: 1,
                                     context:    {
-                                                    name: nameFromPredicate(_.first(results).p),
+                                                    name: uduvudu.helper.nameFromPredicate(_.first(results).p),
                                                     text: _.first(results).o.value
                                                 },
                                     template: {name: "literal"},
@@ -305,7 +305,7 @@ var matchFuncs = [
     }},
     //NAME: last resort, unknown triple
     {"unknown": function (graph) {
-        var query = createQueries('{ ?s ?p ?o.}',' LIMIT 1');
+        var query = uduvudu.helper.createQueries('{ ?s ?p ?o.}',' LIMIT 1');
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -313,9 +313,9 @@ var matchFuncs = [
                 proposal =  {
                                 elements: 1,
                                 context:    {
-                                                subject: prepareTriple(_.first(results).s),
-                                                predicate: prepareTriple(_.first(results).p),
-                                                object: prepareTriple(_.first(results).o)
+                                                subject: uduvudu.helper.prepareTriple(_.first(results).s),
+                                                predicate: uduvudu.helper.prepareTriple(_.first(results).p),
+                                                object: uduvudu.helper.prepareTriple(_.first(results).o)
                                             },
                                 template: {name: "unknown"},
                                 cquery: [query.construct],
