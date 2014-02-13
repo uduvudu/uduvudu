@@ -192,7 +192,7 @@ var matchFuncs = [
             if(success && (! _.isEmpty(results))) {
                 proposal =  {
                                 elements: results.length,
-                                context: {title: _.first(results).title.value},
+                                context: {title: _.object(_.map(results, function(r){return [r.title.lang,r.title.value]}))},
                                 template: {name: "title"},
                                 cquery: [query.construct],
                                 prio: 100100
@@ -219,12 +219,9 @@ var matchFuncs = [
         });
         return proposal;
     }},
-
-
-    /*NAME: citedBy, List
+    //NAME: citedBy, List
     {"citedBy": function (graph, resource) {
         var query = uduvudu.helper.createQueries('{ ?cites <http://purl.org/ontology/bibo/citedBy> '+resource+'.}');
-        var cGraph = cutGraph([query.construct], graph);
 
         var proposal = false;
         graph.execute(query.select, function(success, results) {
@@ -239,14 +236,10 @@ var matchFuncs = [
             };
         });
         return proposal;
-    }},*/
-    
-
-    /*NAME: pmid, PubMedID
+    }},
+    //NAME: pmid, PubMedID
     {"pmid": function (graph, resource) {
         var query = uduvudu.helper.createQueries('{ '+resource+' <http://purl.org/ontology/bibo/pmid> ?pmid.}');
-        var cGraph = cutGraph([query.construct], graph);
-
         var proposal = false;
         graph.execute(query.select, function(success, results) {
             if(success && (! _.isEmpty(results))) {
@@ -260,9 +253,7 @@ var matchFuncs = [
             };
         });
         return proposal;
-    }},*/
-
-
+    }},
     //NAME: depiction
     {"depiction": function (graph, resource) {
         var query = uduvudu.helper.createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/depiction> ?img_url.}');
