@@ -9,6 +9,7 @@
  * @returns {String} oputut Returns the object as a String.
  */
     uduvudu.process = function (store, resource, language, device) {
+        console.log("uduvudu.process", resource);
         var u = uduvudu;
         
         //if no resource is specified, use open variable
@@ -22,18 +23,19 @@
         var language = language || navigator.language.substring(0,2) || "en";
         var device = device || "desktop";
 
-        var visuals = u.matcher(store, resource);
+        var visuals = u.matcher(store, resource, 0);
         var output = u.visualizer(visuals, language, device);
         return output;
     }
 
 /*
- * The matcher (cook) is looking for known structures of basket.
+ * The matcher (cook) is looking for known structures of baskets.
  * @param {store} store The input graph as a rdfStore Object.
  * @param {resource} The resource this store is about.
  * @returns {renderables} output a list of objects with all information to get rendered
  */
-    uduvudu.matcher = function (inputGraph, resource) {
+    uduvudu.matcher = function (inputGraph, resource, depth) {
+        console.debug("MatcherDepth: "+depth, uduvudu.helper.showGraph(inputGraph, true));
         // use all functions to see what matches
         var proposals = _.compact( //delete unmatched ones
                             _.map(matchFuncs, function (func){ //map whole function array
@@ -47,7 +49,8 @@
         // recursive check for availalble stuff
         if( _.isEmpty(sorted)) {
             // nothing left end condition
-            return ([]);
+            return uduvudu.helper.handleUnknown(inputGraph, false);
+//            return ([]);
         } else {
             // the proposal to use
             finalprop = _.first(sorted);
@@ -56,11 +59,12 @@
                 var cutGraph;
                 inputGraph.execute(query, function(success, graph) {
                     cutGraph = graph;
+                    console.log("cutGraph",graph);
                 });
-                inputGraph.delete(cutGraph);
+                inputGraph.delete(cutGraph, function(success){console.log("delete",success);});
             });
-            // return the union of all graphs
-            return _.union([finalprop],this.matcher(inputGraph, resource));
+            // return the union of all proposals
+            return _.union([finalprop],this.matcher(inputGraph, resource, depth + 1));
         }
     };
 
@@ -124,25 +128,74 @@ uduvudu.helper.nameFromPredicate = function(element) {
     }
 };
 
-uduvudu.helper.showGraph = function(graph) {
-    graph.execute("SELECT * {?s ?p ?o.}", function(success, results) {
-        if(success && (! _.isEmpty(results))) { console.log(results.length, _.map(results, function(res){return res.s.value+"  -  "+res.p.value+"  -  "+res.o.value;})); }
+uduvudu.helper.handleUnknown = function (graph) {
+    var query = uduvudu.helper.createQueries('{ ?s ?p ?o.}');
+    var proposals = [];
+    graph.execute(query.select, function(success, results) {
+        if(success && (! _.isEmpty(results))) {
+            proposals = _.map(results, function(result) {
+                if(result.o.token === "literal") {
+                    // literal template
+                    return   {
+                                elements: 1,
+                                context:    {
+                                                name: uduvudu.helper.nameFromPredicate(result.p),
+                                                text: result.o.value
+                                            },
+                                template: {name: "literal"},
+                                prio: 1
+                            };
+                } else {
+                    return   {
+                        // unknown template
+                                elements: 0,
+                                context:    {
+                                                subject: uduvudu.helper.prepareTriple(result.s),
+                                                predicate: uduvudu.helper.prepareTriple(result.p),
+                                                object: uduvudu.helper.prepareTriple(result.o)
+                                            },
+                                template: {name: "unknown"},
+                                prio: 0
+                            };
+                };
+            });
+        };
     });
+    return proposals;
+};
+
+uduvudu.helper.showGraph = function(graph, simple) {
+    var ret;
+    graph.execute("SELECT * {?s ?p ?o.}", function(success, results) {
+        if(success && (! _.isEmpty(results))) {
+             if(simple) {
+                 ret =  results.length; 
+             } else {
+                 ret = [results.length, _.map(results, function(res){return res.s.value+"  -  "+res.p.value+"  -  "+res.o.value;})]; 
+             }
+        }
+    });
+    return ret;
 };
 
 var languageFlattener = function(context, language) {
     return _.object(_.keys(context), _.map(_.values(context), function(lang) {
-            if (_.isString(lang) || _.isArray(lang)) {
+            if (_.isString(lang)) {
                 return {u: lang}
             } else {
-                var user;
-                if(lang[language]) {
-                    user = lang[language];
-                } else {
-                    if (lang['undefined']) {
-                        user = lang['undefined'];
+                if (_.isArray(lang)) {
+                    return _.map(lang, function(l) {return languageFlattener(l, language)});
+                }
+                else {
+                    var user;
+                    if(lang[language]) {
+                        user = lang[language];
                     } else {
-                        user = _.first(_.toArray(lang));
+                        if (lang['undefined']) {
+                            user = lang['undefined'];
+                        } else {
+                            user = _.first(_.toArray(lang));
+                        }
                     }
                 }
             }

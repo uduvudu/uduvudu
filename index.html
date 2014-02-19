@@ -78,8 +78,8 @@
         });
 
         $('#selectRDF').on('change', function(event) {
-            //loadFromSource(this.value, event.target.selectedOptions[0].attributes['data-res'].nodeValue);
-            loadFromSource(this.value);
+            loadFromSource(this.value, event.target.selectedOptions[0].attributes['data-res'].nodeValue);
+            //loadFromSource(this.value);
         });
 
 

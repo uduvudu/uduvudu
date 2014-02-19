@@ -19,8 +19,22 @@ URI in comment refers to the class of the object in rdf:range
 </script>
 
 <script id="person_name" type="text/x-handlebars-template">
-  <div>{{lastName.u}} {{firstName.u}}</div>
+  <div style="height: 200px; width: 200px; float: left; overflow: hidden;">
+      {{lastName.u}} {{firstName.u}}
+  </div>
 </script>
+
+<script id="inventor" type="text/x-handlebars-template">
+  <div style="height: 200px; width: 200px; float: left; overflow: hidden;">
+      Inventors
+      <ul>
+      {{#each inventor}}
+      <li>{{this.lastName.u}}</li>
+      {{/each}}
+      </ul>
+  </div>
+</script>
+
 
 <script id="citedBy" type="text/x-handlebars-template">
    <p><b>Cited by:</b> 
@@ -31,7 +45,7 @@ URI in comment refers to the class of the object in rdf:range
 <script id="neighboringMunicipalities" type="text/x-handlebars-template">
   <div style="height: 200px; width: 200px; float: left; overflow: scroll;">
   <p><b>Neighboring Municipalities:</b><br /> 
-  {{#each neighboringMunicipalities.u}}<a href="?uri={{this}}">&#9608;</a> {{/each}}
+  {{#each neighboringMunicipalities}}<a href="?uri={{this.url.u}}">&#9608;</a> {{/each}}
   </p>
   </div>
 </script>

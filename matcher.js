@@ -18,7 +18,7 @@ var matchFuncs = [
         }
         return proposal;
     }},
-    //NAME: title, text
+    //NAME: title, text, PROTOTYPE: combine, This combines two matchers on the same level
     {"label_comment": function (graph, resource) {
         var proposal = false;
         var proposals = uduvudu.helper.matchArrayOfFuncs(graph,resource,['label','comment']);
@@ -51,8 +51,68 @@ var matchFuncs = [
         });
         return proposal;
     }},
+    //NAME: inventorOf, PROTOTYPE: ingredientLink
+    {"inventorOf": function (graph, resource) {
+        var query = uduvudu.helper.createQueries('{ ?inventorId <http://www.patexpert.org/ontologies/pmo.owl#inventorOf> ' + resource + '.}');
+
+        var proposal = false;
+        graph.execute(query.select, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+
+                var proposals = _.compact(_.map(results, function(result) {return uduvudu.helper.matchArrayOfFuncs(graph,"<"+result.inventorId.value+">",['lastName'])[0]}));
+                if (_.some(proposals)) {
+                    proposal = {
+                                elements: _.map(proposals, function (proposal) {return _.reduce(proposal.elements, function (m,n){return m+n;},0);}),
+                                context: {inventor: _.map(proposals, function(proposal){return proposal.context})},
+                                template: {name: "inventor"},
+                                cquery: _.flatten(_.map(proposals, function(p) {return p.cquery;})),
+                                prio: 100000
+                            };
+                }
+            };
+        });
+        return proposal;
+    }},
+    //NAME: lastName
+    {"lastName": function (graph, resource) {
+        var query = uduvudu.helper.createQueries('{'+resource+' <http://xmlns.com/foaf/0.1/lastName> ?lastName.}', 'LIMIT 1');
+
+        var proposal = false;
+        graph.execute(query.select, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+                proposal =  {
+                                elements: results.length,
+                                context: {lastName: _.first(results).lastName.value},
+                                template: {name: "person_name"},
+                                cquery: [query.construct],
+                                prio: 71000
+                            };
+            };
+        });
+        return proposal;
+    }},
+    //NAME: name
+    {"name": function (graph, resource) {
+//        attributes = ['<http://xmlns.com/foaf/0.1/firstName','http://xmlns.com/foaf/0.1/lastName']
+        var query = uduvudu.helper.createQueries('{'+resource+' <http://xmlns.com/foaf/0.1/name> ?lastName.}', 'LIMIT 1');
+
+        var proposal = false;
+        graph.execute(query.select, function(success, results) {
+            if(success && (! _.isEmpty(results))) {
+                proposal =  {
+                                elements: results.length,
+                                context: {lastName: _.first(results).lastName.value},
+                                template: {name: "person_name"},
+                                cquery: [query.construct],
+                                prio: 71000
+                            };
+            };
+        });
+        return proposal;
+    }},
     //NAME: person_name
     {"person_name": function (graph, resource) {
+//        attributes = ['<http://xmlns.com/foaf/0.1/firstName','http://xmlns.com/foaf/0.1/lastName']
         var query = uduvudu.helper.createQueries('{ '+resource+' <http://xmlns.com/foaf/0.1/firstName> ?firstName. '+resource+' <http://xmlns.com/foaf/0.1/lastName> ?lastName.}');
 
         var proposal = false;
@@ -210,7 +270,7 @@ var matchFuncs = [
             if(success && (! _.isEmpty(results))) {
                 proposal =  {
                                 elements: results.length,
-                                context: {neighboringMunicipalities: _.map(results,function(result) {return result.cities.value;})},
+                                context: {neighboringMunicipalities: _.map(results,function(result) {return {url: result.cities.value};})},
                                 template: {name: "neighboringMunicipalities"},
                                 cquery: [query.construct],
                                 prio: 80000
@@ -272,21 +332,22 @@ var matchFuncs = [
         return proposal;
     }},
     //NAME: literal
+    /*
     {"literal": function (graph) {
-        var query = uduvudu.helper.createQueries('{ ?s ?p ?o.}',' LIMIT 1');
-
+        var query = uduvudu.helper.createQueries('{ ?s ?p ?o.}');
         var proposal = false;
         graph.execute(query.select, function(success, results) {
             if(success && (! _.isEmpty(results))) {
-                if(_.first(results).o.token === "literal") {
+                result = _.find(results, function (r) {return r.o.token === "literal"})
+                if(result) {
                      proposal =  {
                                     elements: 1,
                                     context:    {
-                                                    name: uduvudu.helper.nameFromPredicate(_.first(results).p),
-                                                    text: _.first(results).o.value
+                                                    name: uduvudu.helper.nameFromPredicate(result.p),
+                                                    text: result.o.value
                                                 },
                                     template: {name: "literal"},
-                                    cquery: [query.construct],
+                                    cquery: ['CONSTRUCT {<'+ result.s.value +'> <'+ result.p.value +'> """'+ result.o.value +'""".} WHERE {?s ?p ?o} LIMIT 1'],
                                     prio: 0
                                 };
                 };
@@ -294,6 +355,8 @@ var matchFuncs = [
         });
         return proposal;
     }},
+    */
+    /*
     //NAME: last resort, unknown triple
     {"unknown": function (graph) {
         var query = uduvudu.helper.createQueries('{ ?s ?p ?o.}',' LIMIT 1');
@@ -302,7 +365,7 @@ var matchFuncs = [
         graph.execute(query.select, function(success, results) {
             if(success && (! _.isEmpty(results))) {
                 proposal =  {
-                                elements: 1,
+                                elements: 0,
                                 context:    {
                                                 subject: uduvudu.helper.prepareTriple(_.first(results).s),
                                                 predicate: uduvudu.helper.prepareTriple(_.first(results).p),
@@ -316,8 +379,10 @@ var matchFuncs = [
         });
         return proposal;
     }},
+    */
+    /*
     //NAME: zero graph / for logging purpose
-/*    {"zero": function (graph) {
+     {"zero": function (graph) {
         var query = 'SELECT * WHERE { ?s ?p ?o.}';
         var getName = /(#|\/)([^#\/]*)$/
         graph.execute(query, function(success, results) {
