@@ -59,9 +59,8 @@
                 var cutGraph;
                 inputGraph.execute(query, function(success, graph) {
                     cutGraph = graph;
-                    console.log("cutGraph",graph);
                 });
-                inputGraph.delete(cutGraph, function(success){console.log("delete",success);});
+                inputGraph.delete(cutGraph);
             });
             // return the union of all proposals
             return _.union([finalprop],this.matcher(inputGraph, resource, depth + 1));

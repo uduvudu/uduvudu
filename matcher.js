@@ -270,7 +270,7 @@ var matchFuncs = [
             if(success && (! _.isEmpty(results))) {
                 proposal =  {
                                 elements: results.length,
-                                context: {neighboringMunicipalities: _.map(results,function(result) {return {url: result.cities.value};})},
+                                context: {neighboringMunicipalities: _.map(results,function(result) {return {url: result.cities.value}; })},
                                 template: {name: "neighboringMunicipalities"},
                                 cquery: [query.construct],
                                 prio: 80000

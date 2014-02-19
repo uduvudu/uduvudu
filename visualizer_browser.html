@@ -31,7 +31,7 @@ URI in comment refers to the class of the object in rdf:range
 <script id="neighboringMunicipalities" type="text/x-handlebars-template">
   <div style="height: 200px; width: 200px; float: left; overflow: scroll;">
   <p><b>Neighboring Municipalities:</b><br /> 
-  {{#each neighboringMunicipalities.u}}<a href="?uri={{this}}">&#9608;</a> {{/each}}
+  {{#each neighboringMunicipalities}}<a href="?uri={{this.url.u}}">&#9608;</a> {{/each}}
   </p>
   </div>
 </script>
