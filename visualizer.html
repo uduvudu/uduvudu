@@ -1,9 +1,7 @@
 <!--
-
-# BASE TYPE DEFINITIONS
-
-URI in comment refers to the class of the object in rdf:range 
+# Visualizer Tempaltes
 -->
+
 <script id="title" type="text/x-handlebars-template">
   <h1>{{title.u}}</h1>
 </script>
@@ -13,7 +11,7 @@ URI in comment refers to the class of the object in rdf:range
 </script>
 
 <script id="text" type="text/x-handlebars-template">
-  <div style="height: 200px; width: 200px; float: left; overflow: scroll;">
+  <div style="height: 200px; width: 400px; float: left; overflow: scroll;">
   <p>{{text.u}}</p>
   </div>
 </script>
@@ -32,14 +30,6 @@ URI in comment refers to the class of the object in rdf:range
       <li>{{this.lastName.u}}</li>
       {{/each}}
       </ul>
-  </div>
-</script>
-
-<script id="neighboringMunicipalities" type="text/x-handlebars-template">
-  <div style="height: 200px; width: 200px; float: left; overflow: scroll;">
-  <p><b>Neighboring Municipalities:</b><br /> 
-  {{#each neighboringMunicipalities}}<a href="?uri={{this.url.u}}">&#9608;</a> {{/each}}
-  </p>
   </div>
 </script>
 
@@ -91,7 +81,6 @@ URI in comment refers to the class of the object in rdf:range
             var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
         };
 </script>
-
 
 <!--<script id="pmid" type="text/x-handlebars-template">
   <div>

@@ -13,32 +13,31 @@ URI in comment refers to the class of the object in rdf:range
 </script>
 
 <script id="text" type="text/x-handlebars-template">
-  <div style="height: 200px; width: 200px; float: left; overflow: scroll;">
+  <div style="height: 200px; width: 400px; float: left; overflow: scroll;">
   <p>{{text.u}}</p>
   </div>
 </script>
 
 <script id="person_name" type="text/x-handlebars-template">
-  <div>{{lastName.u}} {{firstName.u}}</div>
+  <div style="height: 200px; width: 200px; float: left; overflow: hidden;">
+      {{lastName.u}} {{firstName.u}}
+  </div>
 </script>
 
-<script id="citedBy" type="text/x-handlebars-template">
-   <p><b>Cited by:</b> 
-  {{#each citedBy}}{{#if @index}}, {{/if}}<a href="?uri={{this}}">{{this}}</a>{{/each}}
-  </p>
-</script>
-
-<script id="neighboringMunicipalities" type="text/x-handlebars-template">
-  <div style="height: 200px; width: 200px; float: left; overflow: scroll;">
-  <p><b>Neighboring Municipalities:</b><br /> 
-  {{#each neighboringMunicipalities}}<a href="?uri={{this.url.u}}">&#9608;</a> {{/each}}
-  </p>
+<script id="inventor" type="text/x-handlebars-template">
+  <div style="height: 200px; width: 200px; float: left; overflow: hidden;">
+      Inventors
+      <ul>
+      {{#each inventor}}
+      <li>{{this.lastName.u}}</li>
+      {{/each}}
+      </ul>
   </div>
 </script>
 
 <script id="license" type="text/x-handlebars-template">
   <div style="height: 200px; width: 200px; float: left; overflow: scroll;">
-    <p><small>{{#if license.u}}&copy; {{license.u}}{{else}}&copy; <a href="{{uri.u}}">{{uri.u}}</a>{{/if}}</small></p>
+    <p><small>&copy; {{license.u}}</small></p>
   </div>
 </script>
 
@@ -85,7 +84,6 @@ URI in comment refers to the class of the object in rdf:range
         };
 </script>
 
-
 <!--<script id="pmid" type="text/x-handlebars-template">
   <div>
     <p>Online at <a href="http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}">http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}</a></p>
@@ -99,7 +97,7 @@ URI in comment refers to the class of the object in rdf:range
 </script>
 
 <script id="literal" type="text/x-handlebars-template">
-    <div style="width: 200px; height: 200px; float: left; overflow: hidden;"><p><b>{{{name.u}}}</b>:<br /> {{{text.u}}}</p></div>
+    <div style="width: 200px; height: 200px; float: left"><p title="{{{subject.u}}} - {{{predicate.u}}}"><b>{{{name.u}}}</b>:<br /> {{{text.u}}}</p></div>
 </script>
 
 <!-- void -->
@@ -109,4 +107,3 @@ URI in comment refers to the class of the object in rdf:range
 <!-- unknown -->
 <script id="unknown" type="text/x-handlebars-template">
     <div style="width: 200px; height: 200px; float: left; overflow: hidden;"><small><p>{{{subject.u}}} <br />&#9608;<br /> {{{predicate.u}}} <br />&#9608;<br /> {{{object.u}}}</p></small></div>
-</script>
