@@ -196,7 +196,6 @@ uduvudu.helper.showGraph = function(graph, simple) {
     return ret;
 };
 
-var log;
 
 uduvudu.helper.languageFlattener = function(context, language) {
     var out = _.object(_.keys(context), _.map(_.values(context), function(val) {
@@ -223,34 +222,6 @@ uduvudu.helper.languageFlattener = function(context, language) {
     return out;
 };
 
-
-/*
-uduvudu.helper.languageFlattener = function(context, language) {
-    var out = _.object(_.keys(context), _.map(_.values(context), function(lang) {
-            if (_.isString(lang)) {
-                return {u: lang}
-            } else {
-                if (_.isArray(lang)) {
-                    return _.map(lang, function(l) {return uduvudu.helper.languageFlattener(l, language)});
-                }
-                else {
-                    var user;
-                    if(lang[language]) {
-                        user = lang[language];
-                    } else {
-                        if (lang['undefined']) {
-                            user = lang['undefined'];
-                        } else {
-                            user = _.first(_.toArray(lang));
-                        }
-                    }
-                }
-            }
-            return {u: user, l: lang}
-        }));
-    return out;
-};
-*/
 
 /**
  * Matcher Factories
