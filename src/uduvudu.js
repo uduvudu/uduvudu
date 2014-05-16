@@ -76,17 +76,38 @@ uduvudu.matcher = function (inputGraph, resource, depth) {
  * @returns {string} outputs the string representing the rendred graph.
  */
 uduvudu.visualizer = function (visuals, language, device) {
+    // change to mustache style template
+    /*_.templateSettings = {
+        evaluate    : /<%([\s\S]+?)%>/g,
+        interpolate : /\{\{([\s\S]+?)\}\}/g,
+        escape      : /\{\{\{([\s\S]+?)\}\}\}>/g
+    };*/
+
     var output = "";
     // order visuals
-    console.log(visuals);
+//    console.log(visuals);
     visuals = _.sortBy(visuals, function (visual) {return -visual.order;});
     _.each(visuals,
         function (visual){
+           // get name of template for the current visual
            templateName = _.toArray(visual.context)[0].t.name;
-           console.log(templateName, visual.context)
-           var template = Handlebars.compile($("#"+templateName).html());
+
+//           console.log(templateName, JSON.stringify(visual.context,false, "  "))
+
+           // create content part of output
+           var content = $("#"+templateName).html();
+           if (content) {
+               contentTemplate = Handlebars.compile(content);
+//               contentTemplate = _.template(content);
+           } else {
+               console.log("NoTemplateFound", "There was no template with the name '"+templateName+"' found.")
+               // fallback if no template found
+               contentTemplate = Handlebars.compile('<div>{{'+_.first(_.keys(visual.context))+'.u}}</div>');
+           }
+           output += contentTemplate(uduvudu.helper.prepareLanguage(visual.context, language));
+
+           // create scripting part of output
            var javascript = $("#"+templateName+"_js").html();
-           output += template(uduvudu.helper.prepareLanguage(visual.context, language));
            if (javascript) {
                javascriptTemplate = Handlebars.compile(javascript);
                output += "<script type=\"text/javascript\">"+javascriptTemplate(uduvudu.helper.prepareLanguage(visual.context, language))+"</script>";
@@ -108,8 +129,13 @@ uduvudu.helper.createQueries = function (where, modifier) {
             }
 };
 
+/*
+* Try to find function with the support name in the matchFuncs Array, if not found return empty function.
+* @param {name} String The name of the function.
+* @returns {function} Output the a matcher function.
+*/
 uduvudu.helper.findMatchFunc = function(name) {
-    return _.first(_.values(_.find(matchFuncs, function (func) {return _.first(_.keys(func)) == name;})));
+    return _.first(_.values(_.find(matchFuncs, function (func) {return _.first(_.keys(func)) == name;}))) || (function (){return false;});
 }
 
 uduvudu.helper.matchArrayOfFuncs = function(graph, resource, names) {
@@ -209,9 +235,10 @@ uduvudu.helper.prepareLanguage = function(val, language) {
         return _.map(val, function(l) {return uduvudu.helper.prepareLanguage(l, language)});
     } else {
         if (_.isObject(val)){
-            // if not is leafe node nest objecte else if is leafe node (denoted by having a key of 'l') create key 'u' with current language
+            // if not, is leafe node do nest object 
             if (! (_.has(val,'l'))) {
                 return _.object(_.keys(val),_.map(val, function(l) {return uduvudu.helper.prepareLanguage(l, language)}));
+            // else if is leafe node (denoted by having a key of 'l') create key 'u' with current language
             } else {
                 if(val.l[language]) {
                     val.u = val.l[language];
@@ -262,7 +289,6 @@ uduvudu.matchers.createCombine = function(defArg) {
     }]]);
 }
 
-
 uduvudu.matchers.createLink = function(defArg) {
     return _.object([[defArg.matcherName,
     function (graph, resource) {
@@ -305,7 +331,6 @@ uduvudu.matchers.createLink = function(defArg) {
     }]]);
 }
 
-
 uduvudu.matchers.createPredicate = function(defArg) {
     return _.object([[defArg.matcherName,
     function (graph, resource) {
@@ -347,14 +372,23 @@ uduvudu.matchers.createPredicate = function(defArg) {
     }]]);
 }
 
-// initiate matcher functions
-var combineMatcherFuncs = _.map(combineMatchers, function (cM) {return uduvudu.matchers.createCombine(cM);});
-var linkMatcherFuncs = _.map(linkMatchers, function (lM) {return uduvudu.matchers.createLink(lM);});
-var predicateMatcherFuncs = _.map(predicateMatchers, function (pM) {return uduvudu.matchers.createPredicate(pM);});
+var matchFuncs = [];
 
-var matchFuncs = combineMatcherFuncs;
-matchFuncs = _.union(linkMatcherFuncs, matchFuncs);
-matchFuncs = _.union(matchFuncs, predicateMatcherFuncs);
+// initiate matcher functions
+if (! _.isUndefined(window.combineMatchers)) {
+    var combineMatcherFuncs = _.map(combineMatchers, function (cM) {return uduvudu.matchers.createCombine(cM);});
+    matchFuncs = _.union(combineMatcherFuncs, matchFuncs);
+}
+
+if (! _.isUndefined(window.linkMatchers)) {
+    var linkMatcherFuncs = _.map(linkMatchers, function (lM) {return uduvudu.matchers.createLink(lM);});
+    matchFuncs = _.union(linkMatcherFuncs, matchFuncs);
+}
+
+if (! _.isUndefined(window.predicateMatchers)) {
+    var predicateMatcherFuncs = _.map(predicateMatchers, function (pM) {return uduvudu.matchers.createPredicate(pM);});
+    matchFuncs = _.union(predicateMatcherFuncs, matchFuncs);
+}
 
 
 // export

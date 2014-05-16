@@ -13,7 +13,7 @@ Include in your project
 You need to include the following scripts:
 
     <head>
-        <script src="lib/underscore-1.5.1.js" type="text/javascript"></script>
+        <script src="lib/underscore-1.6.0.js" type="text/javascript"></script>
         <script src="lib/handlebars-v1.3.0.js" type="text/javascript"></script>
         <script src="lib/rdf_store.js" type="text/javascript"></script>
         <script src="matcher.js" type="text/javascript"></script>
