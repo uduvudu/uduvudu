@@ -13,9 +13,11 @@ Overview
 Use
 ---
 
-[Install](doc/install.md)
-[Add Matcher](doc/matcher.md)
-[Add Templates](doc/templates.md)
+[Install](/doc/install.md)
+
+[Add Matcher](/doc/matcher.md)
+
+[Add Templates](/doc/templates.md)
 
 Extend
 ------
