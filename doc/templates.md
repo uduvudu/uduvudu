@@ -36,4 +36,4 @@ The following pair load a Google Map based on the coordinates.
            };
     </script>
 
-For further details please look at the provided examples.
+For further deteail refer to the provided examples.
