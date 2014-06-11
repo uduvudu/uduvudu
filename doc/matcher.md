@@ -25,8 +25,10 @@ A predicate matcher is e.g. specified the following:
     Tells where in the page the template should be rendered. Higher values are a higher priority.
   * (optional)templateVariable
   
-    The name of the extracted variable. If there is no 
+    The name of the extracted variable. If this is not provided, the "term" of the URI is taken. (See `uduvudu.helper.getTerm` for details.)
   * (optional)resourcePosition
+   
+    If not provided the resourcePosition will be set automatically to subject.
 
 ## combineMatcher
 To group different values together on a logical level, and to be able to reuse the same templates we can use the combine matcher. It takes multiple matchers and puts them together.
