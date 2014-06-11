@@ -9,6 +9,7 @@ The library is now working in all recent major browsers. Right now the libary ca
 
 Overview
 --------
+![Schematic Overview](doc/overview.png)
 
 Use
 ---
