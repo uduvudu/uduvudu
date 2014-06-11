@@ -24,10 +24,22 @@ A predicate matcher is e.g. specified the following:
   
     Tells where in the page the template should be rendered. Higher values are a higher priority.
   * (optional)templateVariable
+  
+    The name of the extracted variable. If there is no 
   * (optional)resourcePosition
 
 ## combineMatcher
+To group different values together on a logical level, and to be able to reuse the same templates we can use the combine matcher. It takes multiple matchers and puts them together.
 
+`{matcherName: "person_name", templateId: "person_name", combineIds: ['lastName','firstName'], order: 10000000 }`
+  * combineIds
+  
+    Specifies which matcher output is combine together.
+  * matcherName
+  * predicate
+  * templateId
+  * order
+  * (optional)templateVariable
 
 ## linkMatcher
 The different single or combined predicates can be connected to other groups by the help of the link matcher. Like this a matched structure is able to be combined using multiple levels of a tree. 
