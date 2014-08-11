@@ -5,7 +5,10 @@
     <script src="lib/underscore-1.6.0.js" type="text/javascript"></script>
     <script src="lib/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="lib/handlebars-v1.3.0.js" type="text/javascript"></script>
-    <script src="lib/rdf_store.js" type="text/javascript"></script>
+	<script src="lib/rdf.js"></script>
+	<script src="lib/n3-browser.js"></script>
+	<script src="lib/jsonld.js"></script>
+	<script src="lib/rdf-ext.js"></script>
     <script src="matcher.js" type="text/javascript"></script>
     <script src="src/uduvudu.js" type="text/javascript"></script>
 </head>
@@ -13,21 +16,34 @@
     <div class="container">
         <div id="chooser">
             <form class="form-inline" role="form">
-                Source: (from where to load)<input id="setSource" type="text" class="form-control"></input>
-                Resource: (from which uri to start the parsing)<input id="setResource" type="text" class="form-control"></input>
                 <select id="selectSource" class="form-control">
-                    <option>Select a sample RDF URI</option>
-                    <option data-res="http://dbpedia.org/resource/Bern_University_of_Applied_Sciences">examples/Bern_University_of_Applied_Sciences.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Bern_University_of_Applied_Sciences">http://dbpedia.org/data/Bern_University_of_Applied_Sciences.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Rolex">examples/Rolex.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Rolex">http://dbpedia.org/data/Rolex.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Brig-Glis">examples/Brig-Glis.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Brig-Glis">http://dbpedia.org/resource/Brig-Glis.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Bern">http://dbpedia.org/data/Bern.ttl</option>
-                    <option data-res="http://www.w3.org/People/Berners-Lee/card#i">examples/TimBernersLee.ttl</option>
-                    <option data-res="http://data.admin.ch/bfs/municipality/13228">http://data.admin.ch/bfs/municipality/13228</option>
+                    <option>Select an application</option>
+<option value="https://localhost:8443/ossaward/0">MegaGEOGame</option>
+<option value="https://localhost:8443/ossaward/1">Kern Sibbald for Bacula</option>
+<option value="https://localhost:8443/ossaward/2">OSS bei der Stadt Biel</option>
+<option value="https://localhost:8443/ossaward/3">Tryton</option>
+<option value="https://localhost:8443/ossaward/4">VeriSO</option>
+<option value="https://localhost:8443/ossaward/5">OpenELEC Mediacenter</option>
+<option value="https://localhost:8443/ossaward/6">why open computing SA</option>
+<option value="https://localhost:8443/ossaward/7">Silicoin</option>
+<option value="https://localhost:8443/ossaward/8">hitobito</option>
+<option value="https://localhost:8443/ossaward/9">Laax+</option>
+<option value="https://localhost:8443/ossaward/10">University of St.Gallen’s career and alumni portals</option>
+<option value="https://localhost:8443/ossaward/11">YaIniT</option>
+<option value="https://localhost:8443/ossaward/12">Symfony CMF</option>
+<option value="https://localhost:8443/ossaward/13">camunda BPM</option>
+<option value="https://localhost:8443/ossaward/14">jOOQ</option>
+<option value="https://localhost:8443/ossaward/15">Projekt Ansible</option>
+<option value="https://localhost:8443/ossaward/16">LINSAN</option>
+<option value="https://localhost:8443/ossaward/17">map.geo.admin.ch V3</option>
+<option value="https://localhost:8443/ossaward/18">openATTIC</option>
+<option value="https://localhost:8443/ossaward/19">CityMobile</option>
+<option value="https://localhost:8443/ossaward/20">cdist configuration management</option>
+<option value="https://localhost:8443/ossaward/21">selendroid</option>
+<option value="https://localhost:8443/ossaward/22">Piwik</option>
+
                 </select>
-            </form> 
+            </form>
         </div>
         <div id="main">
         </div>
@@ -47,25 +63,26 @@
         }
 
         function loadFromSource(source, resource) {
-            var store = rdfstore.create();
+	        var store = new rdf.LdpStore();
+
             $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+source+' is being loaded ...</div>');
             if (source.substring(0,4) === "http") {
-                store.load('remote',source, function(success, amountTriples){
-                    if(success) {
-                        console.debug("successfully loaded "+amountTriples+" triples");
-                        $("#main").html(uduvudu.process(store, resource));
-                    }; 
+	            store.graph(source, function (graph, error) {
+                    if (error == null) {
+                        console.debug("successfully loaded "+graph.toArray().length+" triples");
+                        $("#main").html(uduvudu.process(graph, resource));
+                    };
                 })
             } else {
                 $.get(source, function(response) {
                     store.load('text/turtle',response, function(success, amountTriples){
                         if(success) {
                             console.debug("successfully loaded "+amountTriples+" triples");
-                            var startTime = new Date(); 
+                            var startTime = new Date();
                             $("#main").html(uduvudu.process(store, resource));
                             console.log("rendered in " + ((new Date()) - startTime) + "ms");
                         };
-                    }) 
+                    })
                 });
             };
         };
@@ -85,7 +102,7 @@
         });
 
         $('#selectSource').on('change', function(event) {
-            loadFromSource(this.value, event.target.selectedOptions[0].attributes['data-res'].nodeValue);
+            loadFromSource(this.value, event.target.selectedOptions[0].attributes['value'].nodeValue);
             //loadFromSource(this.value);
         });
 
