@@ -410,7 +410,7 @@ if (! _.isUndefined(window.linkMatchers)) {
     matchFuncs = _.union(linkMatcherFuncs, matchFuncs);
 }
 
-if (! _.isUndefined(window.predicateMatchers)) {rdf.createNamedNode
+if (! _.isUndefined(window.predicateMatchers)) {
     var predicateMatcherFuncs = _.map(predicateMatchers, function (pM) {return uduvudu.matchers.createPredicate(pM);});
     matchFuncs = _.union(predicateMatcherFuncs, matchFuncs);
 }
