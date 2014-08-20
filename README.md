@@ -5,6 +5,7 @@ Uduvudu aims to be an easy to use **extensible** and **adaptive** RDF visualizat
 
 The aim of this framework is to consume/render roughly the amount of triples which can be presented on one page or one screen. This can be done in a extremly flexible and also reusable way. The cost you are paying it that the framework is inherently not able to process big ( >10'000 triples ) amounts of data.
 
+![Triple Mustache. Yo.](/doc/pr/logo.png)
 
 Current State
 -------------
