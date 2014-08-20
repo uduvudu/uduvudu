@@ -28,3 +28,12 @@ Use
 Extend
 ------
 You can extend the library by adding new matcher factories. Please study the functions `uduvudu.matchers.*` in `src/uduvudu.js` which define the current available matcher as factories.
+
+
+Related Work
+------------
+The following projects are currently also working on adaptive and easy to use frameworks with similar goals. Check them out!
+
+[Balloon Synopsis](http://schlegel.github.io/balloon/balloon-synopsis.html)
+
+[MetaStyle](http://demos.inf.ed.ac.uk:8836/metastyle/static/welcome)
