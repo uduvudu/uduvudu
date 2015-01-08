@@ -162,11 +162,7 @@ uduvudu.helper.matchArrayOfFuncs = function(graph, resource, names) {
 };
 
 uduvudu.helper.prepareTriple = function(element) {
-  if (element.token === 'literal') {
-    return element.value;
-  } else {
-    return '<a href="?uri='+element.value+'">'+uduvudu.helper.getTerm(element.value)+'</a>';
-  }
+    return '<a href="?uri='+element.nominalValue+'">'+uduvudu.helper.getTerm(element.nominalValue)+'</a>';
 };
 
 uduvudu.helper.nameFromPredicate = function(element) {
@@ -204,9 +200,9 @@ uduvudu.helper.handleUnknown = function (graph) {
         elements: 0,
         context: {
           unknown: {
-            subject: {l: {undefined: uduvudu.helper.prepareTriple(t.subject.toString())}},
-            predicate: {l: {undefined: uduvudu.helper.prepareTriple(t.predicate.toString())}},
-            object: {l: {undefined: uduvudu.helper.prepareTriple(t.object.toString())}},
+            subject: {l: {undefined: uduvudu.helper.prepareTriple(t.subject)}},
+            predicate: {l: {undefined: uduvudu.helper.prepareTriple(t.predicate)}},
+            object: {l: {undefined: uduvudu.helper.prepareTriple(t.object)}},
             t: {name: "unknown"}
           }
         },

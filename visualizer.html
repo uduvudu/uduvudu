@@ -59,28 +59,6 @@
     </div> 
 </script>
 
-<script id="creator" type="text/uduvudu-template">
-    <div style="height: 235px; width: 235px; float: left;">
-        {{#each creator}}
-            This resource was created by {{this.title.u}}.
-        {{/each}}
-    </div> 
-</script>
-
-<script id="created" type="text/uduvudu-template">
-    <div style="height: 235px; width: 235px; float: left;">
-        This resource was created on {{created.u}}.
-    </div> 
-</script>
-
-<script id="createMeta" type="text/uduvudu-template">
-    <div style="height: 235px; width: 235px; float: left;">
-        This resource was created by {{#each creator}}{{this.title.u}}{{/each}} on {{created.u}}
-        
-    </div> 
-</script>
-
-
 <script id="location_js" type="text/uduvudu-template">
         var script = document.createElement("script");
         script.type = "text/javascript";
@@ -94,9 +72,22 @@
         };
 </script>
 
+<script id="created" type="text/uduvudu-template">
+    <div style="height: 235px; width: 235px; float: left;">
+        This resource was created on ≤%-created.u%>.
+    </div> 
+</script>
+
+<script id="createMeta" type="text/uduvudu-template">
+    <div style="height: 235px; width: 235px; float: left;">
+        This resource was created by {{#each creator}}{{this.title.u}}{{/each}} on {{created.u}}
+        
+    </div> 
+</script>
+
 <script id="img" type="text/uduvudu-template">
   <div style="width: 235px; height: 235px; float: left">
-  <img style="min-width: 235px; min-height: 235px;" src="{{img_url.u}}" class="img-responsive" />
+    <img style="min-width: 235px; min-height: 235px;" src="<%-img_url.u%>" class="img-responsive" />
   </div>
 </script>
 
@@ -112,9 +103,7 @@
 <script id="unknown" type="text/uduvudu-template">
   <!--
   <div style="width: 235px; height: 235px; float: left; overflow: scroll">
-      {{#with unknown}}
-      <small><p>{{{subject.u}}}<br />&#9608;<br />{{{predicate.u}}}<br />&#9608;<br />{{{object.u}}}</p></small>
-      {{/with}}
+      <small><p><%=unknown.subject.u%><br />&#9608;<br /><%=unknown.predicate.u%><br />&#9608;<br /><%=unknown.object.u%></p></small>
   </div>
   -->
 </script>
