@@ -35,6 +35,7 @@ var predicateMatchers = [
     {matcherName: "purl_title", predicate: "http://purl.org/dc/terms/title", templateId: "title", order: 1000000 },
     {matcherName: "depiction", predicate: "http://xmlns.com/foaf/0.1/depiction", templateVariable: "img_url", templateId: "img", order: 1000000 },
     {matcherName: "pmid", predicate: "http://purl.org/ontology/bibo/pmid", templateId: "pmid", order: 80000 },
+    {matcherName: "name", predicate: "http://xmlns.com/foaf/0.1/name", templateId: "name", order: 60000 },
     {matcherName: "firstName", predicate: "http://xmlns.com/foaf/0.1/firstName", templateId: "person_name", order: 60000 },
     {matcherName: "lastName", predicate: "http://xmlns.com/foaf/0.1/lastName", templateId: "person_name", order: 60000 },
     {matcherName: "license", predicate: "http://purl.org/dc/terms/license", templateId: "license", order: 20000 },

@@ -2,7 +2,7 @@
 'use strict';
 
 var uduvudu = {
-  version: "0.2.1"
+  version: "0.3.0"
 };
 
 /**
@@ -90,29 +90,28 @@ uduvudu.visualizer = function (visuals, language, device) {
       // get name of template for the current visual
       var
         contentTemplate,
-        templateName = _.toArray(visual.context)[0].t.name;
+        templateName = _.toArray(visual.context)[0].t.name,
+        finalContext = uduvudu.helper.prepareLanguage(visual.context, language);
 
       // create content part of output
       var content = $("#"+templateName).html();
-
       if (content) {
-        contentTemplate = Handlebars.compile(content);
+        contentTemplate = uduvudu.helper.template(content);
       } else {
         console.log("NoTemplateFound", "There was no template with the name '"+templateName+"' found.");
 
         // fallback if no template found
-        contentTemplate = Handlebars.compile('<div>{{'+_.first(_.keys(visual.context))+'.u}}</div>');
+        contentTemplate = uduvudu.helper.template('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(visual.context))+'.u%></div>');
       }
 
-      output += contentTemplate(uduvudu.helper.prepareLanguage(visual.context, language));
+      output += contentTemplate(finalContext);
 
       // create scripting part of output
       var javascript = $("#"+templateName+"_js").html();
 
       if (javascript) {
-        var javascriptTemplate = Handlebars.compile(javascript);
-
-        output += "<script type=\"text/javascript\">"+javascriptTemplate(uduvudu.helper.prepareLanguage(visual.context, language))+"</script>";
+          var javascriptTemplate = uduvudu.helper.template(javascript);
+          output += "<script type=\"text/javascript\">"+javascriptTemplate(finalContext)+"</script>";
       }
     });
 
@@ -123,6 +122,10 @@ uduvudu.visualizer = function (visuals, language, device) {
  * Recipies helper functions
  */
 uduvudu.helper = {};
+
+uduvudu.helper.template = function (template) {
+    return _.template(template);
+};
 
 uduvudu.helper.createQueries = function (where, modifier) {
   modifier = modifier || '';
@@ -393,6 +396,7 @@ uduvudu.matchers.createPredicate = function(defArg) {
       var filteredGraph = graph.match(subjectFilter, predicateFilter, objectFilter);
 
       if (filteredGraph.length !== 0) {
+        var l, s, keyCount = {};
         proposal =  {
           elements: filteredGraph.length,
           context:
@@ -400,12 +404,22 @@ uduvudu.matchers.createPredicate = function(defArg) {
               def.templateVariable,
               {
                 l: _.object(filteredGraph.toArray().map(function(t) {
-                  if (subjectVariable) {
-                    return [t.subject.language, t.subject.toString()];
-                  } else {
-                    return [t.object.language, t.object.toString()];
-                  }
-                })),
+                   if (subjectVariable) {$
+                     l = t.subject.language;
+                     s = t.subject.toString();
+                   } else {$
+                     l= t.object.language;
+                     s = t.object.toString();
+                   }
+                   //add a count to duplicated keys
+                   if(_.has(keyCount,l)) {
+                       keyCount[l] += 1;
+                       return [l+'.'+keyCount[l], s];$
+                   } else {
+                       keyCount[l] = 1;
+                       return [l, s];$
+                   }
+                 })),
                 t: {name: def.templateId || def.templateVariable},
                 p: def.predicate,
                 r: resource
