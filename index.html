@@ -4,92 +4,41 @@
     <link href="lib/bootstrap.min.css" rel="stylesheet">
     <script src="lib/underscore-1.6.0.js" type="text/javascript"></script>
     <script src="lib/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="lib/handlebars-v1.3.0.js" type="text/javascript"></script>
-    <script src="lib/rdf_store.js" type="text/javascript"></script>
+    <script src="lib/rdf.js"></script>
+    <script src="lib/n3-browser.js"></script>
+    <script src="lib/jsonld.js"></script>
+    <script src="lib/rdf-ext.js"></script>
     <script src="matcher.js" type="text/javascript"></script>
     <script src="src/uduvudu.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="container">
-        <div id="chooser">
-            <form class="form-inline" role="form">
-                Source: (from where to load)<input id="setSource" type="text" class="form-control"></input>
-                Resource: (from which uri to start the parsing)<input id="setResource" type="text" class="form-control"></input>
-                <select id="selectSource" class="form-control">
-                    <option>Select a sample RDF URI</option>
-                    <option data-res="http://dbpedia.org/resource/Bern_University_of_Applied_Sciences">examples/Bern_University_of_Applied_Sciences.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Bern_University_of_Applied_Sciences">http://dbpedia.org/data/Bern_University_of_Applied_Sciences.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Rolex">examples/Rolex.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Rolex">http://dbpedia.org/data/Rolex.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Brig-Glis">examples/Brig-Glis.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Brig-Glis">http://dbpedia.org/resource/Brig-Glis.ttl</option>
-                    <option data-res="http://dbpedia.org/resource/Bern">http://dbpedia.org/data/Bern.ttl</option>
-                    <option data-res="http://www.w3.org/People/Berners-Lee/card#i">examples/TimBernersLee.ttl</option>
-                    <option data-res="http://data.admin.ch/bfs/municipality/13228">http://data.admin.ch/bfs/municipality/13228</option>
-                </select>
-            </form> 
-        </div>
+        <!-- location where to render to -->
         <div id="main">
         </div>
     </div>
+    <!-- where the templates are injected -->
     <div id="visualizer">
     </div>
     <script type="text/javascript">
         // prepare visualizer templates for uduvudu
         $("#visualizer").load("visualizer.html");
 
-        // helper to decipher the get query
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
+        // instantiate rdf-ext object
+        var store = new rdf.LdpStore();
+        var source = 'http://dbpedia.org/resource/University_of_Fribourg';
 
-        function loadFromSource(source, resource) {
-            var store = rdfstore.create();
-            $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+source+' is being loaded ...</div>');
-            if (source.substring(0,4) === "http") {
-                store.load('remote',source, function(success, amountTriples){
-                    if(success) {
-                        console.debug("successfully loaded "+amountTriples+" triples");
-                        $("#main").html(uduvudu.process(store, resource));
-                    }; 
-                })
-            } else {
-                $.get(source, function(response) {
-                    store.load('text/turtle',response, function(success, amountTriples){
-                        if(success) {
-                            console.debug("successfully loaded "+amountTriples+" triples");
-                            var startTime = new Date(); 
-                            $("#main").html(uduvudu.process(store, resource));
-                            console.log("rendered in " + ((new Date()) - startTime) + "ms");
-                        };
-                    }) 
-                });
-            };
-        };
+        // something about what is goingn on
+        $("#main").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> <strong>Loading</strong> '+source+' is being loaded ...</div>');
 
-        // if uri is specified in title get it
-        var uri = getParameterByName('uri');
-        if (uri != '') {
-            loadFromSource(uri, uri);
-            }
-
-        $('#setSource').on('keyup', function() {
-            loadFromSource(this.value, $('#setResource').val());
-        });
-
-        $('#setResource').on('keyup', function() {
-            loadFromSource($('#setSource').val(), this.value);
-        });
-
-        $('#selectSource').on('change', function(event) {
-            loadFromSource(this.value, event.target.selectedOptions[0].attributes['data-res'].nodeValue);
-            //loadFromSource(this.value);
-        });
-
-
+        // load triples
+        store.graph(source, function (graph, error) {
+                if (error == null) {
+                    console.debug("successfully loaded "+graph.toArray().length+" triples");
+                    // resource (entry for template search) is same as source in this example
+                    $("#main").html(uduvudu.process(graph, source));
+                };
+            })
     </script>
 </body>
 </html>
