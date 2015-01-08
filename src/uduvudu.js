@@ -80,7 +80,7 @@ uduvudu.matcher = function (inputGraph, resource, depth) {
  * @returns {string} outputs the string representing the rendred graph.
  */
 uduvudu.visualizer = function (visuals, language, device) {
-  var output = "";
+  var output = '';
 
   // order visuals
   visuals = _.sortBy(visuals, function (visual) {return -visual.order;});
@@ -88,13 +88,27 @@ uduvudu.visualizer = function (visuals, language, device) {
   _.each(visuals,
     function (visual){
       // get name of template for the current visual
+      
       var
-        contentTemplate,
         templateName = _.toArray(visual.context)[0].t.name,
-        finalContext = uduvudu.helper.prepareLanguage(visual.context, language);
+        context = uduvudu.helper.prepareLanguage(visual.context, language);
 
-      console.log(visual);
+      _.extend(context, uduvudu.helper.templateHelper);
+      output += uduvudu.helper.renderContext(templateName, context);
+    });
 
+  return output;
+};
+
+/**
+ * Recipies helper functions
+ */
+uduvudu.helper = {};
+
+uduvudu.helper.renderContext = function (templateName, finalContext) {
+      var
+        output = '',
+        contentTemplate;
       // create content part of output
       var content = uduvudu.helper.getTemplate(templateName);
       if (content) {
@@ -103,7 +117,7 @@ uduvudu.visualizer = function (visuals, language, device) {
         console.log("NoTemplateFound", "There was no template with the name '"+templateName+"' found.");
 
         // fallback if no template found
-        contentTemplate = uduvudu.helper.compileTemplate('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(visual.context))+'.u%></div>');
+        contentTemplate = uduvudu.helper.compileTemplate('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(finalContext))+'.u%></div>');
       }
 
       output += contentTemplate(finalContext);
@@ -115,15 +129,8 @@ uduvudu.visualizer = function (visuals, language, device) {
           var javascriptTemplate = uduvudu.helper.compileTemplate(javascript);
           output += "<script type=\"text/javascript\">"+javascriptTemplate(finalContext)+"</script>";
       }
-    });
-
-  return output;
-};
-
-/**
- * Recipies helper functions
- */
-uduvudu.helper = {};
+      return output;
+}
 
 uduvudu.helper.compileTemplate = function (template) {
     // use underscore to compile templates
@@ -135,6 +142,11 @@ uduvudu.helper.getTemplate = function (templateName) {
     if (elem) { return elem.innerHTML; } else { return null; }
 };
 
+uduvudu.helper.templateHelper = {
+    template: function(context) {
+         return uduvudu.helper.renderContext(context.t.name, context);
+    }
+}
 
 uduvudu.helper.createQueries = function (where, modifier) {
   modifier = modifier || '';
