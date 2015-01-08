@@ -93,24 +93,26 @@ uduvudu.visualizer = function (visuals, language, device) {
         templateName = _.toArray(visual.context)[0].t.name,
         finalContext = uduvudu.helper.prepareLanguage(visual.context, language);
 
+      console.log(visual);
+
       // create content part of output
-      var content = $("#"+templateName).html();
+      var content = uduvudu.helper.getTemplate(templateName);
       if (content) {
-        contentTemplate = uduvudu.helper.template(content);
+        contentTemplate = uduvudu.helper.compileTemplate(content);
       } else {
         console.log("NoTemplateFound", "There was no template with the name '"+templateName+"' found.");
 
         // fallback if no template found
-        contentTemplate = uduvudu.helper.template('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(visual.context))+'.u%></div>');
+        contentTemplate = uduvudu.helper.compileTemplate('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(visual.context))+'.u%></div>');
       }
 
       output += contentTemplate(finalContext);
 
       // create scripting part of output
-      var javascript = $("#"+templateName+"_js").html();
+      var javascript = uduvudu.helper.getTemplate(templateName+"_js");
 
       if (javascript) {
-          var javascriptTemplate = uduvudu.helper.template(javascript);
+          var javascriptTemplate = uduvudu.helper.compileTemplate(javascript);
           output += "<script type=\"text/javascript\">"+javascriptTemplate(finalContext)+"</script>";
       }
     });
@@ -123,9 +125,16 @@ uduvudu.visualizer = function (visuals, language, device) {
  */
 uduvudu.helper = {};
 
-uduvudu.helper.template = function (template) {
+uduvudu.helper.compileTemplate = function (template) {
+    // use underscore to compile templates
     return _.template(template);
 };
+
+uduvudu.helper.getTemplate = function (templateName) {
+    var elem = document.getElementById(templateName);
+    if (elem) { return elem.innerHTML; } else { return null; }
+};
+
 
 uduvudu.helper.createQueries = function (where, modifier) {
   modifier = modifier || '';
