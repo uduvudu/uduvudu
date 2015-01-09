@@ -3,22 +3,15 @@
 -->
 
 <script id="title" type="text/uduvudu-template">
-  <div style="height: 235px; width: 100%; float: left; overflow: scroll;">
-  <h1>{{title.title.u}}</h1>
-  </div>
+    <h1><%-obj.u%></h1>
 </script>
 
 <script id="text" type="text/uduvudu-template">
-  <div style="height: 235px; width: 470px; float: left; overflow: scroll;">
-  <p>{{text.u}}</p>
-  </div>
+    <p><%-obj.u%></p>
 </script>
 
-
 <script id="license" type="text/uduvudu-template">
-  <div style="height: 235px; width: 235px; float: left; overflow: scroll;">
-    <p><small>&copy; {{license.u}}</small></p>
-  </div>
+    <p><small>&copy; <%-obj.u%></small></p>
 </script>
 
 <script id="name" type="text/uduvudu-template">
@@ -30,10 +23,8 @@
 
 
 <script id="title_text" type="text/uduvudu-template">
-  <div style="height: 235px; width: 470px; float: left; overflow: scroll;">
-    <h1>{{title}}</h1>
-    <p>{{text}}</p>
-  </div>
+    <%=template(title)%>
+    <%=template(text)%>
 </script>
 
 <script id="community" type="text/uduvudu-template">
@@ -46,8 +37,8 @@
 </script>
 
 <script id="label_comment" type="text/uduvudu-template">
-  <h1><%-title.u%></h1>
-  <p><%-text.u%></p>
+    <%=template(title)%>
+    <%=template(text)%>
 </script>
 
 <script id="location" type="text/uduvudu-template">
@@ -72,13 +63,6 @@
 <script id="created" type="text/uduvudu-template">
     <div style="height: 235px; width: 235px; float: left;">
         This resource was created on ≤%-created.u%>.
-    </div> 
-</script>
-
-<script id="createMeta" type="text/uduvudu-template">
-    <div style="height: 235px; width: 235px; float: left;">
-        This resource was created by {{#each creator}}{{this.title.u}}{{/each}} on {{created.u}}
-        
     </div> 
 </script>
 

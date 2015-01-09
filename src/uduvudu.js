@@ -2,7 +2,7 @@
 'use strict';
 
 var uduvudu = {
-  version: "0.3.1"
+  version: "0.3.2"
 };
 
 /**
@@ -106,6 +106,7 @@ uduvudu.visualizer = function (visuals, language, device) {
 uduvudu.helper = {};
 
 uduvudu.helper.renderContext = function (templateName, finalContext) {
+      //TODO: Template caching like http://lostechies.com/derickbailey/2012/04/10/javascript-performance-pre-compiling-and-caching-html-templates/
       var
         output = '',
         contentTemplate;
@@ -132,9 +133,9 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
       return output;
 }
 
-uduvudu.helper.compileTemplate = function (template) {
+uduvudu.helper.compileTemplate = function (templateSource) {
     // use underscore to compile templates
-    return _.template(template);
+    return _.template(templateSource);
 };
 
 uduvudu.helper.getTemplate = function (templateName) {
@@ -144,18 +145,10 @@ uduvudu.helper.getTemplate = function (templateName) {
 
 uduvudu.helper.templateHelper = {
     template: function(context) {
+         _.extend(context, uduvudu.helper.templateHelper);
          return uduvudu.helper.renderContext(context.t.name, context);
     }
 }
-
-uduvudu.helper.createQueries = function (where, modifier) {
-  modifier = modifier || '';
-
-  return {
-    construct:'CONSTRUCT '+where+' WHERE '+where+' '+modifier,
-    select: 'SELECT * WHERE '+where+' '+modifier
-  };
-};
 
 /*
 * Try to find function with the support name in the matchFuncs Array, if not found return empty function.
