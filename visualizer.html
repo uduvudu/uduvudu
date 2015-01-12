@@ -11,7 +11,7 @@
 </script>
 
 <script id="license" type="text/uduvudu-template">
-    <p><small>&copy; <%-license.u%></small></p>
+    <p><small>&copy; <%-obj.u%></small></p>
 </script>
 
 <script id="name" type="text/uduvudu-template">
@@ -27,6 +27,18 @@
     <%=template(title_text.text)%>
 </script>
 
+<script id="wikiInfo" type="text/uduvudu-template">
+  <div style="height: 235px; width: 235px; float: left;">
+    <img style="width: 30px; height: 30px; float: left;" src="http://upload.wikimedia.org/wikipedia/en/8/80/Wikipedia-logo-v2.svg">
+    <p><big>&nbsp;Wikipedia</big></p>
+    <p>
+      ID: <a href="http://en.wikipedia.org/?curid=<%=wikiInfo.wikiPageID.u%>"><%=wikiInfo.wikiPageID.u%></a> <br>
+      Revision: <%=wikiInfo.wikiPageRevisionID.u%>
+    </p>
+  </div>
+</script>
+
+
 <script id="community" type="text/uduvudu-template">
   <div style="height: 235px; width: 470px; background-color: lightgrey; padding: 4px; float: left; overflow: scroll;">
   <div style="width: 235px; height: 235px; overflow: hidden; margin: -4px;" class="pull-right">
@@ -41,8 +53,104 @@
     <%=template(label_comment.text)%>
 </script>
 
+<script id="community_stat" type="text/x-handlebars-template">
+      <%=template(community_stat.website)%>
+      <%=template(community_stat.elevation)%>
+      <%=template(community_stat.area)%>
+</script>
+
+<script id="elevation" type="text/x-handlebars-template">
+  <div style="float: left; min-width: 200px;">
+      <p><i class="glyphicon glyphicon-stats"></i> Elevation: <%=elevation.u%> m</p>
+  </div>
+</script>
+
+<script id="area" type="text/x-handlebars-template">
+  <div style="float: left; min-width: 200px;">
+      <p><i class="glyphicon glyphicon-stats"></i> Area: <%=area.u%> km<sup>2</sup></p>
+  </div>
+</script>
+
+<script id="website" type="text/x-handlebars-template">
+  <div style="float: left; min-width: 200px;">
+      <p><i class="glyphicon glyphicon-link"></i> <a href="<%=website.u%>"><%=website.u%></a></p>
+  </div>
+</script>
+
+
+<script id="mhltemp" type="text/x-handlebars-template">
+  <div style="float: left">
+    <br>
+    <h3>Temperatures per Month</h3>
+    <canvas id="mhltemp" width="560px" height="200px"></canvas>
+    <p>Temperatures in °C/month: <span style="color: rgba(120,120,220,1)">Average Low</span>, <span style="color: rgba(220,220,220,1)">Daily Mean</span>, <span style="color: rgba(220,120,120,1)">Average High</span></p>
+  </div>
+</script>
+
+<script id="mhltemp_js" type="text/x-handlebars-template">
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js";
+        script.onload = function(){
+            var ctx = document.getElementById("mhltemp").getContext("2d");
+            var data = {
+              labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+              datasets : [
+                {
+                  fillColor : "rgba(120,120,220,0.5)",
+                  strokeColor : "rgba(220,220,220,1)",
+                  data : [<%=num(tempC.lowC.jan.u)%>,<%=num(tempC.lowC.feb.u)%>,<%=num(tempC.lowC.mar.u)%>,<%=num(tempC.lowC.apr.u)%>,<%=num(tempC.lowC.may.u)%>,<%=num(tempC.lowC.jun.u)%>,<%=num(tempC.lowC.jul.u)%>,<%=num(tempC.lowC.aug.u)%>,<%=num(tempC.lowC.sep.u)%>,<%=num(tempC.lowC.oct.u)%>,<%=num(tempC.lowC.nov.u)%>,<%=num(tempC.lowC.dec.u)%>]
+                },
+                {
+                  fillColor : "rgba(220,220,220,0.5)",
+                  strokeColor : "rgba(220,220,220,1)",
+                  data : [<%=num(tempC.meanC.jan.u)%>,<%=num(tempC.meanC.feb.u)%>,<%=num(tempC.meanC.mar.u)%>,<%=num(tempC.meanC.apr.u)%>,<%=num(tempC.meanC.may.u)%>,<%=num(tempC.meanC.jun.u)%>,<%=num(tempC.meanC.jul.u)%>,<%=num(tempC.meanC.aug.u)%>,<%=num(tempC.meanC.sep.u)%>,<%=num(tempC.meanC.oct.u)%>,<%=num(tempC.meanC.nov.u)%>,<%=num(tempC.meanC.dec.u)%>]
+               },
+               {
+                  fillColor : "rgba(220,120,120,0.5)",
+                  strokeColor : "rgba(220,220,220,1)",
+                  data : [<%=num(tempC.highC.jan.u)%>,<%=num(tempC.highC.feb.u)%>,<%=num(tempC.highC.mar.u)%>,<%=num(tempC.highC.apr.u)%>,<%=num(tempC.highC.may.u)%>,<%=num(tempC.highC.jun.u)%>,<%=num(tempC.highC.jul.u)%>,<%=num(tempC.highC.aug.u)%>,<%=num(tempC.highC.sep.u)%>,<%=num(tempC.highC.oct.u)%>,<%=num(tempC.highC.nov.u)%>,<%=num(tempC.highC.dec.u)%>]
+               }
+              ]
+            }
+            new Chart(ctx).Bar(data);
+        };
+        document.body.appendChild(script);
+</script>
+
+<script id="humidity" type="text/x-handlebars-template">
+  <div style="float: left">
+    <br>
+    <h3>Humidity per Month</h3>
+    <canvas id="humidity" width="560px" height="200px"></canvas>
+    <p>Humidity in %/month</p>
+  </div>
+</script>
+
+<script id="humidity_js" type="text/x-handlebars-template">
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js";
+        script.onload = function(){
+            var ctx = document.getElementById("humidity").getContext("2d");
+            var data = {
+              labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+              datasets : [
+                {
+                  fillColor : "rgba(120,220,120,0.5)",
+                  strokeColor : "rgba(220,220,220,1)",
+                  data : [<%=humi.jan.u%>,<%=humi.feb.u%>,<%=humi.mar.u%>,<%=humi.apr.u%>,<%=humi.may.u%>,<%=humi.jun.u%>,<%=humi.jul.u%>,<%=humi.aug.u%>,<%=humi.sep.u%>,<%=humi.oct.u%>,<%=humi.nov.u%>,<%=humi.dec.u%>]
+                }
+              ]
+            }
+            new Chart(ctx).Bar(data, {scaleOverride: true,scaleSteps: 10, scaleStepWidth: 10, scaleBeginAtZero : true});
+        };
+        document.body.appendChild(script);
+</script>
+
+
 <script id="location" type="text/uduvudu-template">
-    <div id="map-canvas" style="height: 235px; width: 235px; float: left;">
+    <div id="map-canvas" style="height: 213px; width: 600px; float: left;">
         <big>&#8982;</big> <%-location.lat.u%> / <%-location.long.u%>
     </div> 
 </script>
@@ -73,7 +181,7 @@
 </script>
 
 <script id="literal" type="text/uduvudu-template">
-    <p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p>
+    <div style="width: 235px; height: 235px; float: left"><p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p></div>
 </script>
 
 <!-- void -->
