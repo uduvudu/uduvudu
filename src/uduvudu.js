@@ -144,15 +144,22 @@ uduvudu.helper.getTemplate = function (templateName) {
 };
 
 uduvudu.helper.templateHelper = {
-    template: function(context) {
-         if(context.t && context.t.name && context.v) { 
-            var object = _.object([[context.v, context]]);
-            _.extend(object, uduvudu.helper.templateHelper);
-            return uduvudu.helper.renderContext(context.t.name, object);
+    // fetch the template of the subcontext provided
+    template: function(subcontext) {
+         if(subcontext.t && subcontext.t.name && subcontext.v) { 
+            var context = _.object([[subcontext.v, subcontext]]);
+            _.extend(context, uduvudu.helper.templateHelper);
+            return uduvudu.helper.renderContext(subcontext.t.name, context);
          } else {
             console.log("WrongContext", "The context given to the template() helper is not valid.");
             return null;
          }
+    },
+    // cast to number, if not possible return 0
+    num: function(something) {
+         //replace minus-sign with hyphen-minus
+         var number = Number(something.replace("−","-"));
+         return number?number:0;
     }
 }
 
