@@ -3,15 +3,15 @@
 -->
 
 <script id="title" type="text/uduvudu-template">
-    <h1><%-obj.u%></h1>
+    <h1><%-title.u%></h1>
 </script>
 
 <script id="text" type="text/uduvudu-template">
-    <p><%-obj.u%></p>
+    <p><%-text.u%></p>
 </script>
 
 <script id="license" type="text/uduvudu-template">
-    <p><small>&copy; <%-obj.u%></small></p>
+    <p><small>&copy; <%-license.u%></small></p>
 </script>
 
 <script id="name" type="text/uduvudu-template">
@@ -23,8 +23,8 @@
 
 
 <script id="title_text" type="text/uduvudu-template">
-    <%=template(title)%>
-    <%=template(text)%>
+    <%=template(title_text.title)%>
+    <%=template(title_text.text)%>
 </script>
 
 <script id="community" type="text/uduvudu-template">
@@ -37,8 +37,8 @@
 </script>
 
 <script id="label_comment" type="text/uduvudu-template">
-    <%=template(title)%>
-    <%=template(text)%>
+    <%=template(label_comment.title)%>
+    <%=template(label_comment.text)%>
 </script>
 
 <script id="location" type="text/uduvudu-template">
@@ -73,7 +73,7 @@
 </script>
 
 <script id="literal" type="text/uduvudu-template">
-    <div style="width: 235px; height: 235px; float: left"><p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p></div>
+    <p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p>
 </script>
 
 <!-- void -->
