@@ -145,8 +145,14 @@ uduvudu.helper.getTemplate = function (templateName) {
 
 uduvudu.helper.templateHelper = {
     template: function(context) {
-         _.extend(context, uduvudu.helper.templateHelper);
-         return uduvudu.helper.renderContext(context.t.name, context);
+         if(context.t && context.t.name && context.v) { 
+            var object = _.object([[context.v, context]]);
+            _.extend(object, uduvudu.helper.templateHelper);
+            return uduvudu.helper.renderContext(context.t.name, object);
+         } else {
+            console.log("WrongContext", "The context given to the template() helper is not valid.");
+            return null;
+         }
     }
 }
 
@@ -308,7 +314,10 @@ uduvudu.matchers.createCombine = function(defArg) {
                 _.reduce(_.rest(proposals), function(memo,num) {
                   return _.extend(memo,num.context);
                 }, _.first(proposals).context),
-                {'t': {name: def.templateId || def.templateVariable}}
+                {
+                    t: {name: def.templateId || def.templateVariable},
+                    v: def.templateVariable
+                }
               )
             ]]),
             subgraph: subgraph,
@@ -364,7 +373,11 @@ uduvudu.matchers.createLink = function(defArg) {
                 def.templateVariable,
                 _.extend(
                   _.map(proposals, function(proposal){return proposal.context;}),
-                    {'t': {name: def.templateId || def.templateVariable, 'r': resource}}
+                    {
+                        t: {name: def.templateId || def.templateVariable},
+                        r: resource,
+                        v: def.templateVariable
+                    }
                 )
               ]]),
             subgraph: filteredGraph,
@@ -432,7 +445,8 @@ uduvudu.matchers.createPredicate = function(defArg) {
                  })),
                 t: {name: def.templateId || def.templateVariable},
                 p: def.predicate,
-                r: resource
+                r: resource,
+                v: def.templateVariable
               }
             ]]),
             subgraph: filteredGraph,
