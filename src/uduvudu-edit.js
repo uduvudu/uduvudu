@@ -14,16 +14,12 @@ uduvudu_edit.stage = function (type, predicate, name, resource) {
     if (type == "combine" || type == "predicate") {
         uduvudu_edit.stage_combine(name, resource);
     } else {
-        var def = {};
-        def.predicate = predicate;
         if(predicate) {
             var term = uduvudu.helper.getTerm(predicate);
-            def.matcherName = term;
-            def.templateVariable = term;
-            def.templateId = term;
-            def.order = 100000;
-        } 
-        uduvudu_edit.stage_predicate(def);
+        } else {
+            var term = _uniqueId('term_');
+        }
+        uduvudu_edit.stage_predicate(predicate, term);
     }
 }
 
@@ -31,14 +27,15 @@ uduvudu_edit.stage_combine = function (name, resource) {
     uduvudu_edit.stageCombines = _.union(uduvudu_edit.stageCombines, [{name: name, resource: resource}]);
     var elem = document.getElementById('tmpCombine').innerHTML;
     var template = _.template(elem);
-    var html = template({def: {combines: uduvudu_edit.stageCombines, templateVariable: _.uniqueId('tpl_')}});
+    var id = _.uniqueId('tpl_');
+    var html = template({def: {combines: uduvudu_edit.stageCombines, templateVariable: id, matcherName: id, templateId: id, order: 100000}});
     document.getElementById('edit_area').innerHTML = html
 }
 
-uduvudu_edit.stage_predicate = function (def) {
+uduvudu_edit.stage_predicate = function (predicate, term) {
     var elem = document.getElementById('tmpPredicate').innerHTML;
     var template = _.template(elem);
-    var html = template({def: def});
+    var html = template({def: {predicate: predicate, templateVariable: term, matcherName: term, templateId: term, order: 100000}});
     document.getElementById('edit_area').innerHTML = html
 }
 
@@ -52,12 +49,21 @@ uduvudu_edit.add_predicate = function () {
     var matcher = uduvudu.matchers.createPredicate(def)
     uduvudu.helper.addMatcher(matcher);
     uduvudu.helper.addVisualizer(def.order = document.getElementById('frm_template').value, def.templateId);
-    console.log(def);
     uduvudu.reprocess();
 }
 
 uduvudu_edit.add_combine = function () {
-    console.log('click');
+    var def = {};
+    def.templateVariable = document.getElementById('frm_templateVariable').value;
+    def.templateId = document.getElementById('frm_templateId').value;
+    def.matcherName = document.getElementById('frm_matcherName').value;
+    def.combineIds = _.pluck(uduvudu_edit.stageCombines, 'name');
+    def.order = document.getElementById('frm_order').value;
+    console.log(def);
+    var matcher = uduvudu.matchers.createCombine(def)
+    uduvudu.helper.addMatcher(matcher);
+    uduvudu.helper.addVisualizer(def.order = document.getElementById('frm_template').value, def.templateId);
+    uduvudu.reprocess();
 }
 
 uduvudu_edit.load = function (matcherName) {

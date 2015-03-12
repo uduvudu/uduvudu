@@ -130,11 +130,15 @@
                   <h3>matcher</h3>
                   <div class="form-group">
                      <label for="frm_matcherName">Matcher Name:</label>
-                     <input class="form-control" id="frm_matcherName">
+                     <input class="form-control" id="frm_matcherName" value="<%-def.matcherName%>">
                   </div>
                   <div class="form-group">
                      <label for="frm_templateVariable">Template Variable:</label>
                      <input class="form-control" id="frm_templateVariable" value="<%-def.templateVariable%>">
+                  </div>
+                  <div class="form-group">
+                     <label for="frm_order">Order :</label>
+                     <input type="number" class="form-control" id="frm_order" value="<%-def.order%>">
                   </div>
                   <div>
                       <% _.each(def.combines, function (c) { print( def.templateVariable + '.' +c.name + ' \n')}); %>
