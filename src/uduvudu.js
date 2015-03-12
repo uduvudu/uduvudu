@@ -2,15 +2,20 @@
 'use strict';
 
 var uduvudu = {
-  version: "0.3.2"
+  version: "0.4.0",
+  matchFuncs: []
 };
 
 /**
  * Main Function of Uduvudu taking an RDF Graph as Input and using the available recipes and serving suggestions to transform to a visualization.
- * @param {store} store The input graph as an rdfStore Object.
- * @returns {String} oputut Returns the object as a String.
+ * @param {graph} input The input graph as an rdf-interface graph.
+ * @param {string} [resource] Start point to find templates.
+ * @param {string} [language] Define a language to use.
+ * @param {string} [device] Define a device to use.
+ * @param {function} [cb] Callback to use for rendering.
+ * @returns {String} Returns the object as a String.
  */
-uduvudu.process = function (store, resource, language, device) {
+uduvudu.process = function (input, resource, language, device, cb) {
   console.log("uduvudu.process", resource);
 
   var u = uduvudu;
@@ -24,13 +29,27 @@ uduvudu.process = function (store, resource, language, device) {
   var language = language || navigator.language.substring(0,2) || "en";
   var device = device || "desktop";
 
-  store = uduvudu.helper.deleteSameAs(store);
+  input = uduvudu.helper.deleteSameAs(input);
 
-  var visuals = u.matcher(store, resource, 0);
+  uduvudu.input = input.match();
+
+  var visuals = u.matcher(input, resource, 0);
   var output = u.visualizer(visuals, language, device);
 
-  return output;
+  if (cb) {
+      uduvudu.resource = resource;
+      uduvudu.language = language;
+      uduvudu.device = device;
+      uduvudu.cb = cb;
+      cb(output)
+  } else {
+      return output;
+  }
 };
+
+uduvudu.reprocess = function() {
+    uduvudu.process(uduvudu.input, uduvudu.resource, uduvudu.language, uduvudu.device, uduvudu.cb);
+}
 
 /*
  * The matcher (cook) is looking for known structures of baskets.
@@ -44,7 +63,7 @@ uduvudu.matcher = function (inputGraph, resource, depth) {
   // use all functions to see what matches
   var proposals =
     _.compact( //delete unmatched ones
-      _.map(matchFuncs, function (func){ //map whole function array
+      _.map(uduvudu.matchFuncs, function (func){ //map whole function array
         return _.first(_.values(func))(inputGraph, resource);} //return the result of the lookup
       )
     );
@@ -172,7 +191,7 @@ uduvudu.helper.findMatchFunc = function(name) {
   return (
     _.first(
       _.values(
-        _.find(matchFuncs, function (func) {
+        _.find(uduvudu.matchFuncs, function (func) {
           return _.first(_.keys(func)) === name;
         })
       )
@@ -216,7 +235,16 @@ uduvudu.helper.handleUnknown = function (graph) {
             predicate: {l: {undefined:  t.predicate.toString()}},
             name: {l: {undefined: uduvudu.helper.nameFromPredicate(t.predicate)}},
             text: {l: {undefined:  t.object.toString()}},
-            t: {name: "literal"}
+            t: {
+                name: "literal"
+            },
+            m: {
+                name: "literal",
+                type: "literal",
+                p: t.predicate.nominalValue,
+                r: t.subject.nominalValue
+            },
+            v: "literal"
           }
         },
         order: 1
@@ -230,7 +258,16 @@ uduvudu.helper.handleUnknown = function (graph) {
             subject: {l: {undefined: uduvudu.helper.prepareTriple(t.subject)}},
             predicate: {l: {undefined: uduvudu.helper.prepareTriple(t.predicate)}},
             object: {l: {undefined: uduvudu.helper.prepareTriple(t.object)}},
-            t: {name: "unknown"}
+            t: {
+                name: "unknown"
+            },
+            m: {
+                name: "unknown",
+                type: "unknown",
+                p: t.predicate.nominalValue,
+                r: t.object.nominalValue
+            },
+            v: "unknown"
           }
         },
         order: 0
@@ -322,7 +359,14 @@ uduvudu.matchers.createCombine = function(defArg) {
                   return _.extend(memo,num.context);
                 }, _.first(proposals).context),
                 {
-                    t: {name: def.templateId || def.templateVariable},
+                    t: {
+                           name: def.templateId,
+                       },
+                    m: {
+                           name: def.matcherName,
+                           type: 'combine',
+                           r: resource
+                       },
                     v: def.templateVariable
                 }
               )
@@ -381,8 +425,15 @@ uduvudu.matchers.createLink = function(defArg) {
                 _.extend(
                   _.map(proposals, function(proposal){return proposal.context;}),
                     {
-                        t: {name: def.templateId || def.templateVariable},
-                        r: resource,
+                        t: {
+                               name: def.templateId
+                           },
+                        m: {
+                               type: 'link',
+                               name: def.matcherName,
+                               p: def.predicate,
+                               r: resource
+                           },
                         v: def.templateVariable
                     }
                 )
@@ -408,7 +459,7 @@ uduvudu.matchers.createPredicate = function(defArg) {
         predicateFilter,
         objectFilter = null;
 
-      // if no templateV  return [r.val.lang,r.val.value]})),ariable is defined get term from predicate
+      // if no templateVariable is defined get term from predicate
       def.templateVariable = def.templateVariable || uduvudu.helper.getTerm(def.predicate);
 
       // look if subject or object position
@@ -450,9 +501,15 @@ uduvudu.matchers.createPredicate = function(defArg) {
                        return [l, s];$
                    }
                  })),
-                t: {name: def.templateId || def.templateVariable},
-                p: def.predicate,
-                r: resource,
+                t: {
+                       name: def.templateId
+                   },
+                m: {
+                       name: def.matcherName,
+                       type: 'predicate',
+                       p: def.predicate,
+                       r: resource
+                   },
                 v: def.templateVariable
               }
             ]]),
@@ -466,27 +523,40 @@ uduvudu.matchers.createPredicate = function(defArg) {
   ]]);
 };
 
-var matchFuncs = [];
+uduvudu.helper.addMatcher = function (matcher) {
+  uduvudu.matchFuncs = _.union([matcher], uduvudu.matchFuncs);
+};
 
-// initiate matcher functions
-if (! _.isUndefined(window.combineMatchers)) {
-  var combineMatcherFuncs = _.map(window.combineMatchers, function (cM) {return uduvudu.matchers.createCombine(cM);});
+uduvudu.helper.addVisualizer = function (template, id) {
+    var script = document.createElement("script");
+    script.setAttribute("id", id)
+    var text = document.createTextNode(template);
+    script.appendChild(text);
+    var element = document.getElementById("visualizer");
+    element.appendChild(script);
+};
 
-  matchFuncs = _.union(combineMatcherFuncs, matchFuncs);
+uduvudu.helper.loadJsonMatchers = function () {
+  // initiate matcher functions
+  if (! _.isUndefined(window.combineMatchers)) {
+    var combineMatcherFuncs = _.map(window.combineMatchers, function (cM) {return uduvudu.matchers.createCombine(cM);});
+
+    uduvudu.matchFuncs = _.union(combineMatcherFuncs, uduvudu.matchFuncs);
+  }
+
+  if (! _.isUndefined(window.linkMatchers)) {
+    var linkMatcherFuncs = _.map(window.linkMatchers, function (lM) {return uduvudu.matchers.createLink(lM);});
+
+    uduvudu.matchFuncs = _.union(linkMatcherFuncs, uduvudu.matchFuncs);
+  }
+
+  if (! _.isUndefined(window.predicateMatchers)) {
+    var predicateMatcherFuncs = _.map(window.predicateMatchers, function (pM) {return uduvudu.matchers.createPredicate(pM);});
+
+    uduvudu.matchFuncs = _.union(predicateMatcherFuncs, uduvudu.matchFuncs);
+  }
 }
-
-if (! _.isUndefined(window.linkMatchers)) {
-  var linkMatcherFuncs = _.map(window.linkMatchers, function (lM) {return uduvudu.matchers.createLink(lM);});
-
-  matchFuncs = _.union(linkMatcherFuncs, matchFuncs);
-}
-
-if (! _.isUndefined(window.predicateMatchers)) {
-  var predicateMatcherFuncs = _.map(window.predicateMatchers, function (pM) {return uduvudu.matchers.createPredicate(pM);});
-
-  matchFuncs = _.union(predicateMatcherFuncs, matchFuncs);
-}
-
+uduvudu.helper.loadJsonMatchers();
 
 // export
 window.uduvudu = uduvudu;

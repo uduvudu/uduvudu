@@ -82,7 +82,7 @@
   <div style="float: left">
     <br>
     <h3>Temperatures per Month</h3>
-    <canvas id="mhltemp" width="560px" height="200px"></canvas>
+    <canvas id="mhltemp_cvs" width="560px" height="200px"></canvas>
     <p>Temperatures in °C/month: <span style="color: rgba(120,120,220,1)">Average Low</span>, <span style="color: rgba(220,220,220,1)">Daily Mean</span>, <span style="color: rgba(220,120,120,1)">Average High</span></p>
   </div>
 </script>
@@ -92,7 +92,7 @@
         script.type = "text/javascript";
         script.src = "http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js";
         script.onload = function(){
-            var ctx = document.getElementById("mhltemp").getContext("2d");
+            var ctx = document.getElementById("mhltemp_cvs").getContext("2d");
             var data = {
               labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
               datasets : [
@@ -122,7 +122,7 @@
   <div style="float: left">
     <br>
     <h3>Humidity per Month</h3>
-    <canvas id="humidity" width="560px" height="200px"></canvas>
+    <canvas id="humidity_cvs" width="560px" height="200px"></canvas>
     <p>Humidity in %/month</p>
   </div>
 </script>
@@ -132,7 +132,7 @@
         script.type = "text/javascript";
         script.src = "http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js";
         script.onload = function(){
-            var ctx = document.getElementById("humidity").getContext("2d");
+            var ctx = document.getElementById("humidity_cvs").getContext("2d");
             var data = {
               labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
               datasets : [
@@ -181,7 +181,9 @@
 </script>
 
 <script id="literal" type="text/uduvudu-template">
-    <div style="width: 235px; height: 235px; float: left"><p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p></div>
+    <div style="width: 235px; height: 235px; float: left">
+        <p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p>
+    </div>
 </script>
 
 <!-- void -->
