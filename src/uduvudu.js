@@ -7,6 +7,25 @@ var uduvudu = {
 };
 
 /**
+ * Minimal assets to insert
+ */
+uduvudu.css = ''+
+'.uv {'+
+' min-width: 300px;'+
+' max-width: 600px;'+
+' margin: 5px;'+
+' float: left;'+
+'}'
+
+
+/** 
+ * Initialize uduvudu on load time.
+ */
+uduvudu.initialize = function () {
+    uduvudu.helper.loadJsonMatchers();
+}
+
+/**
  * Main Function of Uduvudu taking an RDF Graph as Input and using the available recipes and serving suggestions to transform to a visualization.
  * @param {graph} input The input graph as an rdf-interface graph.
  * @param {string} [resource] Start point to find templates.
@@ -35,7 +54,9 @@ uduvudu.process = function (input, resource, language, device, cb) {
 
   var visuals = u.matcher(input, resource, 0);
   var output = u.visualizer(visuals, language, device);
-
+  
+  uduvudu.helper.injectCss(uduvudu.css);
+  
   if (cb) {
       uduvudu.resource = resource;
       uduvudu.language = language;
@@ -123,6 +144,19 @@ uduvudu.visualizer = function (visuals, language, device) {
  * Recipies helper functions
  */
 uduvudu.helper = {};
+
+uduvudu.helper.injectCss = function (css) {
+    // css
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.id = _.uniqueId();
+    style.innerHTML = css;
+    try {
+        (document.getElementsByTagName('head')[0]||document.body).appendChild(style);
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 uduvudu.helper.renderContext = function (templateName, finalContext) {
       //TODO: Template caching like http://lostechies.com/derickbailey/2012/04/10/javascript-performance-pre-compiling-and-caching-html-templates/
@@ -556,7 +590,8 @@ uduvudu.helper.loadJsonMatchers = function () {
     uduvudu.matchFuncs = _.union(predicateMatcherFuncs, uduvudu.matchFuncs);
   }
 }
-uduvudu.helper.loadJsonMatchers();
+
+uduvudu.initialize();
 
 // export
 window.uduvudu = uduvudu;

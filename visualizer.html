@@ -67,7 +67,7 @@
 
 <script id="area" type="text/x-handlebars-template">
   <div style="float: left; min-width: 200px;">
-      <p><i class="glyphicon glyphicon-stats"></i> Area: <%=area.u%> km<sup>2</sup></p>
+      <p><i class="glyphicon glyphicon-stats"></i> Area: <%=num(area.u)%> km<sup>2</sup></p>
   </div>
 </script>
 
@@ -181,9 +181,9 @@
 </script>
 
 <script id="literal" type="text/uduvudu-template">
-    <div style="width: 235px; height: 235px; float: left">
-        <p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p>
-    </div>
+  <div class="uv">
+    <p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p>
+  </div>
 </script>
 
 <!-- void -->
@@ -193,7 +193,7 @@
 <!-- unknown -->
 <script id="unknown" type="text/uduvudu-template">
   <!--
-  <div style="width: 235px; height: 235px; float: left; overflow: scroll">
+  <div class="uv">
       <small><p><%=unknown.subject.u%><br />&#9608;<br /><%=unknown.predicate.u%><br />&#9608;<br /><%=unknown.object.u%></p></small>
   </div>
   -->
