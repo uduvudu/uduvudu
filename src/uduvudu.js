@@ -141,7 +141,7 @@ uduvudu.visualizer = function (visuals, language, device) {
 };
 
 /**
- * Recipies helper functions
+ * Helper functions
  */
 uduvudu.helper = {};
 
@@ -563,7 +563,8 @@ uduvudu.helper.addMatcher = function (matcher) {
 
 uduvudu.helper.addVisualizer = function (template, id) {
     var script = document.createElement("script");
-    script.setAttribute("id", id)
+    script.setAttribute("id", id);
+    script.setAttribute("type", "text/uduvudu-template");
     var text = document.createTextNode(template);
     script.appendChild(text);
     var element = document.getElementById("visualizer");

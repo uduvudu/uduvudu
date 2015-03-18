@@ -4,10 +4,7 @@
     <link href="lib/bootstrap.min.css" rel="stylesheet">
     <script src="lib/underscore-min.js" type="text/javascript"></script>
     <script src="lib/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="lib/rdf.js"></script>
-    <script src="lib/n3-browser.js"></script>
-    <script src="lib/jsonld.js"></script>
-    <script src="lib/rdf-ext.js"></script>
+    <script src="lib/rdf-ext.min.js"></script>
     <script src="matcher.js" type="text/javascript"></script>
     <script src="src/uduvudu.js" type="text/javascript"></script>
 </head>
@@ -31,6 +28,9 @@
         // instantiate rdf-ext object
         var store = new rdf.LdpStore();
         var source = 'http://dbpedia.org/resource/Fribourg';
+    //    var source = 'http://www.w3.org/People/Berners-Lee/card.rdf';
+//        var source = 'http://any23-vm.apache.org/any23/?format=best&uri=http%3A%2F%2Fwww.w3.org%2F2007%2F08%2FpyRdfa%2Fextract%3Furi%3Dhttp%3A%2F%2Fevents.linkeddata.org%2Fldow2015%2F&validation-mode=none';
+//        var source = 'http://dbpedia.org/resource/Sydney';
 
         // something about what is goingn on
         document.getElementById('main').innerHTML =  ''

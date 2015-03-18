@@ -48,7 +48,7 @@ uduvudu_edit.add_predicate = function () {
     def.order = document.getElementById('frm_order').value;
     var matcher = uduvudu.matchers.createPredicate(def)
     uduvudu.helper.addMatcher(matcher);
-    uduvudu.helper.addVisualizer(def.order = document.getElementById('frm_template').value, def.templateId);
+    uduvudu.helper.addVisualizer(document.getElementById('frm_template').value, def.templateId);
     document.getElementById('edit_area').innerHTML = "";
     uduvudu.reprocess();
 }
@@ -63,7 +63,7 @@ uduvudu_edit.add_combine = function () {
     console.log(def);
     var matcher = uduvudu.matchers.createCombine(def)
     uduvudu.helper.addMatcher(matcher);
-    uduvudu.helper.addVisualizer(def.order = document.getElementById('frm_template').value, def.templateId);
+    uduvudu.helper.addVisualizer(document.getElementById('frm_template').value, def.templateId);
     document.getElementById('edit_area').innerHTML = "";
     uduvudu_edit.stageCombines = [];
     uduvudu.reprocess();
@@ -87,7 +87,6 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
                      '</div></div>'
 
 
-      //TODO: Template caching like http://lostechies.com/derickbailey/2012/04/10/javascript-performance-pre-compiling-and-caching-html-templates/
       var
         output = '',
         contentTemplate;
@@ -95,7 +94,7 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
       var content = uduvudu.helper.getTemplate(templateName);
       if (content) {
         contentTemplate = uduvudu.helper.compileTemplate(shimPre+content+shimPost);
-        console.log(finalContext);
+        // console.log(finalContext);
       } else {
         console.log("NoTemplateFound", "There was no template with the name '"+templateName+"' found.",context);
 
@@ -135,8 +134,14 @@ uduvudu_edit.css = ''
 +'    position: absolute;\n'
 +'    top: 2px;\n'
 +'    right: 2px;\n'
-+'    background-color: rgba(0, 0, 0, 0.2);\n'
++'    background-color: rgba(0, 0, 0, 0.2) !important;\n'
 +'  }\n'
++' @media print {\n'
++'  .shim .tools {\n'
++'    border-top: 1px solid grey;\n'
++'    border-bottom: 1px solid grey;\n'
++'  }\n'
++' }\n'
 +'  .add {\n'
 +'    text-align: center;\n'
 +'    position: absolute;\n'
