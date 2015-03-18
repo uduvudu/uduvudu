@@ -21,6 +21,9 @@ Use
 
 [Install](/doc/install.md): How to integrate Uduvudu and the necessary dependencies in your project.
 
+[Editor ](/doc/editor.md): An overlay editor which can be used inplace in your project.
+
+
 (Subject to change! Matchers and Templates can soon be load and persisted through multiple ways, including as RDF itself.)
 
 [Add Matcher](/doc/matcher.md): How to define your own matchers definitions.
