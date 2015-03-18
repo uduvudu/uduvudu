@@ -5,10 +5,7 @@ You need to include the following scripts:
 
     <head>
         <script src="lib/underscore-1.6.0.js" type="text/javascript"></script>
-        <script src="lib/rdf.js"></script>
-        <script src="lib/n3-browser.js"></script>
-        <script src="lib/jsonld.js"></script>
-        <script src="lib/rdf-ext.js"></script>
+        <script src="lib/rdf-ext.min.js"></script>
         <script src="matcher.js" type="text/javascript"></script>
         <script src="src/uduvudu.js" type="text/javascript"></script>
     </head>
