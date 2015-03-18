@@ -13,10 +13,8 @@ The common prerequisite for the project environment is that the framework does w
 
 Based on the description of snippets of the input graph structure and a additional description on how to visualize this snippet, the input graph information shall be visualized. 
 
-### DoW T5.5
-For reference find following the paragraph from the DoW of T5.5.
-
-> Adaptive layouts, shared visualizations and feature suggestions (12M): The dashboard framework generates the user interface based on semantically stored data recognizing its description, which is a part of the data itself. In this way it identifies which data items are requested for the specific layout and how. The semantic description declares the type of a layout as well as its properties and context or relation to other types of layouts. The declaration of the type of layout is named RECIPE and the individual properties of the layout are called INGEDIENTS. This semantic framework enables the system to generate dynamic user interface for any given situation on the fly, independent from a given process or task.
+## Use Case: Adaptive layouts, shared visualizations and feature suggestions
+A dashboard framework generates the user interface based on semantically stored data recognizing its description, which is a part of the data itself. In this way it identifies which data items are requested for the specific layout and how. The semantic description declares the type of a layout as well as its properties and context or relation to other types of layouts. This semantic framework enables the system to generate dynamic user interface for any given situation on the fly, independent from a given process or task.
 
 ### Scope
 The scope of the first implementation in the frame of the Fusepool project is set on the visualization of a small graph.
