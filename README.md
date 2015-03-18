@@ -21,6 +21,8 @@ Use
 
 [Install](/doc/install.md): How to integrate Uduvudu and the necessary dependencies in your project.
 
+(Subject to change! Matchers and Templates can soon be load and persisted through multiple ways, including as RDF itself.)
+
 [Add Matcher](/doc/matcher.md): How to define your own matchers definitions.
 
 [Add Templates](/doc/templates.md): How to define your own templates.
