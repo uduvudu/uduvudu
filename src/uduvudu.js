@@ -78,11 +78,20 @@ uduvudu.process = function (input, resource, language, device, cb) {
 /**
  * Reprocess the templates, after change of the matchers or templates.
  */
-uduvudu.reprocess = function() {
+uduvudu.reprocess = function(input, resource, language, device, cb) {
     if(uduvudu.cb) {
-        uduvudu.process(uduvudu.input, uduvudu.resource, uduvudu.language, uduvudu.device, uduvudu.cb);
+        uduvudu.process(
+           input || uduvudu.input,
+           resource || uduvudu.resource,
+           language || uduvudu.language,
+           device || uduvudu.device,
+           cb || uduvudu.cb);
     } else {
-        return uduvudu.process(uduvudu.input, uduvudu.resource, uduvudu.language, uduvudu.device);
+        return uduvudu.process(
+           input || uduvudu.input,
+           resource || uduvudu.resource,
+           language || uduvudu.language,
+           device || uduvudu.device);
     };
 }
 

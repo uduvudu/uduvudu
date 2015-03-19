@@ -95,7 +95,7 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
       var context = finalContext[_.first(_.keys(finalContext))];
       var shimPre = '<div class="shim">';
       var shimPost = '<div class="tools">' +
-                     '  <div class="info"><a title="Resource: '+context.m.r+'">i</a></div>'+
+                     '  <div class="info"><a title="Resource: '+context[m].r+'">i</a></div>'+
                      '  <div class="edit"><a onClick="uduvudu_edit.load(\''+context.m.name+'\')">e</a></div>'+
                      '  <div class="add"><a onClick="uduvudu_edit.stage(\''+context.m.type+'\',\''+context.m.p+'\',\''+context.m.name+'\',\''+context.m.r+'\')">+</a></div>'+
                      '</div></div>'
