@@ -1,7 +1,6 @@
 <!--
 # Visualizer Tempaltes
 -->
-
 <script id="title" type="text/uduvudu-template">
     <h1><%-title.u%></h1>
 </script>
@@ -10,17 +9,35 @@
     <p><%-text.u%></p>
 </script>
 
+<script id="neighboringMunicipality" type="text/uduvudu-template">
+  <div style="width: 235px; float: left;">
+      <p><b>Neighboring municipalities:</b></p>
+      <p><ul><% _.each(neighboringMunicipality, function (municipality) { print('<li><a href="?res='+ municipality.title.m.r+'">'+municipality.title.u + "</a></li>"); }) %></ul></p>
+  </div>
+</script>
+
+<script id="abstract" type="text/uduvudu-template">
+  <div style="width: 560px; padding: 4px; float: left;">
+    <h2>Abstract</h2>
+    <p><%-abstract.u%></p>
+  </div>
+</script>
+
+<script id="quote" type="text/uduvudu-template">
+  <div style="width: 560px; padding: 4px; float: left;">
+    <p style="font-size:500%; font-family: Times New Roman; margin-bottom: -40px;">“</p>
+    <p><%-quote.u%></p>
+    <p style="font-size:500%; font-family: Times New Roman; margin-bottom: -40px; margin-top: -20px; text-align: right;">”</p>
+  </div>
+</script>
+
 <script id="license" type="text/uduvudu-template">
     <p><small>&copy; <%-obj.u%></small></p>
 </script>
 
 <script id="name" type="text/uduvudu-template">
-  <div style="height: 235px; width: 235px; float: left; overflow: scroll;">
-      <p><%-name.u%></p>
-      <p><small><% print(_.toArray(name.l).join(', ')) %></small></p>
-  </div>
+    <p><small><% print(_.toArray(name.l).join(', ')) %></small></p>
 </script>
-
 
 <script id="title_text" type="text/uduvudu-template">
     <%=template(title_text.title)%>
@@ -28,7 +45,7 @@
 </script>
 
 <script id="wikiInfo" type="text/uduvudu-template">
-  <div style="height: 235px; width: 235px; float: left;">
+  <div style="height: 235px;  width: 140px; float: left;">
     <img style="width: 30px; height: 30px; float: left;" src="http://upload.wikimedia.org/wikipedia/en/8/80/Wikipedia-logo-v2.svg">
     <p><big>&nbsp;Wikipedia</big></p>
     <p>
@@ -38,11 +55,10 @@
   </div>
 </script>
 
-
 <script id="community" type="text/uduvudu-template">
-  <div style="height: 235px; width: 470px; background-color: lightgrey; padding: 4px; float: left; overflow: scroll;">
-  <div style="width: 235px; height: 235px; overflow: hidden; margin: -4px;" class="pull-right">
-      <img style="min-width: 235px; min-height: 235px; max-width: 300px; max-height: 300px" src="<%-community.img_url.u%>" />
+  <div style="height: 270px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
+  <div style=" width: 235px; height: 235px; overflow: hidden; margin: -4px;" class="pull-right">
+      <img style="min-width: 235px; min-height: 235px; max-width: 300px; max-height: 300px; margin-left: 10px;" src="<%-community.img_url.u%>" />
   </div>
     <%=template(community.label_comment)%>
   </div>
@@ -77,12 +93,11 @@
   </div>
 </script>
 
-
 <script id="mhltemp" type="text/x-handlebars-template">
   <div style="float: left">
     <br>
     <h3>Temperatures per Month</h3>
-    <canvas id="mhltemp_cvs" width="560px" height="200px"></canvas>
+    <canvas id="mhltemp" width="560px" height="200px"></canvas>
     <p>Temperatures in °C/month: <span style="color: rgba(120,120,220,1)">Average Low</span>, <span style="color: rgba(220,220,220,1)">Daily Mean</span>, <span style="color: rgba(220,120,120,1)">Average High</span></p>
   </div>
 </script>
@@ -92,7 +107,7 @@
         script.type = "text/javascript";
         script.src = "http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js";
         script.onload = function(){
-            var ctx = document.getElementById("mhltemp_cvs").getContext("2d");
+            var ctx = document.getElementById("mhltemp").getContext("2d");
             var data = {
               labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
               datasets : [
@@ -122,7 +137,7 @@
   <div style="float: left">
     <br>
     <h3>Humidity per Month</h3>
-    <canvas id="humidity_cvs" width="560px" height="200px"></canvas>
+    <canvas id="humidity" width="560px" height="200px"></canvas>
     <p>Humidity in %/month</p>
   </div>
 </script>
@@ -132,7 +147,7 @@
         script.type = "text/javascript";
         script.src = "http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js";
         script.onload = function(){
-            var ctx = document.getElementById("humidity_cvs").getContext("2d");
+            var ctx = document.getElementById("humidity").getContext("2d");
             var data = {
               labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
               datasets : [
@@ -148,9 +163,8 @@
         document.body.appendChild(script);
 </script>
 
-
 <script id="location" type="text/uduvudu-template">
-    <div id="map-canvas" style="height: 213px; width: 600px; float: left;">
+    <div id="map-canvas" style="height: 219px; width: 560px; float: left;">
         <big>&#8982;</big> <%-location.lat.u%> / <%-location.long.u%>
     </div> 
 </script>
@@ -169,21 +183,19 @@
 </script>
 
 <script id="created" type="text/uduvudu-template">
-    <div style="height: 235px; width: 235px; float: left;">
+    <div style="height: 235px; width: 140px; float: left;">
         This resource was created on ≤%-created.u%>.
     </div> 
 </script>
 
 <script id="img" type="text/uduvudu-template">
-  <div style="width: 235px; height: 235px; float: left">
-    <img style="min-width: 235px; min-height: 235px;" src="<%-img_url.u%>" class="img-responsive" />
+  <div style=" width: 140px; height: 235px; float: left">
+    <img style="min- width: 140px; min-height: 235px;" src="<%-img_url.u%>" class="img-responsive" />
   </div>
 </script>
 
 <script id="literal" type="text/uduvudu-template">
-  <div class="uv">
-    <p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p>
-  </div>
+    <div style=" width: 140px; height: 140px; float: left"><p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p></div>
 </script>
 
 <!-- void -->
@@ -193,7 +205,7 @@
 <!-- unknown -->
 <script id="unknown" type="text/uduvudu-template">
   <!--
-  <div class="uv">
+  <div style=" width: 140px; height: 140px; float: left; overflow: scroll">
       <small><p><%=unknown.subject.u%><br />&#9608;<br /><%=unknown.predicate.u%><br />&#9608;<br /><%=unknown.object.u%></p></small>
   </div>
   -->
