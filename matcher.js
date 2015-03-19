@@ -2,9 +2,9 @@ var combineMatchers = [
     {matcherName: "addressBlock", templateId: "address", combineIds: ['person_name','addressPart'], order: 10000000 },
     {matcherName: "wikiInfo", templateId: "wikiInfo", combineIds: ['wikiPageID','wikiPageRevisionID'], order: 20000 },
     {matcherName: "addressPartCombine", templateId: "address", combineIds: ['address_line2','address_line3'], order: 10000000 },
-    {matcherName: "community", templateId: "community", combineIds: ['depiction','label_comment'], order: 10000000 },
-    {matcherName: "community_stat", templateId: "community_stat", combineIds: ['area','elevation','website'], order: 9600000 },
-    {matcherName: "label_comment", templateId: "label_comment", combineIds: ['rdfschema_label','comment','abstract'], order: 10000000 },
+    {matcherName: "community", templateId: "community", combineIds: ['depiction','label_comment'], order: 10010000 },
+    {matcherName: "community_stat", templateId: "community_stat", combineIds: ['area','elevation','website'], order: 10010000 },
+    {matcherName: "label_comment", templateId: "label_comment", combineIds: ['rdfschema_label','comment'], order: 10100000 },
     {matcherName: "person_name", templateId: "person_name", combineIds: ['lastName','firstName'], order: 10000000 },
     {matcherName: "multiple_name_1", templateId: "title", combineIds: ['schema_name','rdfschema_label','skos_prefLabel'], order: 10000000 },
     {matcherName: "multiple_name_2", templateId: "title", combineIds: ['schema_name','rdfschema_label'], order: 10000000 },
@@ -22,17 +22,19 @@ var combineMatchers = [
 ];
 
 var linkMatchers = [
-    {matcherName: "inventor", predicate: "http://www.patexpert.org/ontologies/pmo.owl#inventorOf", resourcePosition: "object", templateVariable: "inventor", templateId: "inventor", order: 1000000, linkIds: ['lastName']},
+    {matcherName: "neighboringMunicipality", predicate: "http://dbpedia.org/property/neighboringMunicipalities", templateId: "neighboringMunicipality", templateVariable: "neighboringMunicipality", order: 4000000, linkIds: ['rdfschema_label']},
     {matcherName: "addressPart", predicate: "http://www.w3.org/2000/10/swap/pim/contact#address", templateVariable: "addressLink", templateId: "address", order: 1000000, linkIds: ['addressPartCombine']},
     {matcherName: "creator", predicate: "http://purl.org/dc/terms/creator", templateVariable: "creator", templateId: "creator", order: 20000, linkIds: ['rdfschema_label'] },
 ];
 
 var predicateMatchers = [
-    {matcherName: "rdfschema_label", predicate: "http://www.w3.org/2000/01/rdf-schema#label", templateVariable: "title", templateId: "title", order: 1000000 },
+    {matcherName: "rdfschema_label", predicate: "http://www.w3.org/2000/01/rdf-schema#label", templateVariable: "title", templateId: "title", order: 1100000 },
+    {matcherName: "quote", predicate: "http://dbpedia.org/property/quote", templateVariable: "quote", templateId: "quote", order: 50000 },
     {matcherName: "skos_prefLabel", predicate: "http://www.w3.org/2004/02/skos/core#prefLabel", templateVariable: "title", templateId: "title", order: 60000 },
     {matcherName: "skos_altLabel", predicate: "http://www.w3.org/2004/02/skos/core#altLabel", templateVariable: "text", templateId: "text", order: 60000 },
     {matcherName: "schema_name", predicate: "http://schema.org/name", templateVariable: "title", templateId: "title", order: 60000 },
     {matcherName: "schema_description", predicate: "http://schema.org/description", templateVariable: "text", templateId: "text", order: 90000 },
+    {matcherName: "purl_description", predicate: "http://purl.org/dc/elements/1.1/description", templateVariable: "text", templateId: "text", order: 90000 },
     {matcherName: "purl_title", predicate: "http://purl.org/dc/terms/title", templateId: "title", order: 1000000 },
     {matcherName: "depiction", predicate: "http://xmlns.com/foaf/0.1/depiction", templateVariable: "img_url", templateId: "img", order: 1000000 },
     {matcherName: "pmid", predicate: "http://purl.org/ontology/bibo/pmid", templateId: "pmid", order: 80000 },
@@ -43,7 +45,7 @@ var predicateMatchers = [
     {matcherName: "created", predicate: "http://purl.org/dc/terms/created", templateId: "created", order: 20000 },
     {matcherName: "text", predicate: "http://rdfs.org/sioc/ns#content", templateId: "text", order: 90000 },
     {matcherName: "comment", predicate: "http://www.w3.org/2000/01/rdf-schema#comment", templateVariable: "text", templateId: "text", order: 90000 },
-    {matcherName: "abstract", predicate: "http://dbpedia.org/ontology/abstract", templateVariable: "text", templateId: "text", order: 90000 },
+    {matcherName: "abstract", predicate: "http://dbpedia.org/ontology/abstract", templateVariable: "abstract", templateId: "abstract", order: 6000000 },
     {matcherName: "elevation", predicate: "http://dbpedia.org/ontology/elevation", templateId: "elevation", order: 9400000 },
     {matcherName: "wikiPageRevisionID", predicate: "http://dbpedia.org/ontology/wikiPageRevisionID", templateId: "wikiPageRevisionID", order: 20000 },
     {matcherName: "wikiPageID", predicate: "http://dbpedia.org/ontology/wikiPageID", templateId: "wikiPageID", order: 20000 },
