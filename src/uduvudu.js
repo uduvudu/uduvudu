@@ -431,11 +431,11 @@ uduvudu.matchers.createLink = function(defArg) {
       subjectVariable = def.resourcePosition && def.resourcePosition === "object";
 
       if (subjectVariable) {
-        predicateFilter = '<' + def.predicate + '>';
-        objectFilter = resource;
+        predicateFilter = def.predicate;
+        objectFilter =  resource;
       } else {
         subjectFilter = resource;
-        predicateFilter = '<' + def.predicate + '>';
+        predicateFilter = def.predicate;
       }
 
       var proposal = false;
