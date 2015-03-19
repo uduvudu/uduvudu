@@ -7,6 +7,7 @@ var uduvudu_edit = {
   stageCombines: []
 };
 
+
 uduvudu_edit.initialize = function() {
     uduvudu.helper.injectCss(uduvudu_edit.css);
 }
@@ -74,7 +75,20 @@ uduvudu_edit.load = function (matcherName) {
 }
 
 /**
- * Overload uduvudu.helper.renderContext
+ * Overload uduvudu.editor to initialize the templates and matchers.
+ * @param {store} The store providing templates.
+ */
+
+uduvudu.editor = function (store) {
+   uduvudu_edit.store = store; 
+}
+
+
+/**
+ * Overload the final render step which compiles and renders the template with the context to inject the editor shims.
+ * @param {String} [templateName] The templateName used to render.
+ * @param {Object} [finalContext] The context structure to render.
+ * @returns {String} Returns the output as a String.
  */
 
 uduvudu.helper.renderContext = function (templateName, finalContext) {
@@ -117,7 +131,7 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
 
 
 
-/*
+/**
  * Assets to insert
  */
 uduvudu_edit.css = ''

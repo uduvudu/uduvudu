@@ -26,6 +26,14 @@ uduvudu.initialize = function () {
 }
 
 /**
+ * Uduvudu edit initialization.
+ */
+
+uduvudu.editor = function () {
+    throw 'The editor functionality is not loaded, please load additionaly uduvudu_edit.js after uduvudu.js is loaded for this purpose.';
+}
+
+/**
  * Main Function of Uduvudu taking an RDF Graph as Input and using the available recipes and serving suggestions to transform to a visualization.
  * @param {graph} input The input graph as an rdf-interface graph.
  * @param {string} [resource] Start point to find templates.
@@ -67,12 +75,18 @@ uduvudu.process = function (input, resource, language, device, cb) {
       return output;
   }
 };
-
+/**
+ * Reprocess the templates, after change of the matchers or templates.
+ */
 uduvudu.reprocess = function() {
-    uduvudu.process(uduvudu.input, uduvudu.resource, uduvudu.language, uduvudu.device, uduvudu.cb);
+    if(uduvudu.cb) {
+        uduvudu.process(uduvudu.input, uduvudu.resource, uduvudu.language, uduvudu.device, uduvudu.cb);
+    } else {
+        return uduvudu.process(uduvudu.input, uduvudu.resource, uduvudu.language, uduvudu.device);
+    };
 }
 
-/*
+/**
  * The matcher (cook) is looking for known structures of baskets.
  * @param {store} store The input graph as a rdfStore Object.
  * @param {resource} The resource this store is about.
@@ -158,6 +172,13 @@ uduvudu.helper.injectCss = function (css) {
     }
 }
 
+/**
+ * Final render step which compiles and renders the template with the context.
+ * @param {String} [templateName] The templateName used to render.
+ * @param {Object} [finalContext] The context structure to render.
+ * @returns {String} Returns the output as a String.
+ */
+
 uduvudu.helper.renderContext = function (templateName, finalContext) {
       //TODO: Template caching like http://lostechies.com/derickbailey/2012/04/10/javascript-performance-pre-compiling-and-caching-html-templates/
       var
@@ -216,7 +237,7 @@ uduvudu.helper.templateHelper = {
     }
 }
 
-/*
+/**
 * Try to find function with the support name in the matchFuncs Array, if not found return empty function.
 * @param {name} String The name of the function.
 * @returns {function} Output the a matcher function.
