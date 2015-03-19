@@ -8,10 +8,11 @@ Please look at [edit.html](https://github.com/uduvudu/uduvudu/blob/master/edit.h
 The editor then hooks into Uduvudu and injects a shim around each template with user interface elements.
 
 The editor expects the following divisions where the editor is rendered into:
-
+```
    <div id="editor">
       <h2>edit</h2>
       <div id="edit_area"></div>
    </div>
+```
 
 After each insert of a new template or matcher, the current representation of the data is reprocessed, this for you need to call `uduvudu.process` with a callback.
