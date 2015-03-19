@@ -444,9 +444,9 @@ uduvudu.matchers.createLink = function(defArg) {
       if (filteredGraph.length !== 0) {
         var proposals = _.compact(filteredGraph.toArray().map(function (t) {
           if (subjectVariable) {
-            return uduvudu.helper.matchArrayOfFuncs(graph, "<" + t.subject.toString() + ">", def.linkIds)[0];
+            return uduvudu.helper.matchArrayOfFuncs(graph, t.subject.toString(), def.linkIds)[0];
           } else {
-            return uduvudu.helper.matchArrayOfFuncs(graph, "<" + t.object.toString() + ">", def.linkIds)[0];
+            return uduvudu.helper.matchArrayOfFuncs(graph, t.object.toString(), def.linkIds)[0];
           }
         }));
 
