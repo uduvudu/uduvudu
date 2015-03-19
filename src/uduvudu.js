@@ -106,7 +106,7 @@ uduvudu.matcher = function (inputGraph, resource, depth) {
   // sort the proposals by number of elements used
   var sorted = _.sortBy(proposals, function (proposal) {return -proposal.elements;});
 
-  // recursive check for availalble stuff
+  // recursive check for available stuff
   if( _.isEmpty(sorted)) {
     // nothing left end condition, handle unknown stuff
     return uduvudu.helper.handleUnknown(inputGraph);
@@ -148,6 +148,7 @@ uduvudu.visualizer = function (visuals, language, device) {
         context = uduvudu.helper.prepareLanguage(visual.context, language);
 
       _.extend(context, uduvudu.helper.templateHelper);
+
       output += uduvudu.helper.renderContext(templateName, context);
     });
 
@@ -350,8 +351,9 @@ uduvudu.helper.handleUnknown = function (graph) {
                            name: 'literals'
                        },
                     m: {
-                           name: "literals",
-                           type: 'link'
+                           name: 'literals',
+                           type: 'link',
+                           r: 'undefined'
                        },
                     v: 'literals'
                 }
@@ -363,7 +365,7 @@ uduvudu.helper.handleUnknown = function (graph) {
 
   // put unknowns together
   if (_.every(unknowns, _.identity)) {
-      var container_unknowns= {
+      var container_unknowns = {
         elements: _.reduce(_.pluck(unknowns,'elements'), function (m,n){return m+n;},0),
         context:
           _.object([[
@@ -376,7 +378,8 @@ uduvudu.helper.handleUnknown = function (graph) {
                        },
                     m: {
                            name: "unknowns",
-                           type: 'link'
+                           type: 'link',
+                           r: 'undefined'
                        },
                     v: 'unknowns'
                 }
@@ -413,7 +416,7 @@ uduvudu.helper.showGraph = function(graph, simple) {
 uduvudu.helper.prepareLanguage = function(val, language) {
   if (_.isArray(val)) {
     // if isArray nest
-    return _.map(val, function(l) {return uduvudu.helper.prepareLanguage(l, language);});
+    return  _.each(val, function(l) {return uduvudu.helper.prepareLanguage(l, language);});
   } else {
     if (_.isObject(val)){
       // if not, is leafe node do nest object

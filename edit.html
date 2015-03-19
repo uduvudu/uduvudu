@@ -24,15 +24,32 @@
 
     <!-- where the templates are injected -->
     <div id="visualizer">
-        <script id="literal" type="text/uduvudu-template">
-            <div class="uv">
-                <p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p>
+        <!-- container for literals -->
+        <script id="literals" type="text/uduvudu-template">
+            <div style="clear: both;">
+                <% _.each(literals, function(e) {print(template(e.literal))}); %>
             </div>
+        </script>
+
+        <!-- container for literals -->
+        <script id="unknowns" type="text/uduvudu-template">
+            <div style="clear: both;">
+                <% /*_.each(unknowns, function(e) {print(template(e.unknown))});*/ %>
+            </div>
+        </script>
+
+        <!-- literal -->
+        <script id="literal" type="text/uduvudu-template">
+            <div style=" width: 140px; height: 140px; float: left; overflow: hidden;"><p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p></div>
+        </script>
+
+        <!-- void -->
+        <script id="void" type="text/uduvudu-template">
         </script>
 
         <!-- unknown -->
         <script id="unknown" type="text/uduvudu-template">
-          <div class="uv">
+          <div style=" width: 140px; height: 140px; float: left; overflow: hidden;">
               <small><p><%=unknown.subject.u%><br />&#9608;<br /><%=unknown.predicate.u%><br />&#9608;<br /><%=unknown.object.u%></p></small>
           </div>
         </script>
