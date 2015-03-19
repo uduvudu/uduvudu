@@ -109,12 +109,12 @@ uduvudu.matcher = function (inputGraph, resource, depth) {
   // recursive check for availalble stuff
   if( _.isEmpty(sorted)) {
     // nothing left end condition, handle unknown stuff
-    return uduvudu.helper.handleUnknown(inputGraph, false);
+    return uduvudu.helper.handleUnknown(inputGraph);
   } else {
     // the proposal to use
     var finalprop = _.first(sorted);
 
-    // get out the used triples
+    // remove the used triples
     if (finalprop.subgraph != null) {
       finalprop.subgraph.forEach(function (t) {
         inputGraph.remove(t);
@@ -279,8 +279,9 @@ uduvudu.helper.getTerm = function(string) {
 };
 
 uduvudu.helper.handleUnknown = function (graph) {
-  var proposals = graph.toArray().map(function (t) {
-    if(t.object.interfaceName === "Literal") {
+  // get all literals with proposal structure
+  var literals = _.compact(graph.toArray().map(function (t) {
+    if(t.object.interfaceName == "Literal") {
       // literal template
       return {
         elements: 1,
@@ -303,11 +304,16 @@ uduvudu.helper.handleUnknown = function (graph) {
           }
         },
         order: 1
-      };
-    } else {
+      }
+    } else return null;
+  }));
+
+  // get all unknowns with proposal structure
+  var unknowns = _.compact(graph.toArray().map(function (t) {
+    if(t.object.interfaceName != 'Literal') {
       // unknown template
       return {
-        elements: 0,
+        elements: 1,
         context: {
           unknown: {
             subject: {l: {undefined: uduvudu.helper.prepareTriple(t.subject)}},
@@ -326,11 +332,61 @@ uduvudu.helper.handleUnknown = function (graph) {
           }
         },
         order: 0
-      };
+      }
     }
-  });
+  }));
 
-  return proposals;
+  // put literals together
+  if (_.every(literals, _.identity)) {
+      var container_literals = {
+        elements: _.reduce(_.pluck(literals,'elements'), function (m,n){return m+n;},0),
+        context:
+          _.object([[
+            'literals',
+            _.extend(
+              _.map(literals, function(proposal){return proposal.context;}),
+                {
+                    t: {
+                           name: 'literals'
+                       },
+                    m: {
+                           name: "literals",
+                           type: 'link'
+                       },
+                    v: 'literals'
+                }
+            )
+          ]]),
+        order: 1
+      };
+  };
+
+  // put unknowns together
+  if (_.every(unknowns, _.identity)) {
+      var container_unknowns= {
+        elements: _.reduce(_.pluck(unknowns,'elements'), function (m,n){return m+n;},0),
+        context:
+          _.object([[
+            'unknowns',
+            _.extend(
+              _.map(unknowns, function(proposal){return proposal.context;}),
+                {
+                    t: {
+                           name: 'unknowns'
+                       },
+                    m: {
+                           name: "unknowns",
+                           type: 'link'
+                       },
+                    v: 'unknowns'
+                }
+            )
+          ]]),
+        order: 0
+      };
+  }
+
+  return [container_literals, container_unknowns];
 };
 
 uduvudu.helper.deleteSameAs = function(graph) {
@@ -368,8 +424,8 @@ uduvudu.helper.prepareLanguage = function(val, language) {
         if(val.l[language]) {
           val.u = val.l[language];
         } else {
-          if (val.l['undefined']) {
-            val.u = val.l['undefined'];
+          if (val.l['null']) {
+            val.u = val.l['null'];
           } else {
             val.u = _.first(_.toArray(val.l));
           }

@@ -189,13 +189,28 @@
 </script>
 
 <script id="img" type="text/uduvudu-template">
-  <div style=" width: 140px; height: 235px; float: left">
+  <div style="width: 140px; height: 235px; float: left">
     <img style="min- width: 140px; min-height: 235px;" src="<%-img_url.u%>" class="img-responsive" />
   </div>
 </script>
 
+<!-- container for literals -->
+<script id="literals" type="text/uduvudu-template">
+    <div style="clear: both;">
+        <% _.each(literals, function(e) {print(template(e.literal))}); %>
+    </div>
+</script>
+
+<!-- container for literals -->
+<script id="unknowns" type="text/uduvudu-template">
+    <div style="clear: both;">
+        <% _.each(unknowns, function(e) {print(template(e.unknown))}); %>
+    </div>
+</script>
+
+<!-- literal -->
 <script id="literal" type="text/uduvudu-template">
-    <div style=" width: 140px; height: 140px; float: left"><p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p></div>
+    <div style=" width: 140px; height: 140px; float: left; overflow: hidden;"><p title="<%-literal.subject.u%> - <%-literal.predicate.u%>"><b><%-literal.name.u%></b>:<br /> <%-literal.text.u%></p></div>
 </script>
 
 <!-- void -->
@@ -204,9 +219,7 @@
 
 <!-- unknown -->
 <script id="unknown" type="text/uduvudu-template">
-  <!--
-  <div style=" width: 140px; height: 140px; float: left; overflow: scroll">
+  <div style=" width: 140px; height: 140px; float: left; overflow: hidden;">
       <small><p><%=unknown.subject.u%><br />&#9608;<br /><%=unknown.predicate.u%><br />&#9608;<br /><%=unknown.object.u%></p></small>
   </div>
-  -->
 </script>
