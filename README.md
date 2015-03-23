@@ -6,9 +6,10 @@
 
 The aim of this framework is to consume/render roughly the amount of triples which can be presented on one page or one screen. This can be done in a extremly flexible and also reusable way. The cost you are paying it that the framework is inherently not able to process big ( >10'000 triples ) amounts of data.
 
+
 Current State
 -------------
-The library is now working in all recent major browsers. Right now the libary can read RDF in Turtle and N-Triple graphs. We plan to support in future also RDF/XML and JSON-LD.
+The library is now working in all recent major browsers. Right now the libary can read RDF in Turtle, N-Triple, RDF/XML and JSON-LD thorugh the [rdf-ext](https://github.com/zazukoians/rdf-ext/) library.
 
 Overview
 --------
