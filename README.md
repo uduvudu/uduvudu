@@ -11,6 +11,8 @@ Current State
 -------------
 The library is now working in all recent major browsers. Right now the libary can read RDF in Turtle, N-Triple, RDF/XML and JSON-LD thorugh the [rdf-ext](https://github.com/zazukoians/rdf-ext/) library.
 
+A [live demo on DBpedia](http://dbpedia.exascale.info/) data is available as a proof of concept application.
+
 Overview
 --------
 Uduvudu consists internally out of two parts. First the [Matcher](/doc/matcher.md) which extracts defined structures based on descriptions. Second the [Renderer](/doc/templates.md) which incorporates the context (language and device) and uses templates to render the final output.
