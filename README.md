@@ -8,7 +8,7 @@ The aim of this framework is to consume/render roughly the amount of triples whi
 
 Current State
 -------------
-The library is now working in all recent major browsers. Right now the libary can read RDF in Turtle, N-Triple, RDF/XML and JSON-LD thorugh the [rdf-ext](https://github.com/zazukoians/rdf-ext/) library.
+The library is now working in all recent major browsers. Right now the libary can read RDF in Turtle, N-Triple, RDF/XML and JSON-LD through the [rdf-ext](https://github.com/zazukoians/rdf-ext/) library.
 
 A [live demo on DBpedia](http://dbpedia.exascale.info/) data is available as a proof of concept application.
 
