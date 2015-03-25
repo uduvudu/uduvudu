@@ -5,6 +5,10 @@
     <h1><%-title.u%></h1>
 </script>
 
+<script id="mtitle" type="text/uduvudu-template">
+    <h1><%-mtitle.title.u%></h1>
+</script>
+
 <script id="text" type="text/uduvudu-template">
     <p><%-text.u%></p>
 </script>
@@ -15,6 +19,13 @@
       <p><ul><% _.each(neighboringMunicipality, function (municipality) { print('<li><a href="?res='+ municipality.title.m.r+'">'+municipality.title.u + "</a></li>"); }) %></ul></p>
   </div>
 </script>
+
+<script id="category" type="text/uduvudu-template">
+  <div style="width: 235px; float: left;">
+      <p><ul><% _.each(category, function (category) { print('<li><a href="?res='+ category.title.m.r+'">'+category.title.u + "</a></li>"); }) %></ul></p>
+  </div>
+</script>
+
 
 <script id="abstract" type="text/uduvudu-template">
   <div style="width: 560px; padding: 4px; float: left;">
@@ -56,8 +67,8 @@
 </script>
 
 <script id="community" type="text/uduvudu-template">
-  <div style="height: 270px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
-  <div style=" width: 235px; height: 235px; overflow: hidden; margin: -4px;" class="pull-right">
+  <div style="max-height: 270px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
+  <div style=" width: 235px; overflow: hidden; margin: -4px;" class="pull-right">
       <img style="min-width: 235px; min-height: 235px; max-width: 300px; max-height: 300px; margin-left: 10px;" src="<%-community.img_url.u%>" />
   </div>
     <%=template(community.label_comment)%>
@@ -97,7 +108,7 @@
   <div style="float: left">
     <br>
     <h3>Temperatures per Month</h3>
-    <canvas id="mhltemp" width="560px" height="200px"></canvas>
+    <canvas id="cvs_mhltemp" width="560px" height="200px"></canvas>
     <p>Temperatures in °C/month: <span style="color: rgba(120,120,220,1)">Average Low</span>, <span style="color: rgba(220,220,220,1)">Daily Mean</span>, <span style="color: rgba(220,120,120,1)">Average High</span></p>
   </div>
 </script>
@@ -107,7 +118,7 @@
         script.type = "text/javascript";
         script.src = "http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js";
         script.onload = function(){
-            var ctx = document.getElementById("mhltemp").getContext("2d");
+            var ctx = document.getElementById("cvs_mhltemp").getContext("2d");
             var data = {
               labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
               datasets : [
@@ -137,7 +148,7 @@
   <div style="float: left">
     <br>
     <h3>Humidity per Month</h3>
-    <canvas id="humidity" width="560px" height="200px"></canvas>
+    <canvas id="cvs_humidity" width="560px" height="200px"></canvas>
     <p>Humidity in %/month</p>
   </div>
 </script>
@@ -147,7 +158,7 @@
         script.type = "text/javascript";
         script.src = "http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js";
         script.onload = function(){
-            var ctx = document.getElementById("humidity").getContext("2d");
+            var ctx = document.getElementById("cvs_humidity").getContext("2d");
             var data = {
               labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
               datasets : [
@@ -190,7 +201,7 @@
 
 <script id="img" type="text/uduvudu-template">
   <div style="width: 140px; height: 235px; float: left">
-    <img style="min- width: 140px; min-height: 235px;" src="<%-img_url.u%>" class="img-responsive" />
+    <img style="min-width: 140px; min-height: 235px;" src="<%-img_url.u%>" class="img-responsive" />
   </div>
 </script>
 
