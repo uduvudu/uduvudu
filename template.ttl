@@ -1,0 +1,21 @@
+@prefix uv: <http://www.uduvudu.org/2015/uduvudu#> .
+@prefix uvsb: <http://styles.uduvudu.org/basic#> .
+
+uvsb:title a uv:Template ;
+    uv:templateId 'title' ;
+    uv:template '<h1><%-title.u%></h1>' .
+
+uvsb:mtitle a uv:Template ;
+    uv:templateId 'mtitle' ;
+    uv:template '<h1><%-mtitle.title.u%></h1>' .
+
+uvsb:community a uv:Template ;
+    uv:templateId 'community' ;
+    uv:template '''
+  <div style="max-height: 270px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
+  <div style=" width: 235px; overflow: hidden; margin: -4px;" class="pull-right">
+      <img style="min-width: 235px; min-height: 235px; max-width: 300px; max-height: 300px; margin-left: 10px;" src="<%-community.img_url.u%>" />
+  </div>
+    <%=template(community.label_comment)%>
+  </div>
+''' .

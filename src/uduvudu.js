@@ -178,7 +178,6 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
         contentTemplate = uduvudu.helper.compileTemplate(content);
       } else {
         console.log("NoTemplateFound", "There was no template with the name '"+templateName+"' found.");
-
         // fallback if no template found
         contentTemplate = uduvudu.helper.compileTemplate('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(finalContext))+'.u%></div>');
       }
@@ -200,7 +199,18 @@ uduvudu.helper.compileTemplate = function (templateSource) {
     return _.template(templateSource);
 };
 
-uduvudu.helper.getTemplate = function (templateName) {
+uduvudu.helper.getTemplate = function (templateName, device, language) {
+    if (uduvudu.options.styles) {
+        var subject = styles.match(null, null, templateName);
+        if (subject.length) {
+          var template = styles.match(subject.toArray()[0].subject.nominalValue,rdf.resolve('uv:template'),null)
+          if (template.length) {
+            return template.toArray()[0].object.nominalValue;
+          }
+        }
+    }
+
+    // fallback look for template in html
     var elem = document.getElementById(templateName);
     if (elem) { return elem.innerHTML; } else { return null; }
 };

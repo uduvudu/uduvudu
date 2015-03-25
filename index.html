@@ -22,26 +22,37 @@
     </div>
 
     <script type="text/javascript">
-        // prepare visualizer templates for uduvudu
-        $("#visualizer").load("visualizer.html");
-
-        // instantiate rdf-ext object
-        var store = new rdf.LdpStore();
-        var source = 'http://dbpedia.org/resource/Fribourg';
-
-        // something about what is goingn on
+        // something about what is going on
         document.getElementById('main').innerHTML =  ''
         + '<div class="alert alert-info">'
         + '  <button type="button" class="close" data-dismiss="alert">&times;</button>'
         + '  <strong>Loading</strong> '+source+' is being loaded ...'
         + '</div>';
 
+        // prepare visualizer templates for uduvudu
+        $("#visualizer").load("visualizer.html");
+
+        // load matcher and templates
+        var styles = rdf.createGraph();
+        var matcher = new rdf.LdpStore();
+        matcher.graph('matcher.ttl', function(graph, error) {
+            if (!error) {styles.addAll(graph);}
+        });
+        var template = new rdf.LdpStore();
+        template.graph('template.ttl', function(graph, error) {
+            if (!error) {styles.addAll(graph);}
+        });
+
+        // instantiate rdf-ext object
+        var store = new rdf.LdpStore();
+        var source = 'http://dbpedia.org/resource/Fribourg';
+
         // load triples
         store.graph(source, function (graph, error) {
                 if (error == null) {
                     console.debug("successfully loaded "+graph.toArray().length+" triples");
                     // resource (entry for template search) is same as source in this example
-                    uduvudu.process(graph, {'resource': source} , function (out) {
+                    uduvudu.process(graph, {'resource': source, 'styles': styles} , function (out) {
                         // write the result of the processing in the main div
                         $('#main').html(out);
                         });
