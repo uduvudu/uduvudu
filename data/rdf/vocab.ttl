@@ -1,32 +1,39 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-@prefix uvv: <http://vocab.uduvudu.org/matcher> .
+@prefix uv: <http://www.uduvudu.org/2015/uduvudu> .
 
-
-uvv:Matcher a rdfs:Class;
+uv:Matcher a rdfs:Class;
 rdfs:label "Uduvudu Matcher"@en .
 
-uvv:matcherName a rdf:Property ;
+uv:matcherName a rdf:Property ;
 rdfs:label "name of the matcher"@en ;
-rdfs:domain uvv:Matcher ;
+rdfs:domain uv:Matcher ;
 rdfs:range rdfs:Literal .
 
-uvv:order a rdf:Property ;
+uv:order a rdf:Property ;
 rdfs:label "order of the matcher"@en ;
-rdfs:domain uvv:Matcher ;
+rdfs:domain uv:Matcher ;
 rdfs:range rdfs:Literal .
 
-uvv:predicate a rdf:Property ;
+uv:predicate a rdf:Property ;
 rdfs:label "RDF predicate to be matched on"@en ;
-rdfs:domain uvv:Matcher ;
+rdfs:domain uv:Matcher ;
 rdfs:range rdfs:Resource .
 
-uvv:templateId a rdf:Property ;
+uv:templateId a rdf:Property ;
 rdfs:label "ID of the template to be used with the matcher"@en ;
-rdfs:domain uvv:Matcher ;
+rdfs:domain uv:Matcher ;
 rdfs:range rdfs:Literal .
 
-uvv:templateVariable a rdf:Property ;
+uv:templateVariable a rdf:Property ;
 rdfs:label "Template variable name. If not specified it will take the term name of the predicate"@en ;
-rdfs:domain uvv:Matcher ;
+rdfs:domain uv:Matcher ;
+rdfs:range rdfs:Literal .
+
+uv:Template a rdfs:Class;
+rdfs:label "Uduvudu Template"@en 
+
+uv:templateId a rdf:Property ;
+rdfs:label "id of the Template"@en ;
+rdfs:domain uv:Matcher ;
 rdfs:range rdfs:Literal .
