@@ -29,7 +29,7 @@ The final call `uduvudu.process(store, resource)` to the Uduvudu library can don
         if (error == null) {
             console.debug("successfully loaded "+graph.toArray().length+" triples");
             // resource (entry for template search) is same as source in this example
-            $("#main").html(uduvudu.process(graph, source));
+            $("#main").html(uduvudu.process(graph, {'resource': source}));
          };
     })
 
