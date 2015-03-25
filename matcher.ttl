@@ -1,0 +1,16 @@
+@prefix uv: <http://www.uduvudu.org/2015/uduvudu#> .
+@prefix uvsb: <http://styles.uduvudu.org/basic#> .
+
+uvsb:rdfschema_label a uv:PredicateMatcher ;
+    uv:matcherName 'rdfschema_label' ;
+    uv:predicate <http://www.w3.org/2000/01/rdf-schema#label> ;
+    uv:order '10000';
+    uv:templateId 'title' ;
+    uv:templateVariable 'title' .
+
+uvsb:skos_prefLabel a uv:PredicateMatcher ;
+    uv:matcherName 'skos_prefLabel' ;
+    uv:predicate <http://www.w3.org/2004/02/skos/core#prefLabel> ;
+    uv:order '10000';
+    uv:templateId 'title' ;
+    uv:templateVariable 'title' .
