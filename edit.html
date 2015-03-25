@@ -60,6 +60,7 @@
         var store = new rdf.LdpStore();
         var source = 'http://dbpedia.org/resource/Fribourg';
 //        var source = 'http://data.ge.alod.ch/id/archivalresource/adl-l-1482';
+        var source = 'http://data.alod.ch/alod/sparql?query=construct+%7B%3Fsub+%3Fpred+%3Fobj.%7D+where+%7B%0A++graph+%3Fg%7B%0A++++%3Fsub+%3Fpred+%3Fobj.%0A%09%3Fsub+%3Fpred1+%3Chttp%3A%2F%2Fdata.helveticarchives.ch%2Fisil%2FCH-000027-1%3E.%0A%09%3Fsub+%3Fpred2+%3Chttp%3A%2F%2Fdata.alod.ch%2Falod%2Flevel%2Fseries%3E.%0A++%7D%0A%7D+%0ALIMIT+1000'
 
         // something about what is going on
         document.getElementById('main').innerHTML =  ''
@@ -73,7 +74,7 @@
                 if (error == null) {
                     console.debug("successfully loaded "+graph.toArray().length+" triples");
                     // resource (entry for template search) is same as source in this example
-                    uduvudu.process(graph, source, null, null, function (out) {
+                    uduvudu.process(graph, function (out) {
                         // write the result of the processing in the main div
                         $('#main').html(out);
                         });

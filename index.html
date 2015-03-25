@@ -41,7 +41,7 @@
                 if (error == null) {
                     console.debug("successfully loaded "+graph.toArray().length+" triples");
                     // resource (entry for template search) is same as source in this example
-                    uduvudu.process(graph, source, null, null, function (out) {
+                    uduvudu.process(graph, {'resource': source} , function (out) {
                         // write the result of the processing in the main div
                         $('#main').html(out);
                         });

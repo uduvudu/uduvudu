@@ -51,7 +51,7 @@ uduvudu_edit.add_predicate = function () {
     uduvudu.helper.addMatcher(matcher);
     uduvudu.helper.addVisualizer(document.getElementById('frm_template').value, def.templateId);
     document.getElementById('edit_area').innerHTML = "";
-    uduvudu.reprocess();
+    uduvudu.process();
 }
 
 uduvudu_edit.add_combine = function () {
@@ -67,7 +67,7 @@ uduvudu_edit.add_combine = function () {
     uduvudu.helper.addVisualizer(document.getElementById('frm_template').value, def.templateId);
     document.getElementById('edit_area').innerHTML = "";
     uduvudu_edit.stageCombines = [];
-    uduvudu.reprocess();
+    uduvudu.process();
 }
 
 uduvudu_edit.load = function (matcherName) {
@@ -261,8 +261,8 @@ uduvudu_edit.tpl.predicate = ''
 +'         <input class="form-control" id="frm_templateId" value="<%-def.templateId%>">\n'
 +'      </div>\n'
 +'      <div class="form-group">\n'
-+'          <textarea rows="5" class="form-control" id="frm_template">&lt;div class="uv"&gt;\n'
-+'&lt;%-<%-def.templateVariable%>.u%&gt;\n'
++'          <textarea rows="5" style="font-family: Courier New" class="form-control" id="frm_template">&lt;div class="uv"&gt;\n'
++'  &lt;%-<%-def.templateVariable%>.u%&gt;\n'
 +'&lt;/div&gt;</textarea>\n'
 +'      </div>\n'
 +'</div>\n'

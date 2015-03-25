@@ -2,7 +2,7 @@
 'use strict';
 
 var uduvudu = {
-  version: "0.4.0",
+  version: "0.5.0",
   matchFuncs: []
 };
 
@@ -36,64 +36,42 @@ uduvudu.editor = function () {
 /**
  * Main Function of Uduvudu taking an RDF Graph as Input and using the available recipes and serving suggestions to transform to a visualization.
  * @param {graph} input The input graph as an rdf-interface graph.
- * @param {string} [resource] Start point to find templates.
- * @param {string} [language] Define a language to use.
- * @param {string} [device] Define a device to use.
+ * @param {object} [options] Options for the rendering.
  * @param {function} [cb] Callback to use for rendering.
  * @returns {String} Returns the object as a String.
  */
-uduvudu.process = function (input, resource, language, device, cb) {
-  console.log("uduvudu.process", resource);
 
-  var u = uduvudu;
-    
-  //if no resource is specified, use open variable
-  //TODO: try to find intelligently start resource if no resource is delivered
-  if (!resource) {
-    resource = '?s';
+uduvudu.process = function (input) {
+  uduvudu.options = uduvudu.options || {};
+
+  if (typeof arguments[0] == "object") {
+    input = uduvudu.helper.deleteSameAs(input);
+    uduvudu.input = input.match();
   }
 
-  var language = language || navigator.language.substring(0,2) || "en";
-  var device = device || "desktop";
+  if (typeof arguments[1] == "object") {
+    uduvudu.options = _.extend(uduvudu.options, arguments[1]) || uduvudu.options;
+    uduvudu.cb = arguments[2];
+  } else {
+    uduvudu.cb = arguments[1] || uduvudu.cb;
+  }
 
-  input = uduvudu.helper.deleteSameAs(input);
+  if (uduvudu.options.language === undefined) uduvudu.options.language = navigator.language.substring(0,2) || "en";
+  if (uduvudu.options.device === undefined) uduvudu.options.device = "desktop";
+  //TODO: try to find intelligently start resource if no resource is delivered
 
-  uduvudu.input = input.match();
+  console.log("uduvudu.process", uduvudu.options.resource);
 
-  var visuals = u.matcher(input, resource, 0);
-  var output = u.visualizer(visuals, language, device);
+  var visuals = uduvudu.matcher(uduvudu.input.match(), uduvudu.options.resource, 0);
+  var output = uduvudu.visualizer(visuals, uduvudu.options.language, uduvudu.options.device);
   
   uduvudu.helper.injectCss(uduvudu.css);
   
-  if (cb) {
-      uduvudu.resource = resource;
-      uduvudu.language = language;
-      uduvudu.device = device;
-      uduvudu.cb = cb;
-      cb(output)
-  } else {
-      return output;
+  if (uduvudu.cb) {
+      uduvudu.cb(output)
   }
+  return output;
 };
-/**
- * Reprocess the templates, after change of the matchers or templates.
- */
-uduvudu.reprocess = function(input, resource, language, device, cb) {
-    if(uduvudu.cb) {
-        uduvudu.process(
-           input || uduvudu.input,
-           resource || uduvudu.resource,
-           language || uduvudu.language,
-           device || uduvudu.device,
-           cb || uduvudu.cb);
-    } else {
-        return uduvudu.process(
-           input || uduvudu.input,
-           resource || uduvudu.resource,
-           language || uduvudu.language,
-           device || uduvudu.device);
-    };
-}
 
 /**
  * The matcher (cook) is looking for known structures of baskets.
