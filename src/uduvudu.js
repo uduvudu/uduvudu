@@ -19,11 +19,10 @@ uduvudu.css = ''+
 
 
 /** 
- * Initialize uduvudu on load time.
+ * Initialize uduvudu
  */
 uduvudu.initialize = function () {
     if(_.isUndefined(uduvudu.ready)) {
-        uduvudu.helper.loadJsonMatchers();
 
         // load, if provided, matchers in JSON
         _.each(uduvudu.matchers, function(factory) {
@@ -104,7 +103,7 @@ uduvudu.process = function (input) {
  * @returns {renderables} output a list of objects with all information to get rendered
  */
 uduvudu.matcher = function (inputGraph, resource, depth) {
-  console.debug("MatcherDepth: "+depth, uduvudu.helper.showGraph(inputGraph, true));
+  console.debug('Uduvudu:','Matcher in recursion: '+depth,'/' ,uduvudu.helper.showGraph(inputGraph, true) + ' triples still in graph.');
 
   // use all functions to see what matches
   var proposals =
@@ -460,6 +459,35 @@ uduvudu.helper.prepareLanguage = function(val, language) {
   }
 };
 
+uduvudu.helper.addVisualizer = function (template, id) {
+    var script = document.createElement("script");
+    script.setAttribute("id", id);
+    script.setAttribute("type", "text/uduvudu-template");
+    var text = document.createTextNode(template);
+    script.appendChild(text);
+    var element = document.getElementById("visualizer");
+    element.appendChild(script);
+};
+
+uduvudu.helper.addMatcher = function (matcher) {
+  uduvudu.matchFuncs = _.union([matcher], uduvudu.matchFuncs);
+};
+
+uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
+    var styles = uduvudu.options.styles;
+    var matcherDef = styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass));
+        _.each(matcherDef.toArray(), function (m) {
+            var properties = styles.match(m.subject.nominalValue,null,null);
+            if (properties.length) {
+                var def = _.object(_.map(properties.toArray(), function (p) {
+                    return [uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]
+                }));
+                uduvudu.helper.addMatcher(matcherFunction(def));
+            }
+        })
+}
+
+
 /**
  * Matcher Factories
  */
@@ -663,54 +691,6 @@ uduvudu.matchers.createPredicate = function(defArg) {
 uduvudu.matchers.createPredicate.rdfClass = 'uv:PredicateMatcher';
 uduvudu.matchers.createPredicate.jsArray = 'predicateMatchers';
 
-uduvudu.helper.addMatcher = function (matcher) {
-  uduvudu.matchFuncs = _.union([matcher], uduvudu.matchFuncs);
-};
-
-uduvudu.helper.addVisualizer = function (template, id) {
-    var script = document.createElement("script");
-    script.setAttribute("id", id);
-    script.setAttribute("type", "text/uduvudu-template");
-    var text = document.createTextNode(template);
-    script.appendChild(text);
-    var element = document.getElementById("visualizer");
-    element.appendChild(script);
-};
-
-uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
-    var styles = uduvudu.options.styles;
-    var matcherDef = styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass));
-        _.each(matcherDef.toArray(), function (m) {
-            var properties = styles.match(m.subject.nominalValue,null,null);
-            if (properties.length) {
-                var def = _.object(_.map(properties.toArray(), function (p) {
-                    return [uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]
-                }));
-                uduvudu.helper.addMatcher(matcherFunction(def));
-            }
-        })
-}
-
-uduvudu.helper.loadJsonMatchers = function () {
-  // initiate matcher functions
-  if (! _.isUndefined(window.combineMatchers)) {
-    var combineMatcherFuncs = _.map(window.combineMatchers, function (cM) {return uduvudu.matchers.createCombine(cM);});
-
-    uduvudu.matchFuncs = _.union(combineMatcherFuncs, uduvudu.matchFuncs);
-  }
-
-  if (! _.isUndefined(window.linkMatchers)) {
-    var linkMatcherFuncs = _.map(window.linkMatchers, function (lM) {return uduvudu.matchers.createLink(lM);});
-
-    uduvudu.matchFuncs = _.union(linkMatcherFuncs, uduvudu.matchFuncs);
-  }
-
-  if (! _.isUndefined(window.predicateMatchers)) {
-    var predicateMatcherFuncs = _.map(window.predicateMatchers, function (pM) {return uduvudu.matchers.createPredicate(pM);});
-
-    uduvudu.matchFuncs = _.union(predicateMatcherFuncs, uduvudu.matchFuncs);
-  }
-}
 
 // export
 window.uduvudu = uduvudu;
