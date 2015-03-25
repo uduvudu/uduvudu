@@ -40,7 +40,7 @@ You need to have a `div` defined like the following where the rendered content i
 
 Prerequisites
 -------------
-The code is currently based on rdf.js, rdf-ext.js and underscore. The demo uses bootstrap for a basic design.
+The code is currently based on rdf-ext.js (which includes different rdf parsers and serializer) and underscore. The demo uses bootstrap for a basic design.
 
 
 Running the included demo
