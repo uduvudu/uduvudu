@@ -200,7 +200,7 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
       if (content) {
         contentTemplate = uduvudu.helper.compileTemplate(content);
       } else {
-        console.log("NoTemplateFound", "There was no template with the name '"+templateName+"' found.");
+        console.debug('Uduvudu:','NoTemplateFound', "There was no template with the name '"+templateName+"' found.");
         // fallback if no template found
         contentTemplate = uduvudu.helper.compileTemplate('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(finalContext))+'.u%></div>');
       }
