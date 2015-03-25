@@ -44,19 +44,19 @@ uduvudu.editor = function () {
 uduvudu.process = function (input) {
   uduvudu.options = uduvudu.options || {};
 
-  if (typeof arguments[0] == "object") {
+  if (typeof input == "object") {
     input = uduvudu.helper.deleteSameAs(input);
-    uduvudu.input = input.match();
+    uduvudu.input = input;
   }
 
   if (typeof arguments[1] == "object") {
     uduvudu.options = _.extend(uduvudu.options, arguments[1]) || uduvudu.options;
-    uduvudu.cb = arguments[2];
+    uduvudu.cb = arguments[2] || uduvudu.cb;
   } else {
     uduvudu.cb = arguments[1] || uduvudu.cb;
   }
 
-  if (uduvudu.options.language === undefined) uduvudu.options.language = navigator.language.substring(0,2) || "en";
+  if (uduvudu.options.language === undefined || uduvudu.options.language === '') uduvudu.options.language = navigator.language.substring(0,2) || "en";
   if (uduvudu.options.device === undefined) uduvudu.options.device = "desktop";
   //TODO: try to find intelligently start resource if no resource is delivered
 
@@ -422,7 +422,6 @@ uduvudu.helper.prepareLanguage = function(val, language) {
         }
       }
     }
-
     return val;
   }
 };
