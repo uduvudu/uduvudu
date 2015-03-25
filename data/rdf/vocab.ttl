@@ -3,17 +3,34 @@
 @prefix uv: <http://www.uduvudu.org/2015/uduvudu#> .
 
 uv:Matcher a rdfs:Class;
-rdfs:label "Uduvudu Matcher"@en .
+  rdfs:label "Uduvudu Matcher"@en .
+
+uv:PredicateMatcher rdfs:subClassOf uv:Matcher;
+  rdfs:label "Uduvudu Predicate Matcher: Used to match a rdf predicate"@en .
+
+uv:CombineMatcher rdfs:subClassOf uv:Matcher;
+  rdfs:label "Uduvudu Combine Matcher: Used to combine multiple Matcher"@en .
+
+uv:LinkMatcher rdfs:subClassOf uv:Matcher;
+  rdfs:label "Uduvudu Link Matcher: Used to link through a iri object."@en .
+
+uv:Template a rdfs:Class;
+  rdfs:label "Uduvudu Template"@en 
 
 uv:matcherName a rdf:Property ;
-rdfs:label "name of the matcher"@en ;
-rdfs:domain uv:Matcher ;
-rdfs:range rdfs:Literal .
+  rdfs:label "name of the matcher"@en ;
+  rdfs:domain uv:Matcher ;
+  rdfs:range rdfs:Literal .
+
+uv:predicate a rdf:Property ;
+  rdfs:label "RDF predicate to be matched on"@en ;
+  rdfs:domain uv:Matcher ;
+  rdfs:range rdfs:Resource .
 
 uv:order a rdf:Property ;
-rdfs:label "order of the matcher"@en ;
-rdfs:domain uv:Matcher ;
-rdfs:range rdfs:Literal .
+  rdfs:label "order of the matcher"@en ;
+  rdfs:domain uv:Matcher ;
+  rdfs:range rdfs:Literal .
 
 uv:predicate a rdf:Property ;
 rdfs:label "RDF predicate to be matched on"@en ;
@@ -21,19 +38,22 @@ rdfs:domain uv:Matcher ;
 rdfs:range rdfs:Resource .
 
 uv:templateId a rdf:Property ;
-rdfs:label "ID of the template to be used with the matcher"@en ;
-rdfs:domain uv:Matcher ;
-rdfs:range rdfs:Literal .
+  rdfs:label "ID of the template to be used with the matcher"@en ;
+  rdfs:domain uv:Matcher ;
+  rdfs:range rdfs:Literal .
 
 uv:templateVariable a rdf:Property ;
-rdfs:label "Template variable name. If not specified it will take the term name of the predicate"@en ;
-rdfs:domain uv:Matcher ;
-rdfs:range rdfs:Literal .
-
-uv:Template a rdfs:Class;
-rdfs:label "Uduvudu Template"@en 
+  rdfs:label "Template variable name. If not specified it will take the term name of the predicate"@en ;
+  rdfs:domain uv:Matcher ;
+  rdfs:range rdfs:Literal .
 
 uv:templateId a rdf:Property ;
-rdfs:label "id of the Template"@en ;
-rdfs:domain uv:Matcher ;
-rdfs:range rdfs:Literal .
+  rdfs:label "id of the Template"@en ;
+  rdfs:domain uv:Matcher ;
+  rdfs:domain uv:Template ;
+  rdfs:range rdfs:Literal .
+
+uv:template a rdf:Property ;
+  rdfs:label "The template content"@en ;
+  rdfs:domain uv:Template ;
+  rdfs:range rdfs:Literal .
