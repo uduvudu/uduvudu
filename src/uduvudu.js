@@ -3,7 +3,8 @@
 
 var uduvudu = {
   version: "0.5.0",
-  matchFuncs: []
+  matchFuncs: [],
+  templateCache: {}
 };
 
 /**
@@ -151,14 +152,12 @@ uduvudu.visualizer = function (visuals, language, device) {
 
   _.each(visuals,
     function (visual){
-      // get name of template for the current visual
-      
+      // get the name of template and the context for the current visual
       var
         templateName = _.toArray(visual.context)[0].t.name,
         context = uduvudu.helper.prepareLanguage(visual.context, language);
-
+      // add templateHelper functions
       _.extend(context, uduvudu.helper.templateHelper);
-
       output += uduvudu.helper.renderContext(templateName, context);
     });
 
@@ -194,18 +193,24 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
       //TODO: Template caching like http://lostechies.com/derickbailey/2012/04/10/javascript-performance-pre-compiling-and-caching-html-templates/
       var
         output = '',
-        contentTemplate;
-      // create content part of output
-      var content = uduvudu.helper.getTemplate(templateName);
-      if (content) {
-        contentTemplate = uduvudu.helper.compileTemplate(content);
-      } else {
-        console.debug('Uduvudu:','NoTemplateFound', "There was no template with the name '"+templateName+"' found.");
-        // fallback if no template found
-        contentTemplate = uduvudu.helper.compileTemplate('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(finalContext))+'.u%></div>');
+        compTemplate;
+
+      //check if cached
+      var compTemplate = uduvudu.templateCache[templateName];
+      if (!compTemplate) {
+          var content = uduvudu.helper.getTemplate(templateName);
+          // get content part of output
+          if (content) {
+              compTemplate = uduvudu.helper.compileTemplate(content);
+              uduvudu.templateCache[templateName] = compTemplate;
+          } else {
+              // fallback if no template found
+              console.debug('Uduvudu:','NoTemplateFound', "There was no template with the name '"+templateName+"' found.");
+              compTemplate = uduvudu.helper.compileTemplate('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(finalContext))+'.u%></div>');
+          }
       }
 
-      output += contentTemplate(finalContext);
+      output += compTemplate(finalContext);
 
       // create scripting part of output
       var javascript = uduvudu.helper.getTemplate(templateName+"_js");
