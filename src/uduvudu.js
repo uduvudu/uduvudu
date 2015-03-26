@@ -197,7 +197,6 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
         contentTemplate;
       // create content part of output
       var content = uduvudu.helper.getTemplate(templateName);
-          console.log('content',content);
       if (content) {
         contentTemplate = uduvudu.helper.compileTemplate(content);
       } else {
