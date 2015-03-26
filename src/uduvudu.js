@@ -83,7 +83,7 @@ uduvudu.process = function (input) {
 
 
   uduvudu.initialize();
-  console.log("uduvudu.process", uduvudu.options.resource);
+  console.debug('Uduvudu:', 'Start to process with resource ', uduvudu.options.resource);
 
   var visuals = uduvudu.matcher(uduvudu.input.match(), uduvudu.options.resource, 0);
   var output = uduvudu.visualizer(visuals, uduvudu.options.language, uduvudu.options.device);
@@ -179,7 +179,7 @@ uduvudu.helper.injectCss = function (css) {
     try {
         (document.getElementsByTagName('head')[0]||document.body).appendChild(style);
     } catch (err) {
-        console.log(err);
+        console.debug(err);
     }
 }
 
@@ -197,6 +197,7 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
         contentTemplate;
       // create content part of output
       var content = uduvudu.helper.getTemplate(templateName);
+          console.log('content',content);
       if (content) {
         contentTemplate = uduvudu.helper.compileTemplate(content);
       } else {
@@ -225,9 +226,16 @@ uduvudu.helper.compileTemplate = function (templateSource) {
 uduvudu.helper.getTemplate = function (templateName, device, language) {
     if (uduvudu.options.styles) {
         var styles = uduvudu.options.styles;
-        var subject = styles.match(null, null, templateName);
-        if (subject.length) {
-          var template = styles.match(subject.toArray()[0].subject.toString(),rdf.resolve('uv:template'),null)
+        var templateSubject = '';
+        var templateN = styles.match(null, rdf.resolve('uv:templateId'), templateName);
+        _.each(templateN.toArray(), function(name) {
+            var found = _.first(styles.match(name.subject.toString(), rdf.resolve('uv:template'), null).toArray());
+            if (found) {
+                templateSubject = found.subject.toString();
+            }
+        });
+        if (templateSubject) {
+          var template = styles.match(templateSubject, rdf.resolve('uv:template'), null)
           if (template.length) {
             return template.toArray()[0].object.nominalValue;
           }
@@ -247,7 +255,7 @@ uduvudu.helper.templateHelper = {
             _.extend(context, uduvudu.helper.templateHelper);
             return uduvudu.helper.renderContext(subcontext.t.name, context);
          } else {
-            console.log("WrongContext", "The context given to the template() helper is not valid.");
+            console.debug('Uduvudu:','WrongContext', 'The context given to the template() helper is not valid.');
             return null;
          }
     },
@@ -479,9 +487,22 @@ uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
         _.each(matcherDef.toArray(), function (m) {
             var properties = styles.match(m.subject.nominalValue,null,null);
             if (properties.length) {
-                var def = _.object(_.map(properties.toArray(), function (p) {
-                    return [uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]
-                }));
+                var arr = _.map(properties.toArray(), function (p) {
+                    return [uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()];
+                });
+                var def = _.object(
+                    _.map(
+                        _.groupBy(
+                            arr, function(a) {return _.first(a);}
+                            ),
+                        function (b) {
+                            if (b.length == 1){
+                                return _.first(b);
+                            } else {
+                                return [_.first(_.first(b)), _.map(b, function(c) {return _.last(c);})];
+                            }
+                        })
+                    );
                 uduvudu.helper.addMatcher(matcherFunction(def));
             }
         })

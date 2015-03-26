@@ -14,3 +14,16 @@ uvsb:skos_prefLabel a uv:PredicateMatcher ;
     uv:order '10000';
     uv:templateId 'title' ;
     uv:templateVariable 'title' .
+
+uvsb:comment a uv:PredicateMatcher ;
+    uv:matcherName 'comment' ;
+    uv:predicate <http://www.w3.org/2000/01/rdf-schema#comment> ;
+    uv:order '10000';
+    uv:templateId 'text' ;
+    uv:templateVariable 'text' .
+
+uvsb:label_comment a uv:CombineMatcher ;
+    uv:matcherName 'label_comment' ;
+    uv:order '10000';
+    uv:templateId 'label_comment' ;
+    uv:combineIds 'rdfschema_label','comment' .
