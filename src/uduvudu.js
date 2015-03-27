@@ -190,7 +190,6 @@ uduvudu.helper.injectCss = function (css) {
  */
 
 uduvudu.helper.renderContext = function (templateName, finalContext) {
-      //TODO: Template caching like http://lostechies.com/derickbailey/2012/04/10/javascript-performance-pre-compiling-and-caching-html-templates/
       var
         output = '',
         compTemplate;
