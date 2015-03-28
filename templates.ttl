@@ -49,3 +49,14 @@ uvsb:template_location_js a uv:Template ;
             var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
         };
 ''' .
+
+uvsb:template_community a uv:Template ;
+    uv:templateId 'community' ;
+    uv:template '''
+  <div style="max-height: 270px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
+  <div style=" width: 235px; overflow: hidden; margin: -4px;" class="pull-right">
+      <img style="min-width: 235px; min-height: 235px; max-width: 300px; max-height: 300px; margin-left: 10px;" src="<%-community.img_url.u%>" />
+  </div>
+    <%=template(community.label_comment)%>
+  </div>
+''' .
