@@ -170,7 +170,7 @@ uduvudu.helper.injectCss = function (css) {
     // css
     var style = document.createElement('style');
     style.type = 'text/css';
-    style.id = _.uniqueId();
+    style.id = _.uniqueId('uvCss');
     style.innerHTML = css;
     try {
         (document.getElementsByTagName('head')[0]||document.body).appendChild(style);

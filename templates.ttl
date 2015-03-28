@@ -26,3 +26,26 @@ uvsb:template_label_comment a uv:Template ;
     <%=template(label_comment.title)%>
     <%=template(label_comment.text)%>
 ''' .
+
+uvsb:template_location a uv:Template ;
+    uv:templateId 'location' ;
+    uv:template '''
+    <div id="map-canvas" style="height: 250px; width: 560px; float: left;">
+        <big>&#8982;</big> <%-location.lat.u%> / <%-location.long.u%>
+    </div> 
+''' .
+
+uvsb:template_location_js a uv:Template ;
+    uv:templateId 'location_js' ;
+    uv:template '''
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAFRTcPPyYit9ERj9COlgpgYW-Ve-lUeUs&sensor=false&callback=initializeMap";
+        document.body.appendChild(script);
+        
+        initializeMap = function () {
+            var myLatlng = new google.maps.LatLng(<%-location.lat.u%>, <%-location.long.u%>);
+            var mapOptions = { center: myLatlng, disableDefaultUI: true, zoomControl: true, zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP };
+            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        };
+''' .
