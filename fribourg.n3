@@ -1,0 +1,637 @@
+@prefix dbpprop:	<http://dbpedia.org/property/> .
+@prefix dbpedia:	<http://dbpedia.org/resource/> .
+<http://dbpedia.org/resource/Dartfish_(company)>	dbpprop:locationCity	dbpedia:Fribourg .
+@prefix dbpedia-owl:	<http://dbpedia.org/ontology/> .
+<http://dbpedia.org/resource/Dartfish_(company)>	dbpedia-owl:locationCity	dbpedia:Fribourg .
+dbpedia:David_Aebischer	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Emmanuel_Siffert	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix ns4:	<http://de.dbpedia.org/resource/> .
+ns4:Freiburg_im_Üechtland	owl:sameAs	dbpedia:Fribourg .
+<http://fr.dbpedia.org/resource/Fribourg_(Suisse)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns5:	<http://wikidata.dbpedia.org/resource/> .
+ns5:Q36378	owl:sameAs	dbpedia:Fribourg .
+@prefix ns6:	<http://cs.dbpedia.org/resource/> .
+ns6:Fribourg	owl:sameAs	dbpedia:Fribourg .
+<http://es.dbpedia.org/resource/Friburgo_(Suiza)>	owl:sameAs	dbpedia:Fribourg .
+<http://eu.dbpedia.org/resource/Friburgo_(Suitza)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns7:	<http://id.dbpedia.org/resource/> .
+ns7:Fribourg	owl:sameAs	dbpedia:Fribourg .
+<http://it.dbpedia.org/resource/Friburgo_(Svizzera)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns8:	<http://ja.dbpedia.org/resource/> .
+ns8:フリブール	owl:sameAs	dbpedia:Fribourg .
+@prefix ns9:	<http://ko.dbpedia.org/resource/> .
+ns9:프리부르	owl:sameAs	dbpedia:Fribourg .
+<http://nl.dbpedia.org/resource/Fribourg_(stad)>	owl:sameAs	dbpedia:Fribourg .
+<http://pl.dbpedia.org/resource/Fryburg_(miasto_w_Szwajcarii)>	owl:sameAs	dbpedia:Fribourg .
+<http://pt.dbpedia.org/resource/Friburgo_(Su\u00ED\u00E7a)>	owl:sameAs	dbpedia:Fribourg .
+@prefix foaf:	<http://xmlns.com/foaf/0.1/> .
+@prefix ns11:	<http://en.wikipedia.org/wiki/> .
+ns11:Fribourg	foaf:primaryTopic	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2011%E2%80%9312_Texas_A&M_Aggies_men\u0027s_basketball_team>	dbpprop:siteCityst	dbpedia:Fribourg .
+dbpedia:Trolleybuses_in_Fribourg	dbpprop:locale	dbpedia:Fribourg .
+<http://dbpedia.org/resource/D%C3%BCdingen>	dbpprop:neighboringMunicipalities	dbpedia:Fribourg ;
+	dbpedia-owl:neighboringMunicipality	dbpedia:Fribourg ;
+	dbpedia-owl:canton	dbpedia:Fribourg .
+dbpedia:Givisiez	dbpprop:neighboringMunicipalities	dbpedia:Fribourg ;
+	dbpedia-owl:neighboringMunicipality	dbpedia:Fribourg ;
+	dbpedia-owl:canton	dbpedia:Fribourg .
+dbpedia:Tafers	dbpprop:neighboringMunicipalities	dbpedia:Fribourg ;
+	dbpedia-owl:neighboringMunicipality	dbpedia:Fribourg ;
+	dbpedia-owl:canton	dbpedia:Fribourg .
+dbpedia:Bollion	dbpedia-owl:canton	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Roman_Catholic_Diocese_of_Lausanne,_Geneva_and_Fribourg>	dbpedia-owl:territory	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2011%E2%80%9312_S.L._Benfica_season>	dbpprop:location	dbpedia:Fribourg ;
+	dbpprop:team	dbpedia:Fribourg .
+dbpedia:Peter_Canisius	dbpprop:deathPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfDeath	dbpedia:Fribourg ;
+	dbpedia-owl:deathPlace	dbpedia:Fribourg ;
+	dbpedia-owl:majorShrine	dbpedia:Fribourg .
+dbpedia:Simon_Grether	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Patrice_Brasey	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2012%E2%80%9313_FC_Sion_season>	dbpprop:location	dbpedia:Fribourg .
+dbpedia:Joseph_Deiss	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+@prefix ns12:	<http://als.dbpedia.org/resource/> .
+ns12:Freiburg_im_Üechtland	owl:sameAs	dbpedia:Fribourg .
+@prefix ns13:	<http://be.dbpedia.org/resource/> .
+ns13:Горад_Фрыбур	owl:sameAs	dbpedia:Fribourg .
+<http://be_x_old.dbpedia.org/resource/\u0424\u0440\u044B\u0431\u0443\u0440_(\u0433\u043E\u0440\u0430\u0434)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns14:	<http://bg.dbpedia.org/resource/> .
+ns14:Фрибур	owl:sameAs	dbpedia:Fribourg .
+<http://ca.dbpedia.org/resource/Friburg_(Su\u00EFssa)>	owl:sameAs	dbpedia:Fribourg .
+<http://cy.dbpedia.org/resource/Fribourg_(dinas)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns15:	<http://da.dbpedia.org/resource/> .
+ns15:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns16:	<http://eo.dbpedia.org/resource/> .
+ns16:Friburgo	owl:sameAs	dbpedia:Fribourg .
+@prefix ns17:	<http://et.dbpedia.org/resource/> .
+ns17:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns18:	<http://fa.dbpedia.org/resource/> .
+ns18:فریبورگ	owl:sameAs	dbpedia:Fribourg .
+@prefix ns19:	<http://fi.dbpedia.org/resource/> .
+ns19:Fribourg	owl:sameAs	dbpedia:Fribourg .
+<http://frp.dbpedia.org/resource/Frib\u00F4rg_(vela)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns20:	<http://gd.dbpedia.org/resource/> .
+ns20:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns21:	<http://gl.dbpedia.org/resource/> .
+ns21:Friburgo_-_Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns22:	<http://he.dbpedia.org/resource/> .
+ns22:פריבור	owl:sameAs	dbpedia:Fribourg .
+@prefix ns23:	<http://hr.dbpedia.org/resource/> .
+ns23:Fribourg	owl:sameAs	dbpedia:Fribourg .
+<http://is.dbpedia.org/resource/Fribourg_(Sviss)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns24:	<http://jv.dbpedia.org/resource/> .
+ns24:Canton_Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns25:	<http://ka.dbpedia.org/resource/> .
+ns25:ფრიბური	owl:sameAs	dbpedia:Fribourg .
+<http://la.dbpedia.org/resource/Friburgum_(Helvetia)>	owl:sameAs	dbpedia:Fribourg .
+<http://lb.dbpedia.org/resource/Fribourg_(Schw\u00E4iz)>	owl:sameAs	dbpedia:Fribourg .
+<http://lmo.dbpedia.org/resource/Friburgh_(CH-FR)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns26:	<http://lt.dbpedia.org/resource/> .
+ns26:Fribūras	owl:sameAs	dbpedia:Fribourg .
+@prefix ns27:	<http://lv.dbpedia.org/resource/> .
+ns27:Fribūra	owl:sameAs	dbpedia:Fribourg .
+@prefix ns28:	<http://nn.dbpedia.org/resource/> .
+ns28:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns29:	<http://no.dbpedia.org/resource/> .
+ns29:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns30:	<http://pms.dbpedia.org/resource/> .
+ns30:Friborgh	owl:sameAs	dbpedia:Fribourg .
+@prefix ns31:	<http://pnb.dbpedia.org/resource/> .
+ns31:فریبرگ	owl:sameAs	dbpedia:Fribourg .
+@prefix ns32:	<http://rm.dbpedia.org/resource/> .
+ns32:Friburg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns33:	<http://ro.dbpedia.org/resource/> .
+ns33:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns34:	<http://ru.dbpedia.org/resource/> .
+ns34:Фрибур	owl:sameAs	dbpedia:Fribourg .
+<http://scn.dbpedia.org/resource/Friburgu_(Svizzira)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns35:	<http://sh.dbpedia.org/resource/> .
+ns35:Fribourg	owl:sameAs	dbpedia:Fribourg .
+<http://sk.dbpedia.org/resource/Fribourg_(\u0160vaj\u010Diarsko)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns36:	<http://sl.dbpedia.org/resource/> .
+ns36:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns37:	<http://sq.dbpedia.org/resource/> .
+ns37:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns38:	<http://sr.dbpedia.org/resource/\u0424\u0440\u0438\u0431\u0443\u0440/> .
+ns38:Фрајбург	owl:sameAs	dbpedia:Fribourg .
+@prefix ns39:	<http://sv.dbpedia.org/resource/> .
+ns39:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns40:	<http://tr.dbpedia.org/resource/> .
+ns40:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns41:	<http://uk.dbpedia.org/resource/> .
+ns41:Фрібур	owl:sameAs	dbpedia:Fribourg .
+@prefix ns42:	<http://vi.dbpedia.org/resource/> .
+ns42:Fribourg	owl:sameAs	dbpedia:Fribourg .
+<http://vo.dbpedia.org/resource/Freiburg_(Friburg\u00E4n)>	owl:sameAs	dbpedia:Fribourg .
+@prefix ns43:	<http://war.dbpedia.org/resource/> .
+ns43:Fribourg	owl:sameAs	dbpedia:Fribourg .
+@prefix ns44:	<http://zh.dbpedia.org/resource/> .
+ns44:弗里堡	owl:sameAs	dbpedia:Fribourg .
+@prefix ns45:	<http://zh_min_nan.dbpedia.org/resource/> .
+ns45:Fribourg	owl:sameAs	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Hiram_Br%C3%BClhart>	dbpedia-owl:deathPlace	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2004_UEFA_European_Under-19_Championship>	dbpprop:stadium	dbpedia:Fribourg .
+dbpedia:Leopold_Andrian	dbpprop:placeOfDeath	dbpedia:Fribourg ;
+	dbpedia-owl:deathPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2012_European_Trophy_games>	dbpprop:stadium	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2012_Davis_Cup_World_Group>	dbpprop:rd1t4Loc	dbpedia:Fribourg ;
+	dbpprop:venue	dbpedia:Fribourg .
+<http://dbpedia.org/resource/St._Ursen>	dbpprop:neighboringMunicipalities	dbpedia:Fribourg ;
+	dbpedia-owl:neighboringMunicipality	dbpedia:Fribourg ;
+	dbpedia-owl:canton	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2011_FIFA_Women\u0027s_World_Cup_qualification_%E2%80%93_UEFA_Group_6>	dbpprop:stadium	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2012_Davis_Cup>	dbpprop:rd1t4Loc	dbpedia:Fribourg .
+dbpedia:Thomas_Baumer	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Jean_Tinguely	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2004_UEFA_European_Under-21_Championship_qualification_Group_10>	dbpprop:stadium	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2007_UEFA_European_Under-19_Championship_elite_qualification>	dbpprop:stadium	dbpedia:Fribourg .
+dbpedia:Daniel_Manzato	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Ren%C3%A9_Fasel>	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/HC_Fribourg-Gott%C3%A9ron>	dbpprop:basedIn	dbpedia:Fribourg .
+dbpedia:Caroline_Kilchenmann	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Julien_Sprunger	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Daniel_Vasella	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:University_of_Fribourg	dbpedia-owl:city	dbpedia:Fribourg ;
+	dbpprop:city	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Fribourg%E2%80%93Farvagny_trolleybus_system>	dbpprop:locale	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Priestly_Fraternity_of_St._Peter>	dbpprop:location	dbpedia:Fribourg ;
+	dbpedia-owl:location	dbpedia:Fribourg .
+dbpedia:Transports_publics_Fribourgeois	dbpprop:locationCity	dbpedia:Fribourg ;
+	dbpedia-owl:locationCity	dbpedia:Fribourg .
+dbpedia:The_Young_Gods	dbpprop:origin	dbpedia:Fribourg ;
+	dbpedia-owl:hometown	dbpedia:Fribourg .
+dbpedia:Sandra_Kolly	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Gruy%C3%A8re_District>	dbpedia-owl:isPartOf	dbpedia:Fribourg .
+dbpedia:Sarine_District	dbpprop:subdivisionName	dbpedia:Fribourg ;
+	dbpedia-owl:isPartOf	dbpedia:Fribourg .
+dbpedia:Alain_de_Weck	dbpprop:placeOfDeath	dbpedia:Fribourg ;
+	dbpedia-owl:deathPlace	dbpedia:Fribourg .
+dbpedia:Frewitt	dbpedia-owl:locationCity	dbpedia:Fribourg ;
+	dbpedia-owl:foundationPlace	dbpedia:Fribourg .
+dbpedia:John_Berg	dbpedia-owl:residence	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2012%E2%80%9313_Kansas_Jayhawks_men\u0027s_basketball_team>	dbpprop:siteCityst	dbpedia:Fribourg .
+dbpedia:Jean_Henri_Naderman	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2005_Davis_Cup>	dbpprop:rd1t2Loc	dbpedia:Fribourg .
+dbpedia:Under-20_Four_Nations_Tournament	dbpprop:stadium	dbpedia:Fribourg .
+dbpedia:Pierrafortscha	dbpprop:neighboringMunicipalities	dbpedia:Fribourg ;
+	dbpedia-owl:neighboringMunicipality	dbpedia:Fribourg ;
+	dbpedia-owl:canton	dbpedia:Fribourg .
+dbpedia:Seiry	dbpedia-owl:canton	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Prez-vers-Nor%C3%A9az>	dbpedia-owl:canton	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Servais-Th%C3%A9odore_Pinckaers>	dbpprop:deathPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfDeath	dbpedia:Fribourg ;
+	dbpedia-owl:deathPlace	dbpedia:Fribourg .
+dbpedia:Oswald_Pilloud	dbpedia-owl:deathPlace	dbpedia:Fribourg .
+dbpedia:Max_Westermaier	dbpedia-owl:deathPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2007%E2%80%9308_FC_Basel_season>	dbpprop:stadium	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Jo%C3%ABl_Corminb%C5%93uf>	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Georges_Aeby	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Paul_Aeby	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Villars-sur-Gl%C3%A2ne>	dbpprop:neighboringMunicipalities	dbpedia:Fribourg ;
+	dbpedia-owl:neighboringMunicipality	dbpedia:Fribourg ;
+	dbpedia-owl:canton	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Lac_de_P%C3%A9rolles>	dbpprop:location	dbpedia:Fribourg ;
+	dbpedia-owl:location	dbpedia:Fribourg .
+dbpedia:Alain_Berset	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Reymond_Clavel	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Valentin_Wirz	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/L%C3%A9chelles>	dbpedia-owl:canton	dbpedia:Fribourg .
+dbpedia:FIBA_EuroBasket_2011_Division_B	dbpprop:place	dbpedia:Fribourg .
+dbpedia:FIBA_EuroBasket_2015_qualification	dbpprop:place	dbpedia:Fribourg .
+dbpedia:Oriflame	dbpedia-owl:location	dbpedia:Fribourg .
+dbpedia:Cardinal_Brewery	dbpprop:location	dbpedia:Fribourg ;
+	dbpedia-owl:location	dbpedia:Fribourg .
+dbpedia:Jean-Edouard_de_Castella	dbpedia-owl:deathPlace	dbpedia:Fribourg .
+dbpedia:Jakob_Laub	dbpprop:deathPlace	dbpedia:Fribourg ;
+	dbpedia-owl:deathPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Charles_R%C3%A9gnier>	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Roger_Jendly	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Canton_of_Fribourg	dbpprop:capital	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Prince_Maximilian_of_Saxony_(1870%E2%80%931951)>	dbpprop:deathPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfDeath	dbpedia:Fribourg ;
+	dbpedia-owl:deathPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Jean-Fran%C3%A7ois_Rime>	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:FIBA_EuroBasket_2013_qualification	dbpprop:place	dbpedia:Fribourg .
+dbpedia:Bourg	dbpedia-owl:wikiPageDisambiguates	dbpedia:Fribourg .
+dbpedia:Jean-Claude_Bastos_de_Morais	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Fribourg_(disambiguation)>	dbpedia-owl:wikiPageDisambiguates	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Coll%C3%A8ge_Saint-Michel>	dbpprop:city	dbpedia:Fribourg .
+dbpedia:List_of_mayors_of_Fribourg	dbpprop:place	dbpedia:Fribourg .
+dbpedia:Freeburgo	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Freiburg,_Switzerland>	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Freiburg_(Swiss_city)>	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Freiburg_im_%C3%9Cechtland>	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+dbpedia:Friborg	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Fribourg,_Switzerland>	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+@prefix ns46:	<http://dbpedia.org/resource/Fribourg/> .
+ns46:Freiburg	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Fribourg_(Fribourg)>	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+@prefix ns47:	<http://dbpedia.org/resource/Fribourg_/> .
+ns47:_Freiburg	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+dbpedia:Fribourg_FR	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+dbpedia:Fribourgeois	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+dbpedia:Friburg_in_Uchtland	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+dbpedia:Friburgo	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+@prefix ns48:	<http://dbpedia.org/resource/UN/LOCODE:> .
+ns48:CHFRB	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+dbpedia:History_of_Fribourg	dbpedia-owl:wikiPageRedirects	dbpedia:Fribourg .
+<http://dbpedia.org/resource/2010%E2%80%9311_Southampton_F.C._season>	dbpprop:stadium	dbpedia:Fribourg .
+dbpedia:William_Franklin_Sands	dbpedia-owl:education	dbpedia:Fribourg .
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ns50:	<http://umbel.org/umbel/rc/> .
+dbpedia:Fribourg	rdf:type	ns50:PopulatedPlace .
+@prefix yago:	<http://dbpedia.org/class/yago/> .
+dbpedia:Fribourg	rdf:type	yago:Center108523483 ,
+		yago:Seat108647945 ,
+		dbpedia-owl:Settlement .
+@prefix ns52:	<http://dbpedia.org/ontology/Wikidata:> .
+dbpedia:Fribourg	rdf:type	ns52:Q532 ,
+		dbpedia-owl:Place ,
+		dbpedia-owl:PopulatedPlace ,
+		owl:Thing .
+@prefix ns53:	<http://schema.org/> .
+dbpedia:Fribourg	rdf:type	ns53:Place ,
+		yago:PhysicalEntity100001930 .
+@prefix d0:	<http://www.ontologydesignpatterns.org/ont/d0.owl#> .
+dbpedia:Fribourg	rdf:type	d0:Location ,
+		yago:YagoGeoEntity ,
+		yago:YagoPermanentlyLocatedEntity ,
+		yago:Object100002684 ,
+		yago:Capital108518505 .
+@prefix ns55:	<http://www.opengis.net/gml/> .
+dbpedia:Fribourg	rdf:type	ns55:_Feature ,
+		yago:YagoLegalActorGeo ,
+		yago:CantonalCapitalsOfSwitzerland ,
+		yago:CitiesInSwitzerland ,
+		yago:City108524735 ,
+		yago:Municipality108626283 ,
+		yago:UrbanArea108675967 ,
+		yago:GeographicalArea108574314 ,
+		yago:District108552138 ,
+		yago:Area108497294 ,
+		yago:AdministrativeDistrict108491826 ,
+		yago:Region108630985 ,
+		yago:Location100027167 ,
+		ns50:Village ,
+		yago:ImperialFreeCities ,
+		yago:MunicipalitiesOfTheCantonOfFribourg ,
+		ns50:Location_Underspecified ;
+	owl:sameAs	<http://vo.dbpedia.org/resource/Freiburg_(Friburg\u00E4n)> ,
+		<http://is.dbpedia.org/resource/Fribourg_(Sviss)> ,
+		ns37:Fribourg ,
+		ns26:Fribūras ,
+		<http://frp.dbpedia.org/resource/Frib\u00F4rg_(vela)> ,
+		ns25:ფრიბური ,
+		<http://rdf.freebase.com/ns/m.015trb> ,
+		<http://ca.dbpedia.org/resource/Friburg_(Su\u00EFssa)> ,
+		ns6:Fribourg ,
+		dbpedia:Fribourg ,
+		<http://nl.dbpedia.org/resource/Fribourg_(stad)> ,
+		<http://sws.geonames.org/7285870/> ,
+		ns28:Fribourg ,
+		<http://it.dbpedia.org/resource/Friburgo_(Svizzera)> ,
+		ns38:Фрајбург ,
+		ns42:Fribourg ,
+		ns30:Friborgh ,
+		<http://eu.dbpedia.org/resource/Friburgo_(Suitza)> ,
+		ns13:Горад_Фрыбур ,
+		ns14:Фрибур ,
+		ns44:弗里堡 ,
+		<http://lmo.dbpedia.org/resource/Friburgh_(CH-FR)> ,
+		ns21:Friburgo_-_Fribourg ,
+		ns5:Q36378 ,
+		ns36:Fribourg ,
+		ns15:Fribourg ,
+		ns4:Freiburg_im_Üechtland ,
+		<http://pt.dbpedia.org/resource/Friburgo_(Su\u00ED\u00E7a)> ,
+		<http://scn.dbpedia.org/resource/Friburgu_(Svizzira)> ,
+		ns16:Friburgo ,
+		<http://la.dbpedia.org/resource/Friburgum_(Helvetia)> ,
+		<http://fr.dbpedia.org/resource/Fribourg_(Suisse)> ,
+		ns19:Fribourg ,
+		ns31:فریبرگ ,
+		<http://lb.dbpedia.org/resource/Fribourg_(Schw\u00E4iz)> ,
+		ns41:Фрібур .
+@prefix ns56:	<http://yago-knowledge.org/resource/> .
+dbpedia:Fribourg	owl:sameAs	ns56:Fribourg ,
+		ns20:Fribourg ,
+		<http://sk.dbpedia.org/resource/Fribourg_(\u0160vaj\u010Diarsko)> ,
+		ns18:فریبورگ ,
+		ns29:Fribourg ,
+		ns9:프리부르 ,
+		<http://gadm.geovocab.org/id/1_537> ,
+		ns12:Freiburg_im_Üechtland ,
+		ns35:Fribourg ,
+		ns39:Fribourg ,
+		ns33:Fribourg ,
+		ns22:פריבור ,
+		ns34:Фрибур ,
+		<http://be_x_old.dbpedia.org/resource/\u0424\u0440\u044B\u0431\u0443\u0440_(\u0433\u043E\u0440\u0430\u0434)> ,
+		<http://cy.dbpedia.org/resource/Fribourg_(dinas)> ,
+		ns24:Canton_Fribourg ,
+		ns8:フリブール ,
+		ns45:Fribourg ,
+		ns17:Fribourg ,
+		ns7:Fribourg ,
+		ns32:Friburg ,
+		<http://pl.dbpedia.org/resource/Fryburg_(miasto_w_Szwajcarii)> .
+@prefix ns57:	<http://wikidata.org/entity/> .
+dbpedia:Fribourg	owl:sameAs	ns57:Q36378 ,
+		ns40:Fribourg ,
+		ns23:Fribourg ,
+		ns43:Fribourg ,
+		<http://es.dbpedia.org/resource/Friburgo_(Suiza)> ,
+		ns27:Fribūra .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+dbpedia:Fribourg	rdfs:label	"Friburgo (Suiza)"@es ,
+		"\u30D5\u30EA\u30D6\u30FC\u30EB"@ja ,
+		"\u0424\u0440\u0438\u0431\u0443\u0440"@ru ,
+		"Friburgo (Svizzera)"@it ,
+		"Fribourg"@en ,
+		"\u5F17\u91CC\u5821"@zh ,
+		"Freiburg im \u00DCechtland"@de ,
+		"Friburgo (Su\u00ED\u00E7a)"@pt ,
+		"Fribourg (Suisse)"@fr ,
+		"Fryburg (miasto w Szwajcarii)"@pl ,
+		"Fribourg (stad)"@nl .
+@prefix dcterms:	<http://purl.org/dc/terms/> .
+dbpedia:Fribourg	dcterms:subject	<http://dbpedia.org/resource/Category:1157_establishments> .
+@prefix category:	<http://dbpedia.org/resource/Category:> .
+dbpedia:Fribourg	dcterms:subject	category:Canton_of_Fribourg ,
+		category:Cultural_property_of_national_significance_in_the_canton_of_Fribourg ,
+		category:Fribourg ,
+		category:University_towns ,
+		category:Cantonal_capitals_of_Switzerland ,
+		category:Cities_in_Switzerland ,
+		category:Imperial_free_cities ,
+		category:Municipalities_of_the_canton_of_Fribourg .
+@prefix grs:	<http://www.georss.org/georss/> .
+dbpedia:Fribourg	grs:point	"46.8 7.15" .
+@prefix xsd:	<http://www.w3.org/2001/XMLSchema#> .
+@prefix geo:	<http://www.w3.org/2003/01/geo/wgs84_pos#> .
+dbpedia:Fribourg	geo:lat	"46.799999237060546875"^^xsd:float ;
+	geo:long	"7.1500000953674316406"^^xsd:float ;
+	foaf:homepage	<http://www.ville-fribourg.ch> ;
+	foaf:depiction	<http://commons.wikimedia.org/wiki/Special:FilePath/Panorama_Fribourg_107.JPG> ;
+	foaf:name	"Fribourg/Freiburg"@en .
+@prefix prov:	<http://www.w3.org/ns/prov#> .
+dbpedia:Fribourg	prov:wasDerivedFrom	<http://en.wikipedia.org/wiki/Fribourg?oldid=602735683> ;
+	rdfs:comment	"Freiburg (franz\u00F6sisch Fribourg [f\u0280i\u02C8bu\u0280], schweizerdeutsch [\u02C8frib\u028Arg], frankoprovenzalisch Friboua?/i) ist eine Schweizer Stadt und Hauptort des Saanebezirks sowie des Kantons Freiburg."@de ,
+		"Fribourg (French pronunciation: \u200B[f\u0281ibu\u0281]; Arpitan: Frib\u00F4rg/Friboua, IPA: [f\u0281ibwa] ; German: Freiburg or Freiburg im \u00DCechtland, Swiss German pronunciation: [\u02C8frib\u0325\u028Ar\u0261]; Italian: Friburgo or Friborgo) is the capital of the Swiss canton of Fribourg and the district of Sarine. It is located on both sides of the river Saane/Sarine, on the Swiss plateau, and is an important economic, administrative and educational center on the cultural border between German and French Switzerland (Romandy)."@en ,
+		"Friburgo (em franc\u00EAs: Fribourg; em alem\u00E3o: Freiburg) \u00E9 uma comuna su\u00ED\u00E7a do cant\u00E3o de Friburgo \u00E0s margens do rio Saarne ou Sarine. Em alem\u00E3o, ela carrega tamb\u00E9m o nome de Freiburg im Uechtland para distingui-la dos outros Friburgos (notadamente a cidade alem\u00E3 de Freiburg im Breisgau). O nome completo em franc\u00EAs Fribourg en Nuithonie \u00E9 pouco conhecido.Com cerca de 36 544 habitantes, estende-se por uma \u00E1rea de 9,32 km\u00B2, de densidade populacional de 3 921 hab/km\u00B2."@pt ,
+		"Fryburg (fr. Fribourg, niem. Freiburg im \u00DCechtland lub Freiburg, ret. Friburg, w\u0142. Friburgo) \u2013 miasto w Szwajcarii nad rzek\u0105 Sarine, stolica kantonu Fryburg.Fryburg le\u017Cy na styku dw\u00F3ch wielkich region\u00F3w etnicznych i j\u0119zykowych w Szwajcarii, kt\u00F3rych granic\u0119 wyznacza tu Sarine. Wiele miejscowo\u015Bci le\u017C\u0105cych nad t\u0105 rzek\u0105 poni\u017Cej Fryburga posiada podw\u00F3jne nazwy: na lewym brzegu francuskie, a na prawym niemieckie."@pl ,
+		"\u30D5\u30EA\u30D6\u30FC\u30EB\uFF08\u30D5\u30E9\u30F3\u30B9\u8A9E\uFF1AFribourg\u3001\u6A19\u6E96\u30C9\u30A4\u30C4\u8A9E\uFF1AFreiburg im \u00DCechtland \u3001\u30B9\u30A4\u30B9\u30A2\u30EC\u30DE\u30F3\u8A9E\uFF1AFryburg im \u00DCechtland\uFF09\u306F\u3001\u30B9\u30A4\u30B9\u306E\u30D5\u30EA\u30D6\u30FC\u30EB\u5DDE\u306B\u5C5E\u3059\u308B\u57FA\u790E\u81EA\u6CBB\u4F53\uFF08\u30B3\u30DF\u30E5\u30FC\u30F3\uFF09 \u3002\u30C9\u30A4\u30C4\u8A9E\u540D\u3067\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\uFF08\u6B63\u5F0F\u540D\u306F\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\u30FB\u30A4\u30E0\u30FB\u30E6\u30D2\u30C8\u30E9\u30F3\u30C8\uFF09\u3068\u547C\u3070\u308C\u308B\u3053\u3068\u3082\u3042\u308B\u304C\u3001\u300C\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\u300D\u3068\u3044\u3046\u540D\u306E\u90FD\u5E02\u306F\u30C9\u30A4\u30C4\u30FB\u30D0\u30FC\u30C7\u30F3\uFF1D\u30F4\u30E5\u30EB\u30C6\u30F3\u30D9\u30EB\u30AF\u5DDE\u306E\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\uFF08\u6B63\u5F0F\u540D\u306F\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\u30FB\u30A4\u30E0\u30FB\u30D6\u30E9\u30A4\u30B9\u30AC\u30A6\uFF09\u306A\u3069\u5404\u5730\u306B\u5B58\u5728\u3059\u308B\u3053\u3068\u304B\u3089\u3001\u65E5\u672C\u3067\u306F\u533A\u5225\u306E\u305F\u3081\u3082\u3042\u308A\u3001\u4E3B\u306B\u30D5\u30E9\u30F3\u30B9\u8A9E\u540D\u3067\u30D5\u30EA\u30D6\u30FC\u30EB\u3068\u547C\u3070\u308C\u308B\u3002\u4EBA\u53E3\u306F\u7D043\u4E076\u5343\u4EBA\uFF082003\u5E74\uFF09\u3002"@ja ,
+		"Fribourg (Duits: Freiburg im \u00DCechtland / Frans: Fribourg / Reto-Romaans: Friburg / Latijn: Friburgum Nuithonum) is de hoofdstad van het gelijknamige Zwitserse kanton Fribourg. De stad ligt in het district Sarine (Duits: Saane) op de Frans-Duitse taalgrens, is officieel tweetalig, maar in de praktijk voornamelijk franstalig. De naam betekent Vrije burcht."@nl ,
+		"\u5F17\u91CC\u5821\u662F\u745E\u58EB\u5F17\u91CC\u5821\u5DDE\u7684\u9996\u5E9C\uFF0C\u5B83\u7684\u6CD5\u8A9E\u540D\u662F\u5F17\u91CC\u5821\uFF08Fribourg\uFF09\uFF0C\u5FB7\u8A9E\u540D\u662F\u5F17\u840A\u5821\uFF08Freiburg\uFF09\u3002\u9762\u7A4D9.32\u5E73\u65B9\u516C\u91CC\uFF0C\u4EBA\u53E333418\uFF082006\u5E7412\u670831\u65E5\uFF09\u3002\u5F17\u91CC\u5821\u4F4D\u4E8E\u745E\u58EB\u5FB7\u8A9E\u5340\u548C\u6CD5\u8A9E\u5340\u7684\u4EA4\u754C\u8655\uFF0C63.6%\u7684\u4EBA\u8AAA\u6CD5\u8A9E\uFF0C21.2%\u7684\u4EBA\u8AAA\u5FB7\u8A9E\uFF0C3.8%\u7684\u4EBA\u8AAA\u610F\u5927\u5229\u8A9E\u3002"@zh ,
+		"Friburgo (en franc\u00E9s Fribourg/Fribourg en Nuithonie, en alem\u00E1n Freiburg/Freiburg im \u00DCechtland, en italiano Friburgo y en romanche Friburg) es una peque\u00F1a ciudad de Suiza occidental, capital del cant\u00F3n de Friburgo y del distrito de Sarine. Friburgo es una de las tres ciudades biling\u00FCes de Suiza, unas 21.000 personas hablan franc\u00E9s, mientras que unas 8.300 hablan alem\u00E1n. Se ubica en la regi\u00F3n llamada \u00DCechtland."@es ,
+		"\u0424\u0440\u0438\u0431\u0443\u0301\u0440 (\u0444\u0440. Fribourg) \u0438\u043B\u0438 \u0424\u0440\u0430\u0301\u0439\u0431\u0443\u0440\u0433 (\u043D\u0435\u043C. Freiburg) \u2014 \u0433\u043E\u0440\u043E\u0434 \u043D\u0430 \u0437\u0430\u043F\u0430\u0434\u0435 \u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u0438, \u0441\u0442\u043E\u043B\u0438\u0446\u0430 \u043A\u0430\u043D\u0442\u043E\u043D\u0430 \u0424\u0440\u0438\u0431\u0443\u0440.\u0413\u043E\u0440\u043E\u0434 \u043C\u043D\u043E\u0433\u043E\u044F\u0437\u044B\u0447\u0435\u043D: \u043E\u043A\u043E\u043B\u043E 58 % \u043D\u0430\u0441\u0435\u043B\u0435\u043D\u0438\u044F \u0433\u043E\u0432\u043E\u0440\u044F\u0442 \u043F\u043E-\u0444\u0440\u0430\u043D\u0446\u0443\u0437\u0441\u043A\u0438, 22 % \u2014 \u043F\u043E-\u043D\u0435\u043C\u0435\u0446\u043A\u0438, 5 % \u2014 \u043F\u043E-\u0438\u0442\u0430\u043B\u044C\u044F\u043D\u0441\u043A\u0438. \u041F\u0440\u0438 \u043D\u0430\u0441\u0435\u043B\u0435\u043D\u0438\u0438 \u0432 37 200 \u0447\u0435\u043B\u043E\u0432\u0435\u043A (2007) \u0441\u0432\u044B\u0448\u0435 10 000 \u2014 \u0441\u0442\u0443\u0434\u0435\u043D\u0442\u044B \u0437\u0434\u0435\u0448\u043D\u0435\u0433\u043E \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0430.\u0421\u0432\u044F\u0442\u044B\u0435 \u043F\u043E\u043A\u0440\u043E\u0432\u0438\u0442\u0435\u043B\u0438 \u0433\u043E\u0440\u043E\u0434\u0430 \u2014 \u041D\u0438\u043A\u043E\u043B\u0430\u0439 \u0427\u0443\u0434\u043E\u0442\u0432\u043E\u0440\u0435\u0446 \u0438 \u0415\u043A\u0430\u0442\u0435\u0440\u0438\u043D\u0430 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\u0438\u0439\u0441\u043A\u0430\u044F."@ru ,
+		"Fribourg (en allemand : Freiburg, en patois fribourgeois : Friboua Friboua ) est une ville et une commune suisse du canton de Fribourg, sur la Sarine. C'est le chef-lieu du canton de Fribourg et celui du district de la Sarine.Fribourg est une ville bilingue, avec pr\u00E8s d'un cinqui\u00E8me de la population germanophone. Elle est situ\u00E9e de chaque c\u00F4t\u00E9 de la Sarine sur le plateau suisse \u00E0 la fronti\u00E8re culturelle entre la Suisse al\u00E9manique et romande."@fr ,
+		"Friburgo o Friborgo (francese: Fribourg o Fribourg en Nuithonie; tedesco: Freiburg o Freiburg im \u00DCechtland; romancio: Friburg) \u00E8 una citt\u00E0 della Svizzera occidentale, capitale del canton Friburgo. \u00C8 al centro della regione storica della Nuitonia.Friburgo \u00E8 una delle poche citt\u00E0 bilingui della Svizzera, infatti si parla sia francese (circa 21.250 abitanti) che tedesco (circa 8.300). La religione prevalente \u00E8 il cattolicesimo."@it ;
+	dbpprop:languages	"French"@en ,
+		"German"@en ;
+	foaf:isPrimaryTopicOf	ns11:Fribourg ;
+	dbpprop:mayHumidity	72.799999999999997158 ;
+	dbpprop:decHumidity	86.900000000000005684 ;
+	dbpprop:junHumidity	71.5 ;
+	dbpprop:febHumidity	81.599999999999994316 ;
+	dbpprop:sepHumidity	78.099999999999994316 ;
+	dbpprop:octHumidity	84.299999999999997158 ;
+	dbpprop:janHumidity	86.700000000000002842 ;
+	dbpprop:marHumidity	75.200000000000002842 ;
+	dbpprop:novHumidity	86.200000000000002842 ;
+	dbpprop:aprHumidity	72.5 ;
+	dbpprop:julHumidity	68.5 ;
+	dbpprop:augHumidity	72.400000000000005684 .
+@prefix ns65:	<http://wifo5-03.informatik.uni-mannheim.de/flickrwrappr/photos/> .
+dbpedia:Fribourg	dbpprop:hasPhotoCollection	ns65:Fribourg ;
+	dbpedia-owl:thumbnail	<http://commons.wikimedia.org/wiki/Special:FilePath/Panorama_Fribourg_107.JPG?width=300> ;
+	dbpedia-owl:abstract	"Fryburg (fr. Fribourg, niem. Freiburg im \u00DCechtland lub Freiburg, ret. Friburg, w\u0142. Friburgo) \u2013 miasto w Szwajcarii nad rzek\u0105 Sarine, stolica kantonu Fryburg.Fryburg le\u017Cy na styku dw\u00F3ch wielkich region\u00F3w etnicznych i j\u0119zykowych w Szwajcarii, kt\u00F3rych granic\u0119 wyznacza tu Sarine. Wiele miejscowo\u015Bci le\u017C\u0105cych nad t\u0105 rzek\u0105 poni\u017Cej Fryburga posiada podw\u00F3jne nazwy: na lewym brzegu francuskie, a na prawym niemieckie."@pl ,
+		"\u5F17\u91CC\u5821\u662F\u745E\u58EB\u5F17\u91CC\u5821\u5DDE\u7684\u9996\u5E9C\uFF0C\u5B83\u7684\u6CD5\u8A9E\u540D\u662F\u5F17\u91CC\u5821\uFF08Fribourg\uFF09\uFF0C\u5FB7\u8A9E\u540D\u662F\u5F17\u840A\u5821\uFF08Freiburg\uFF09\u3002\u9762\u7A4D9.32\u5E73\u65B9\u516C\u91CC\uFF0C\u4EBA\u53E333418\uFF082006\u5E7412\u670831\u65E5\uFF09\u3002\u5F17\u91CC\u5821\u4F4D\u4E8E\u745E\u58EB\u5FB7\u8A9E\u5340\u548C\u6CD5\u8A9E\u5340\u7684\u4EA4\u754C\u8655\uFF0C63.6%\u7684\u4EBA\u8AAA\u6CD5\u8A9E\uFF0C21.2%\u7684\u4EBA\u8AAA\u5FB7\u8A9E\uFF0C3.8%\u7684\u4EBA\u8AAA\u610F\u5927\u5229\u8A9E\u3002"@zh ,
+		"Fribourg (Duits: Freiburg im \u00DCechtland / Frans: Fribourg / Reto-Romaans: Friburg / Latijn: Friburgum Nuithonum) is de hoofdstad van het gelijknamige Zwitserse kanton Fribourg. De stad ligt in het district Sarine (Duits: Saane) op de Frans-Duitse taalgrens, is officieel tweetalig, maar in de praktijk voornamelijk franstalig. De naam betekent Vrije burcht."@nl ,
+		"\u0424\u0440\u0438\u0431\u0443\u0301\u0440 (\u0444\u0440. Fribourg) \u0438\u043B\u0438 \u0424\u0440\u0430\u0301\u0439\u0431\u0443\u0440\u0433 (\u043D\u0435\u043C. Freiburg) \u2014 \u0433\u043E\u0440\u043E\u0434 \u043D\u0430 \u0437\u0430\u043F\u0430\u0434\u0435 \u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u0438, \u0441\u0442\u043E\u043B\u0438\u0446\u0430 \u043A\u0430\u043D\u0442\u043E\u043D\u0430 \u0424\u0440\u0438\u0431\u0443\u0440.\u0413\u043E\u0440\u043E\u0434 \u043C\u043D\u043E\u0433\u043E\u044F\u0437\u044B\u0447\u0435\u043D: \u043E\u043A\u043E\u043B\u043E 58 % \u043D\u0430\u0441\u0435\u043B\u0435\u043D\u0438\u044F \u0433\u043E\u0432\u043E\u0440\u044F\u0442 \u043F\u043E-\u0444\u0440\u0430\u043D\u0446\u0443\u0437\u0441\u043A\u0438, 22 % \u2014 \u043F\u043E-\u043D\u0435\u043C\u0435\u0446\u043A\u0438, 5 % \u2014 \u043F\u043E-\u0438\u0442\u0430\u043B\u044C\u044F\u043D\u0441\u043A\u0438. \u041F\u0440\u0438 \u043D\u0430\u0441\u0435\u043B\u0435\u043D\u0438\u0438 \u0432 37 200 \u0447\u0435\u043B\u043E\u0432\u0435\u043A (2007) \u0441\u0432\u044B\u0448\u0435 10 000 \u2014 \u0441\u0442\u0443\u0434\u0435\u043D\u0442\u044B \u0437\u0434\u0435\u0448\u043D\u0435\u0433\u043E \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0430.\u0421\u0432\u044F\u0442\u044B\u0435 \u043F\u043E\u043A\u0440\u043E\u0432\u0438\u0442\u0435\u043B\u0438 \u0433\u043E\u0440\u043E\u0434\u0430 \u2014 \u041D\u0438\u043A\u043E\u043B\u0430\u0439 \u0427\u0443\u0434\u043E\u0442\u0432\u043E\u0440\u0435\u0446 \u0438 \u0415\u043A\u0430\u0442\u0435\u0440\u0438\u043D\u0430 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\u0438\u0439\u0441\u043A\u0430\u044F."@ru ,
+		"Fribourg (French pronunciation: \u200B[f\u0281ibu\u0281]; Arpitan: Frib\u00F4rg/Friboua, IPA: [f\u0281ibwa] ; German: Freiburg or Freiburg im \u00DCechtland, Swiss German pronunciation: [\u02C8frib\u0325\u028Ar\u0261]; Italian: Friburgo or Friborgo) is the capital of the Swiss canton of Fribourg and the district of Sarine. It is located on both sides of the river Saane/Sarine, on the Swiss plateau, and is an important economic, administrative and educational center on the cultural border between German and French Switzerland (Romandy). Its Old City, one of the best maintained in Switzerland, sits on a small rocky hill above the valley of the Sarine."@en ,
+		"Freiburg (franz\u00F6sisch Fribourg [f\u0280i\u02C8bu\u0280], schweizerdeutsch [\u02C8frib\u028Arg], frankoprovenzalisch Friboua?/i) ist eine Schweizer Stadt und Hauptort des Saanebezirks sowie des Kantons Freiburg. Zur Unterscheidung von Freiburg im Breisgau wird gelegentlich der Zusatz im \u00DCechtland (schweizerisch, kurz i.\u00DCe.) oder im \u00DCchtland (kurz i.\u00DC.) verwendet.Freiburg, beidseits der Saane im Schweizer Mittelland gelegen, ist ein wichtiges Wirtschafts-, Verwaltungs- und Bildungszentrum mit zweisprachiger Universit\u00E4t an der Kulturgrenze zwischen deutscher und franz\u00F6sischer Schweiz. Sie besitzt eine der am besten erhaltenen und gr\u00F6ssten zusammenh\u00E4ngenden historischen Altst\u00E4dte der Schweiz auf einem schmalen Felssporn \u00FCber dem Tal der Saane."@de ,
+		"\u30D5\u30EA\u30D6\u30FC\u30EB\uFF08\u30D5\u30E9\u30F3\u30B9\u8A9E\uFF1AFribourg\u3001\u6A19\u6E96\u30C9\u30A4\u30C4\u8A9E\uFF1AFreiburg im \u00DCechtland \u3001\u30B9\u30A4\u30B9\u30A2\u30EC\u30DE\u30F3\u8A9E\uFF1AFryburg im \u00DCechtland\uFF09\u306F\u3001\u30B9\u30A4\u30B9\u306E\u30D5\u30EA\u30D6\u30FC\u30EB\u5DDE\u306B\u5C5E\u3059\u308B\u57FA\u790E\u81EA\u6CBB\u4F53\uFF08\u30B3\u30DF\u30E5\u30FC\u30F3\uFF09 \u3002\u30C9\u30A4\u30C4\u8A9E\u540D\u3067\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\uFF08\u6B63\u5F0F\u540D\u306F\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\u30FB\u30A4\u30E0\u30FB\u30E6\u30D2\u30C8\u30E9\u30F3\u30C8\uFF09\u3068\u547C\u3070\u308C\u308B\u3053\u3068\u3082\u3042\u308B\u304C\u3001\u300C\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\u300D\u3068\u3044\u3046\u540D\u306E\u90FD\u5E02\u306F\u30C9\u30A4\u30C4\u30FB\u30D0\u30FC\u30C7\u30F3\uFF1D\u30F4\u30E5\u30EB\u30C6\u30F3\u30D9\u30EB\u30AF\u5DDE\u306E\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\uFF08\u6B63\u5F0F\u540D\u306F\u30D5\u30E9\u30A4\u30D6\u30EB\u30AF\u30FB\u30A4\u30E0\u30FB\u30D6\u30E9\u30A4\u30B9\u30AC\u30A6\uFF09\u306A\u3069\u5404\u5730\u306B\u5B58\u5728\u3059\u308B\u3053\u3068\u304B\u3089\u3001\u65E5\u672C\u3067\u306F\u533A\u5225\u306E\u305F\u3081\u3082\u3042\u308A\u3001\u4E3B\u306B\u30D5\u30E9\u30F3\u30B9\u8A9E\u540D\u3067\u30D5\u30EA\u30D6\u30FC\u30EB\u3068\u547C\u3070\u308C\u308B\u3002\u4EBA\u53E3\u306F\u7D043\u4E076\u5343\u4EBA\uFF082003\u5E74\uFF09\u3002"@ja ,
+		"Friburgo o Friborgo (francese: Fribourg o Fribourg en Nuithonie; tedesco: Freiburg o Freiburg im \u00DCechtland; romancio: Friburg) \u00E8 una citt\u00E0 della Svizzera occidentale, capitale del canton Friburgo. \u00C8 al centro della regione storica della Nuitonia.Friburgo \u00E8 una delle poche citt\u00E0 bilingui della Svizzera, infatti si parla sia francese (circa 21.250 abitanti) che tedesco (circa 8.300). La religione prevalente \u00E8 il cattolicesimo. La citt\u00E0 \u00E8 sede della diocesi di Losanna, Ginevra e Friburgo e dell'Universit\u00E0 di Friburgo."@it ,
+		"Fribourg (en allemand : Freiburg, en patois fribourgeois : Friboua Friboua ) est une ville et une commune suisse du canton de Fribourg, sur la Sarine. C'est le chef-lieu du canton de Fribourg et celui du district de la Sarine.Fribourg est une ville bilingue, avec pr\u00E8s d'un cinqui\u00E8me de la population germanophone. Elle est situ\u00E9e de chaque c\u00F4t\u00E9 de la Sarine sur le plateau suisse \u00E0 la fronti\u00E8re culturelle entre la Suisse al\u00E9manique et romande. Elle est un important centre \u00E9conomique, administratif et \u00E9ducatif et comprend une Universit\u00E9.Elle est plac\u00E9e sous le patronage de saint Nicolas de Myre, de sainte Barbe et de sainte Catherine d'Alexandrie. Fribourg fait partie du p\u00E9rim\u00E8tre de l'AGGLO Fribourg-Freiburg."@fr ,
+		"Friburgo (en franc\u00E9s Fribourg/Fribourg en Nuithonie, en alem\u00E1n Freiburg/Freiburg im \u00DCechtland, en italiano Friburgo y en romanche Friburg) es una peque\u00F1a ciudad de Suiza occidental, capital del cant\u00F3n de Friburgo y del distrito de Sarine. Friburgo es una de las tres ciudades biling\u00FCes de Suiza, unas 21.000 personas hablan franc\u00E9s, mientras que unas 8.300 hablan alem\u00E1n. Se ubica en la regi\u00F3n llamada \u00DCechtland."@es ,
+		"Friburgo (em franc\u00EAs: Fribourg; em alem\u00E3o: Freiburg) \u00E9 uma comuna su\u00ED\u00E7a do cant\u00E3o de Friburgo \u00E0s margens do rio Saarne ou Sarine. Em alem\u00E3o, ela carrega tamb\u00E9m o nome de Freiburg im Uechtland para distingui-la dos outros Friburgos (notadamente a cidade alem\u00E3 de Freiburg im Breisgau). O nome completo em franc\u00EAs Fribourg en Nuithonie \u00E9 pouco conhecido.Com cerca de 36 544 habitantes, estende-se por uma \u00E1rea de 9,32 km\u00B2, de densidade populacional de 3 921 hab/km\u00B2. Confina com as seguintes comunas: D\u00FCdingen, Givisiez, Granges-Paccot, Marly, Pierrafortscha, Sankt Ursen, Tafers, Villars-sur-Gl\u00E2ne.As l\u00EDnguas oficiais nesta comuna s\u00E3o o alem\u00E3o e franc\u00EAs.A vila est\u00E1 colocada sob patronagem de S\u00E3o Nicolas de Myre e de Santa Catarina de Alexandria. Friburgo faz parte do perim\u00E9tro da aglomera\u00E7\u00E3o Fribourg/Freiburg."@pt ;
+	dbpedia-owl:wikiPageID	164065 ;
+	dbpedia-owl:wikiPageRevisionID	602735683 ;
+	dbpprop:location	"Fribourg / Posieux"@en ;
+	dbpprop:neighboringMunicipalities	dbpedia:Granges-Paccot ,
+		dbpedia:Givisiez ,
+		dbpedia:Tafers ,
+		<http://dbpedia.org/resource/D%C3%BCdingen> ,
+		<http://dbpedia.org/resource/Marly,_Fribourg> ,
+		<http://dbpedia.org/resource/Villars-sur-Gl%C3%A2ne> ,
+		dbpedia:Pierrafortscha ,
+		<http://dbpedia.org/resource/St._Ursen> ;
+	dbpedia-owl:neighboringMunicipality	dbpedia:Granges-Paccot ,
+		dbpedia:Givisiez ,
+		dbpedia:Tafers ,
+		<http://dbpedia.org/resource/D%C3%BCdingen> ,
+		<http://dbpedia.org/resource/Marly,_Fribourg> ,
+		<http://dbpedia.org/resource/Villars-sur-Gl%C3%A2ne> ,
+		dbpedia:Pierrafortscha ,
+		<http://dbpedia.org/resource/St._Ursen> ;
+	dbpedia-owl:maximumElevation	702.0 ;
+	dbpedia-owl:municipalityCode	"2196" ;
+	dbpprop:map	"Karte Gemeinde Fribourg.png"@en ;
+	dbpprop:mayor	"Pierre-Alain Cl\u00E9ment"@en ;
+	dbpprop:mayorParty	"PSS"@en ;
+	dbpprop:postalCode	1700 ;
+	dbpprop:area	9.3200000000000002842 ;
+	dbpprop:district	dbpedia:Sarine_District ;
+	dbpprop:canton	"Fribourg"@en ;
+	dbpedia-owl:areaTotal	9320000.0 ;
+	dbpedia-owl:district	dbpedia:Sarine_District ;
+	dbpedia-owl:elevation	610.0 ;
+	dbpedia-owl:postalCode	"1700" .
+@prefix ns66:	<http://dbpedia.org/datatype/> .
+@prefix ns67:	<http://dbpedia.org/ontology/PopulatedPlace/> .
+dbpedia:Fribourg	ns67:areaTotal	"9.32"^^ns66:squareKilometre ;
+	dbpprop:precipitationColour	"green"@en ;
+	dbpprop:executiveName	"Conseil communal/Gemeinderat"@en ;
+	dbpprop:executiveNumberOfMembers	5 ;
+	dbpprop:highestM	702 ;
+	dbpprop:imagepathCoa	"City of Fribourg-coat of arms.svg"@en ;
+	dbpprop:isoCodeRegion	"CH-FR"@en ;
+	dbpprop:listOfMayors	"List of mayors of Fribourg"@en ;
+	dbpprop:mayorAsof	"February 2014"@en ;
+	dbpprop:mayorTitle	"Syndic/Ammann"@en ;
+	dbpprop:municipalityCode	2196 ;
+	dbpprop:municipalityName	"Fribourg/Freiburg"@en ;
+	dbpprop:parliamentName	"Conseil g\u00E9n\u00E9ral/Generalrat"@en ;
+	dbpprop:parliamentNumberOfMembers	80 ;
+	dbpprop:subjectName	"Fribourg/Freiburg"@en .
+@prefix virtrdf:	<http://www.openlinksw.com/schemas/virtrdf#> .
+dbpedia:Fribourg	geo:geometry	"POINT(7.1500000953674 46.799999237061)"^^virtrdf:Geometry ;
+	dbpprop:date	"August 2010"@en ;
+	dbpprop:aprHighC	13.599999999999999645 ;
+	dbpprop:aprLowC	2.8999999999999999112 ;
+	dbpprop:aprMeanC	8 ;
+	dbpprop:aprPrecipitationDays	10.699999999999999289 ;
+	dbpprop:aprPrecipitationMm	84 ;
+	dbpprop:augHighC	24.100000000000001421 ;
+	dbpprop:augLowC	12.300000000000000711 ;
+	dbpprop:augMeanC	17.699999999999999289 ;
+	dbpprop:augPrecipitationDays	10.5 ;
+	dbpprop:augPrecipitationMm	117 ;
+	dbpprop:decHighC	4.2999999999999998224 ;
+	dbpprop:decLowC	-1.8999999999999999112 ;
+	dbpprop:decMeanC	0.9000000000000000222 ;
+	dbpprop:decPrecipitationDays	10.300000000000000711 ;
+	dbpprop:decPrecipitationMm	72 ;
+	dbpprop:febHighC	5.4000000000000003553 ;
+	dbpprop:febLowC	-2.7999999999999998224 ;
+	dbpprop:febMeanC	0.9000000000000000222 ;
+	dbpprop:febPrecipitationDays	9.5 ;
+	dbpprop:febPrecipitationMm	55 ;
+	dbpprop:janHighC	3.7000000000000001776 ;
+	dbpprop:janLowC	-3.2000000000000001776 ;
+	dbpprop:janMeanC	-0.10000000000000000555 ;
+	dbpprop:janPrecipitationDays	10.199999999999999289 ;
+	dbpprop:janPrecipitationMm	57 ;
+	dbpprop:julHighC	24.600000000000001421 ;
+	dbpprop:julLowC	12.699999999999999289 ;
+	dbpprop:julMeanC	18.399999999999998579 ;
+	dbpprop:julPrecipitationDays	10.599999999999999645 ;
+	dbpprop:julPrecipitationMm	113 ;
+	dbpprop:junHighC	21.800000000000000711 ;
+	dbpprop:junLowC	10.599999999999999645 ;
+	dbpprop:junMeanC	16 ;
+	dbpprop:junPrecipitationDays	11.400000000000000355 ;
+	dbpprop:junPrecipitationMm	115 ;
+	dbpprop:marHighC	9.9000000000000003553 ;
+	dbpprop:marLowC	0.4000000000000000222 ;
+	dbpprop:marMeanC	4.7000000000000001776 ;
+	dbpprop:marPrecipitationDays	10.599999999999999645 ;
+	dbpprop:marPrecipitationMm	72 ;
+	dbpprop:mayHighC	18.5 ;
+	dbpprop:mayLowC	7.4000000000000003553 ;
+	dbpprop:mayMeanC	12.699999999999999289 ;
+	dbpprop:mayPrecipitationDays	13.400000000000000355 ;
+	dbpprop:mayPrecipitationMm	126 ;
+	dbpprop:metricFirst	"Yes"@en ;
+	dbpprop:novHighC	8 ;
+	dbpprop:novLowC	0.80000000000000004441 ;
+	dbpprop:novMeanC	3.8999999999999999112 ;
+	dbpprop:novPrecipitationDays	10.599999999999999645 ;
+	dbpprop:novPrecipitationMm	74 ;
+	dbpprop:octHighC	14.5 ;
+	dbpprop:octLowC	5.7000000000000001776 ;
+	dbpprop:octMeanC	9.5 ;
+	dbpprop:octPrecipitationDays	10.400000000000000355 ;
+	dbpprop:octPrecipitationMm	91 ;
+	dbpprop:sepHighC	19.600000000000001421 ;
+	dbpprop:sepLowC	9 ;
+	dbpprop:sepMeanC	13.699999999999999289 ;
+	dbpprop:sepPrecipitationDays	8.9000000000000003553 ;
+	dbpprop:sepPrecipitationMm	100 ;
+	dbpprop:singleLine	"Yes"@en ;
+	dbpprop:unitPrecipitationDays	"1.0"^^ns66:millimetre ;
+	dbpprop:yearHighC	14 ;
+	dbpprop:yearLowC	4.5 ;
+	dbpprop:yearMeanC	8.9000000000000003553 ;
+	dbpprop:yearPrecipitationDays	127.09999999999999432 ;
+	dbpprop:yearPrecipitationMm	1075 ;
+	dbpedia-owl:twinCity	dbpedia:Rueil-Malmaison ;
+	dbpprop:longM	9 ;
+	dbpprop:latM	48 ;
+	dbpprop:longD	7 ;
+	dbpprop:latNs	"N"@en ;
+	dbpprop:latD	46 ;
+	dbpprop:longEw	"E"@en ;
+	dbpprop:decSnowCm	12.800000000000000711 ;
+	dbpprop:augSnowDays	0 ;
+	dbpprop:augSnowCm	0 ;
+	dbpprop:yearHumidity	78.099999999999994316 ;
+	dbpprop:sepSnowCm	0 ;
+	dbpprop:sepSnowDays	0 ;
+	dbpprop:decSnowDays	3.1000000000000000888 ;
+	dbpprop:junSnowCm	0 ;
+	dbpprop:junSnowDays	0 ;
+	dbpprop:yearSnowDays	16 ;
+	dbpprop:novSnowDays	1.5 ;
+	dbpprop:marSnowCm	11 ;
+	dbpprop:novSnowCm	6.4000000000000003553 ;
+	dbpprop:yearSnowCm	62.700000000000002842 ;
+	dbpprop:julSnowCm	0 ;
+	dbpprop:julSnowDays	0 ;
+	dbpprop:marSnowDays	2.5 ;
+	dbpprop:maySnowDays	0 ;
+	dbpprop:maySnowCm	0 ;
+	dbpprop:febSnowDays	4.0999999999999996447 ;
+	dbpprop:janSnowDays	3.7999999999999998224 ;
+	dbpprop:aprSnowCm	2.3999999999999999112 ;
+	dbpprop:octSnowCm	0.2000000000000000111 ;
+	dbpprop:octSnowDays	0.10000000000000000555 ;
+	dbpprop:janSnowCm	13.699999999999999289 ;
+	dbpprop:febSnowCm	16.199999999999999289 ;
+	dbpprop:aprSnowDays	0.9000000000000000222 ;
+	dbpprop:unitSnowDays	"1.0"^^ns66:centimetre ;
+	dbpprop:places	"Bourg, Beauregard, Jura, P\u00E9rolles, Neuveville, Auge, Schoenberg, Places, Bourguillon"@en .
+@prefix ns69:	<http://www.w3.org/2006/03/wn/wn20/instances/> .
+dbpedia:Fribourg	dbpprop:wordnet_type	ns69:synset-city-noun-3 ;
+	dbpprop:website	"www.ville-fribourg.ch"@en ;
+	dbpprop:highest	"Sch\u00F6nberg"@en ;
+	dbpedia-owl:wikiPageExternalLink	<http://www.villastjean.com> ,
+		<http://www.ville-fribourg.ch> ,
+		<http://www.fotogalerien.ch/index.php?gallery=180&lang=2> ,
+		<http://www.markstravelnotes.com/europe/switzerland/canton_fribourg/fribourg/places_of_interest/cathedral_of_saint_nicholas/> ;
+	dbpedia-owl:country	dbpedia:Switzerland ;
+	dbpedia-owl:canton	dbpedia:Canton_of_Fribourg ;
+	dbpprop:source	"MeteoSwiss"@en ;
+	dbpprop:elevation	610 ;
+	dbpedia-owl:isoCodeRegion	"CH-FR" ;
+	dbpprop:municipalityType	"city"@en ;
+	dbpprop:twintowns	dbpedia:Rueil-Malmaison .
+<http://dbpedia.org/resource/Stade_Universitaire_Saint-L%C3%A9onard>	dbpprop:location	dbpedia:Fribourg ;
+	dbpedia-owl:location	dbpedia:Fribourg .
+dbpedia:Granges-Paccot	dbpprop:neighboringMunicipalities	dbpedia:Fribourg ;
+	dbpedia-owl:neighboringMunicipality	dbpedia:Fribourg ;
+	dbpedia-owl:canton	dbpedia:Fribourg .
+dbpedia:Fribourg_railway_station	dbpprop:municipality	dbpedia:Fribourg .
+<http://dbpedia.org/resource/ULEB_Cup_2007%E2%80%9308_Regular_Season_Group_E>	dbpprop:place	dbpedia:Fribourg .
+<http://dbpedia.org/resource/Jean-Baptiste_Girard_(pedagogue)>	dbpedia-owl:deathPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
+dbpedia:Patrick_Aebischer	dbpprop:birthPlace	dbpedia:Fribourg ;
+	dbpprop:placeOfBirth	dbpedia:Fribourg ;
+	dbpedia-owl:birthPlace	dbpedia:Fribourg .
