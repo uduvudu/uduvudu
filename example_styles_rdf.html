@@ -17,6 +17,10 @@
     </div>
 
     <script type="text/javascript">
+        // instantiate rdf-ext data object
+        var store = new rdf.LdpStore();
+        var source = 'http://dbpedia.org/resource/Fribourg';
+
         // something about what is going on
         document.getElementById('main').innerHTML =  ''
         + '<div class="alert alert-info">'
@@ -35,10 +39,6 @@
         template.graph('templates.ttl', function(graph, error) {
             if (!error) {styles.addAll(graph);}
         });
-
-        // instantiate rdf-ext data object
-        var store = new rdf.LdpStore();
-        var source = 'http://dbpedia.org/resource/Fribourg';
 
         // load triples
         store.graph(source, function (graph, error) {

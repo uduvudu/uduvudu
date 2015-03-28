@@ -227,27 +227,24 @@ uduvudu.helper.compileTemplate = function (templateSource) {
 };
 
 uduvudu.helper.getTemplate = function (templateName, device, language) {
+    var templateContent = ''
+    // get templates from stylesStore
     if (uduvudu.options.styles) {
         var styles = uduvudu.options.styles;
-        var templateSubject = '';
-        var templateN = styles.match(null, rdf.resolve('uv:templateId'), templateName);
-        _.each(templateN.toArray(), function(name) {
-            var found = _.first(styles.match(name.subject.toString(), rdf.resolve('uv:template'), null).toArray());
-            if (found) {
-                templateSubject = found.subject.toString();
-            }
+
+        styles.match(null, rdf.resolve('uv:templateId'), templateName).forEach(function (t) {
+            styles.match(t.subject, rdf.resolve('uv:template'), null).forEach(function (t) {
+                    templateContent = t.object.toString();
+            });
         });
-        if (templateSubject) {
-          var template = styles.match(templateSubject, rdf.resolve('uv:template'), null)
-          if (template.length) {
-            return template.toArray()[0].object.nominalValue;
-          }
-        }
     }
 
     // fallback look for template in html
     var elem = document.getElementById(templateName);
-    if (elem) { return elem.innerHTML; } else { return null; }
+    if (elem) {
+        templateContent =  elem.innerHTML;
+    }
+    return templateContent || null;
 };
 
 uduvudu.helper.templateHelper = {
@@ -558,7 +555,7 @@ uduvudu.matchers.createCombine = function(defArg) {
               )
             ]]),
             subgraph: subgraph,
-            order: def.order
+            order: def.order || 1000
           };
       }
 
@@ -627,7 +624,7 @@ uduvudu.matchers.createLink = function(defArg) {
                 )
               ]]),
             subgraph: filteredGraph,
-            order: def.order
+            order: def.order || 1000
           };
         }
       }
@@ -704,7 +701,7 @@ uduvudu.matchers.createPredicate = function(defArg) {
               }
             ]]),
             subgraph: filteredGraph,
-            order: def.order
+            order: def.order || 1000
           };
       }
 

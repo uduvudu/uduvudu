@@ -22,7 +22,11 @@
     </div>
 
     <script type="text/javascript">
-        // something about what is going on
+        // instantiate rdf-ext object
+        var store = new rdf.LdpStore();
+        var source = 'http://dbpedia.org/resource/Fribourg';
+
+       // something about what is going on
         document.getElementById('main').innerHTML =  ''
         + '<div class="alert alert-info">'
         + '  <button type="button" class="close" data-dismiss="alert">&times;</button>'
@@ -31,10 +35,6 @@
 
         // prepare visualizer templates for uduvudu
         $("#templates").load("templates.html");
-
-        // instantiate rdf-ext object
-        var store = new rdf.LdpStore();
-        var source = 'http://dbpedia.org/resource/Fribourg';
 
         // load triples
         store.graph(source, function (graph, error) {
