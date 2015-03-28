@@ -1,29 +1,674 @@
+@base <http://styles.uduvudu.org/basic> .
 @prefix uv: <http://www.uduvudu.org/2015/uduvudu#> .
-@prefix uvsb: <http://styles.uduvudu.org/basic#> .
 
-uvsb:rdfschema_label a uv:PredicateMatcher ;
-    uv:matcherName 'rdfschema_label' ;
+<#rdfschema_label> a uv:PredicateMatcher ;
+    uv:matcherName "rdfschema_label" ;
+    uv:order 1100000 ;
     uv:predicate <http://www.w3.org/2000/01/rdf-schema#label> ;
-    uv:order '10000';
-    uv:templateId 'title' ;
-    uv:templateVariable 'title' .
+    uv:templateId "title" ;
+    uv:templateVariable "title" .
 
-uvsb:skos_prefLabel a uv:PredicateMatcher ;
-    uv:matcherName 'skos_prefLabel' ;
+<#abstract> a uv:PredicateMatcher ;
+    uv:matcherName "abstract" ;
+    uv:order 6000000 ;
+    uv:predicate <http://dbpedia.org/ontology/abstract> ;
+    uv:templateId "abstract" ;
+    uv:templateVariable "abstract" .
+
+<#elevation> a uv:PredicateMatcher ;
+    uv:matcherName "elevation" ;
+    uv:order 9400000 ;
+    uv:predicate <http://dbpedia.org/ontology/elevation> ;
+    uv:templateId "elevation" .
+
+<#wikiPageRevisionID> a uv:PredicateMatcher ;
+    uv:matcherName "wikiPageRevisionID" ;
+    uv:order 20000 ;
+    uv:predicate <http://dbpedia.org/ontology/wikiPageRevisionID> ;
+    uv:templateId "wikiPageRevisionID" .
+
+<#skos_prefLabel> a uv:PredicateMatcher ;
+    uv:matcherName "skos_prefLabel" ;
+    uv:order 60000 ;
     uv:predicate <http://www.w3.org/2004/02/skos/core#prefLabel> ;
-    uv:order '10000';
-    uv:templateId 'title' ;
-    uv:templateVariable 'title' .
+    uv:templateId "title" ;
+    uv:templateVariable "title" .
 
-uvsb:comment a uv:PredicateMatcher ;
-    uv:matcherName 'comment' ;
+<#wikiPageID> a uv:PredicateMatcher ;
+    uv:matcherName "wikiPageID" ;
+    uv:order 20000 ;
+    uv:predicate <http://dbpedia.org/ontology/wikiPageID> ;
+    uv:templateId "wikiPageID" .
+
+<#area> a uv:PredicateMatcher ;
+    uv:matcherName "area" ;
+    uv:order 9300000 ;
+    uv:predicate <http://dbpedia.org/property/area> ;
+    uv:templateId "area" .
+
+<#website> a uv:PredicateMatcher ;
+    uv:matcherName "website" ;
+    uv:order 9500000 ;
+    uv:predicate <http://dbpedia.org/property/website> ;
+    uv:templateId "website" .
+
+<#long> a uv:PredicateMatcher ;
+    uv:matcherName "long" ;
+    uv:order 90000 ;
+    uv:predicate <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+    uv:templateId "text" .
+
+<#lat> a uv:PredicateMatcher ;
+    uv:matcherName "lat" ;
+    uv:order 90000 ;
+    uv:predicate <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+    uv:templateId "text" .
+
+<#city> a uv:PredicateMatcher ;
+    uv:matcherName "city" ;
+    uv:order 90000 ;
+    uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#city> ;
+    uv:templateId "text" .
+
+<#quote> a uv:PredicateMatcher ;
+    uv:matcherName "quote" ;
+    uv:order 50000 ;
+    uv:predicate <http://dbpedia.org/property/quote> ;
+    uv:templateId "quote" ;
+    uv:templateVariable "quote" .
+
+<#country> a uv:PredicateMatcher ;
+    uv:matcherName "country" ;
+    uv:order 90000 ;
+    uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#country> ;
+    uv:templateId "text" .
+
+<#street> a uv:PredicateMatcher ;
+    uv:matcherName "street" ;
+    uv:order 90000 ;
+    uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#street> ;
+    uv:templateId "text" .
+
+<#street2> a uv:PredicateMatcher ;
+    uv:matcherName "street2" ;
+    uv:order 90000 ;
+    uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#street2> ;
+    uv:templateId "text" .
+
+<#postalCode> a uv:PredicateMatcher ;
+    uv:matcherName "postalCode" ;
+    uv:order 90000 ;
+    uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#postalCode> ;
+    uv:templateId "text" .
+
+<#skos_altLabel> a uv:PredicateMatcher ;
+    uv:matcherName "skos_altLabel" ;
+    uv:order 60000 ;
+    uv:predicate <http://www.w3.org/2004/02/skos/core#altLabel> ;
+    uv:templateId "text" ;
+    uv:templateVariable "text" .
+
+<#janMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "janMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/janMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jan" .
+
+<#febMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "febMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/febMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "feb" .
+
+<#marMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "marMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/marMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "mar" .
+
+<#aprMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "aprMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/aprMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "apr" .
+
+<#mayMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "mayMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/mayMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "may" .
+
+<#firstName> a uv:PredicateMatcher ;
+    uv:matcherName "firstName" ;
+    uv:order 60000 ;
+    uv:predicate <http://xmlns.com/foaf/0.1/firstName> ;
+    uv:templateId "person_name" .
+
+<#junMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "junMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/junMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jun" .
+
+<#julMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "julMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/julMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jul" .
+
+<#augMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "augMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/augMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "aug" .
+
+<#sepMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "sepMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/sepMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "sep" .
+
+<#octMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "octMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/octMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "oct" .
+
+<#schema_name> a uv:PredicateMatcher ;
+    uv:matcherName "schema_name" ;
+    uv:order 60000 ;
+    uv:predicate <http://schema.org/name> ;
+    uv:templateId "title" ;
+    uv:templateVariable "title" .
+
+<#novMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "novMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/novMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "nov" .
+
+<#decMeanC> a uv:PredicateMatcher ;
+    uv:matcherName "decMeanC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/decMeanC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "dec" .
+
+<#janHighC> a uv:PredicateMatcher ;
+    uv:matcherName "janHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/janHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jan" .
+
+<#febHighC> a uv:PredicateMatcher ;
+    uv:matcherName "febHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/febHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "feb" .
+
+<#lastName> a uv:PredicateMatcher ;
+    uv:matcherName "lastName" ;
+    uv:order 60000 ;
+    uv:predicate <http://xmlns.com/foaf/0.1/lastName> ;
+    uv:templateId "person_name" .
+
+<#marHighC> a uv:PredicateMatcher ;
+    uv:matcherName "marHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/marHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "mar" .
+
+<#aprHighC> a uv:PredicateMatcher ;
+    uv:matcherName "aprHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/aprHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "apr" .
+
+<#mayHighC> a uv:PredicateMatcher ;
+    uv:matcherName "mayHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/mayHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "may" .
+
+<#junHighC> a uv:PredicateMatcher ;
+    uv:matcherName "junHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/junHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jun" .
+
+<#julHighC> a uv:PredicateMatcher ;
+    uv:matcherName "julHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/julHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jul" .
+
+<#augHighC> a uv:PredicateMatcher ;
+    uv:matcherName "augHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/augHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "aug" .
+
+<#schema_description> a uv:PredicateMatcher ;
+    uv:matcherName "schema_description" ;
+    uv:order 90000 ;
+    uv:predicate <http://schema.org/description> ;
+    uv:templateId "text" ;
+    uv:templateVariable "text" .
+
+<#sepHighC> a uv:PredicateMatcher ;
+    uv:matcherName "sepHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/sepHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "sep" .
+
+<#octHighC> a uv:PredicateMatcher ;
+    uv:matcherName "octHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/octHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "oct" .
+
+<#novHighC> a uv:PredicateMatcher ;
+    uv:matcherName "novHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/novHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "nov" .
+
+<#name> a uv:PredicateMatcher ;
+    uv:matcherName "name" ;
+    uv:order 60000 ;
+    uv:predicate <http://xmlns.com/foaf/0.1/name> ;
+    uv:templateId "name" .
+
+<#decHighC> a uv:PredicateMatcher ;
+    uv:matcherName "decHighC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/decHighC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "dec" .
+
+<#janLowC> a uv:PredicateMatcher ;
+    uv:matcherName "janLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/janLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jan" .
+
+<#febLowC> a uv:PredicateMatcher ;
+    uv:matcherName "febLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/febLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "feb" .
+
+<#marLowC> a uv:PredicateMatcher ;
+    uv:matcherName "marLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/marLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "mar" .
+
+<#aprLowC> a uv:PredicateMatcher ;
+    uv:matcherName "aprLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/aprLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "apr" .
+
+<#mayLowC> a uv:PredicateMatcher ;
+    uv:matcherName "mayLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/mayLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "may" .
+
+<#junLowC> a uv:PredicateMatcher ;
+    uv:matcherName "junLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/junLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jun" .
+
+<#purl_description> a uv:PredicateMatcher ;
+    uv:matcherName "purl_description" ;
+    uv:order 90000 ;
+    uv:predicate <http://purl.org/dc/elements/1.1/description> ;
+    uv:templateId "text" ;
+    uv:templateVariable "text" .
+
+<#julLowC> a uv:PredicateMatcher ;
+    uv:matcherName "julLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/julLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jul" .
+
+<#augLowC> a uv:PredicateMatcher ;
+    uv:matcherName "augLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/augLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "aug" .
+
+<#license> a uv:PredicateMatcher ;
+    uv:matcherName "license" ;
+    uv:order 20000 ;
+    uv:predicate <http://purl.org/dc/terms/license> ;
+    uv:templateId "license" .
+
+<#sepLowC> a uv:PredicateMatcher ;
+    uv:matcherName "sepLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/sepLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "sep" .
+
+<#octLowC> a uv:PredicateMatcher ;
+    uv:matcherName "octLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/octLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "oct" .
+
+<#novLowC> a uv:PredicateMatcher ;
+    uv:matcherName "novLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/novLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "nov" .
+
+<#decLowC> a uv:PredicateMatcher ;
+    uv:matcherName "decLowC" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/decLowC> ;
+    uv:templateId "text" ;
+    uv:templateVariable "dec" .
+
+<#janHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "janHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/janHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jan" .
+
+<#febHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "febHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/febHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "feb" .
+
+<#marHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "marHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/marHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "mar" .
+
+<#aprHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "aprHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/aprHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "apr" .
+
+<#purl_title> a uv:PredicateMatcher ;
+    uv:matcherName "purl_title" ;
+    uv:order 1000000 ;
+    uv:predicate <http://purl.org/dc/terms/title> ;
+    uv:templateId "title" .
+
+<#mayHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "mayHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/mayHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "may" .
+
+<#created> a uv:PredicateMatcher ;
+    uv:matcherName "created" ;
+    uv:order 20000 ;
+    uv:predicate <http://purl.org/dc/terms/created> ;
+    uv:templateId "created" .
+
+<#junHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "junHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/junHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jun" .
+
+<#julHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "julHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/julHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "jul" .
+
+<#augHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "augHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/augHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "aug" .
+
+<#sepHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "sepHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/sepHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "sep" .
+
+<#octHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "octHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/octHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "oct" .
+
+<#novHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "novHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/novHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "nov" .
+
+<#decHumidity> a uv:PredicateMatcher ;
+    uv:matcherName "decHumidity" ;
+    uv:order 9000000 ;
+    uv:predicate <http://dbpedia.org/property/decHumidity> ;
+    uv:templateId "text" ;
+    uv:templateVariable "dec" .
+
+<#depiction> a uv:PredicateMatcher ;
+    uv:matcherName "depiction" ;
+    uv:order 1000000 ;
+    uv:predicate <http://xmlns.com/foaf/0.1/depiction> ;
+    uv:templateId "img" ;
+    uv:templateVariable "img_url" .
+
+<#pmid> a uv:PredicateMatcher ;
+    uv:matcherName "pmid" ;
+    uv:order 80000 ;
+    uv:predicate <http://purl.org/ontology/bibo/pmid> ;
+    uv:templateId "pmid" .
+
+<#text> a uv:PredicateMatcher ;
+    uv:matcherName "text" ;
+    uv:order 90000 ;
+    uv:predicate <http://rdfs.org/sioc/ns#content> ;
+    uv:templateId "text" .
+
+
+<#comment> a uv:PredicateMatcher ;
+    uv:matcherName "comment" ;
+    uv:order 90000 ;
     uv:predicate <http://www.w3.org/2000/01/rdf-schema#comment> ;
-    uv:order '10000';
-    uv:templateId 'text' ;
-    uv:templateVariable 'text' .
+    uv:templateId "text" ;
+    uv:templateVariable "text" .
 
-uvsb:label_comment a uv:CombineMatcher ;
-    uv:matcherName 'label_comment' ;
-    uv:order '10000';
-    uv:templateId 'label_comment' ;
-    uv:combineIds 'rdfschema_label','comment' .
+<#link_addressPart> a uv:LinkMatcher ;
+    uv:linkIds "addressPartCombine" ;
+    uv:matcherName "addressPart" ;
+    uv:order 1000000 ;
+    uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#address> ;
+    uv:templateId "address" ;
+    uv:templateVariable "addressLink" .
+
+<#link_creator> a uv:LinkMatcher ;
+    uv:linkIds "rdfschema_label" ;
+    uv:matcherName "creator" ;
+    uv:order 20000 ;
+    uv:predicate <http://purl.org/dc/terms/creator> ;
+    uv:templateId "creator" ;
+    uv:templateVariable "creator" .
+
+<#link_neighboringMunicipality> a uv:LinkMatcher ;
+    uv:linkIds "rdfschema_label" ;
+    uv:matcherName "neighboringMunicipality" ;
+    uv:order 4000000 ;
+    uv:predicate <http://dbpedia.org/property/neighboringMunicipalities> ;
+    uv:templateId "neighboringMunicipality" ;
+    uv:templateVariable "neighboringMunicipality" .
+
+
+<#combine_highC> a uv:CombineMatcher ;
+    uv:combineIds "aprHighC", "augHighC", "decHighC", "febHighC", "janHighC", "julHighC", "junHighC", "marHighC", "mayHighC", "novHighC", "octHighC", "sepHighC" ;
+    uv:matcherName "highC" ;
+    uv:order 8000000 ;
+    uv:templateId "temp" .
+
+<#combine_tempC> a uv:CombineMatcher ;
+    uv:combineIds "highC", "lowC", "meanC" ;
+    uv:matcherName "tempC" ;
+    uv:order 8000000 ;
+    uv:templateId "mhltemp" .
+
+<#combine_multiple_name_4> a uv:CombineMatcher ;
+    uv:combineIds "schema_name", "skos_prefLabel" ;
+    uv:matcherName "multiple_name_4" ;
+    uv:order 10000000 ;
+    uv:templateId "title" .
+
+<#combine_meanC> a uv:CombineMatcher ;
+    uv:combineIds "aprMeanC", "augMeanC", "decMeanC", "febMeanC", "janMeanC", "julMeanC", "junMeanC", "marMeanC", "mayMeanC", "novMeanC", "octMeanC", "sepMeanC" ;
+    uv:matcherName "meanC" ;
+    uv:order 8000000 ;
+    uv:templateId "temp" .
+
+<#combine_multiple_name_2> a uv:CombineMatcher ;
+    uv:combineIds "rdfschema_label", "schema_name" ;
+    uv:matcherName "multiple_name_2" ;
+    uv:order 10000000 ;
+    uv:templateId "title" .
+
+<#combine_humi> a uv:CombineMatcher ;
+    uv:combineIds "aprHumidity", "augHumidity", "decHumidity", "febHumidity", "janHumidity", "julHumidity", "junHumidity", "marHumidity", "mayHumidity", "novHumidity", "octHumidity", "sepHumidity" ;
+    uv:matcherName "humi" ;
+    uv:order 8000000 ;
+    uv:templateId "humidity" .
+
+<#combine_community> a uv:CombineMatcher ;
+    uv:combineIds "depiction", "label_comment" ;
+    uv:matcherName "community" ;
+    uv:order 10010000 ;
+    uv:templateId "community" .
+
+<#combine_wikiInfo> a uv:CombineMatcher ;
+    uv:combineIds "wikiPageID", "wikiPageRevisionID" ;
+    uv:matcherName "wikiInfo" ;
+    uv:order 20000 ;
+    uv:templateId "wikiInfo" .
+
+<#combine_addressBlock> a uv:CombineMatcher ;
+    uv:combineIds "addressPart", "person_name" ;
+    uv:matcherName "addressBlock" ;
+    uv:order 10000000 ;
+    uv:templateId "address" .
+
+<#combine_multiple_name_1> a uv:CombineMatcher ;
+    uv:combineIds "rdfschema_label", "schema_name", "skos_prefLabel" ;
+    uv:matcherName "multiple_name_1" ;
+    uv:order 10000000 ;
+    uv:templateId "title" .
+
+<#combine_address_line2> a uv:CombineMatcher ;
+    uv:combineIds "street", "street2" ;
+    uv:matcherName "address_line2" ;
+    uv:order 10000000 ;
+    uv:templateId "address_line2" .
+
+<#combine_person_name> a uv:CombineMatcher ;
+    uv:combineIds "firstName", "lastName" ;
+    uv:matcherName "person_name" ;
+    uv:order 10000000 ;
+    uv:templateId "person_name" .
+
+<#combine_createMeta> a uv:CombineMatcher ;
+    uv:combineIds "created", "creator" ;
+    uv:matcherName "createMeta" ;
+    uv:order 10000000 ;
+    uv:templateId "createMeta" .
+
+<#combine_lowC> a uv:CombineMatcher ;
+    uv:combineIds "aprLowC", "augLowC", "decLowC", "febLowC", "janLowC", "julLowC", "junLowC", "marLowC", "mayLowC", "novLowC", "octLowC", "sepLowC" ;
+    uv:matcherName "lowC" ;
+    uv:order 8000000 ;
+    uv:templateId "temp" .
+
+<#combine_multiple_name_3> a uv:CombineMatcher ;
+    uv:combineIds "rdfschema_label", "skos_prefLabel" ;
+    uv:matcherName "multiple_name_3" ;
+    uv:order 10000000 ;
+    uv:templateId "title" .
+
+<#combine_location> a uv:CombineMatcher ;
+    uv:combineIds "lat", "long" ;
+    uv:matcherName "location" ;
+    uv:order 9000000 ;
+    uv:templateId "location" .
+
+<#combine_addressPartCombine> a uv:CombineMatcher ;
+    uv:combineIds "address_line2", "address_line3" ;
+    uv:matcherName "addressPartCombine" ;
+    uv:order 10000000 ;
+    uv:templateId "address" .
+
+<#combine_community_stat> a uv:CombineMatcher ;
+    uv:combineIds "area", "elevation", "website" ;
+    uv:matcherName "community_stat" ;
+    uv:order 10010000 ;
+    uv:templateId "community_stat" .
+
+<#combine_label_comment> a uv:CombineMatcher ;
+    uv:combineIds "comment", "rdfschema_label" ;
+    uv:matcherName "label_comment" ;
+    uv:order 10100000 ;
+    uv:templateId "label_comment" .
+
+<#combine_address_line3> a uv:CombineMatcher ;
+    uv:combineIds "city", "country", "postalCode" ;
+    uv:matcherName "address_line3" ;
+    uv:order 10000000 ;
+    uv:templateId "address_line3" .

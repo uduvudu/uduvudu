@@ -36,12 +36,9 @@ uduvudu.initialize = function () {
         });
 
         // load, if provided, RDF matcher
-        if (uduvudu.options.styles) {
-            var styles = uduvudu.options.styles;
-            _.each(uduvudu.matchers, function(factory) {
-                uduvudu.helper.loadMatcher(factory.rdfClass,factory);
-            });
-        }
+        _.each(uduvudu.matchers, function(factory) {
+            uduvudu.helper.loadMatcher(factory.rdfClass,factory);
+        });
 
         uduvudu.ready = true;
     }
@@ -482,30 +479,33 @@ uduvudu.helper.addMatcher = function (matcher) {
 };
 
 uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
-    var styles = uduvudu.options.styles;
-    var matcherDef = styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass));
-        _.each(matcherDef.toArray(), function (m) {
-            var properties = styles.match(m.subject.nominalValue,null,null);
-            if (properties.length) {
-                var arr = _.map(properties.toArray(), function (p) {
-                    return [uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()];
-                });
-                var def = _.object(
-                    _.map(
-                        _.groupBy(
-                            arr, function(a) {return _.first(a);}
-                            ),
-                        function (b) {
-                            if (b.length == 1){
-                                return _.first(b);
-                            } else {
-                                return [_.first(_.first(b)), _.map(b, function(c) {return _.last(c);})];
-                            }
-                        })
-                    );
-                uduvudu.helper.addMatcher(matcherFunction(def));
-            }
-        })
+    if (uduvudu.options.styles) {
+        var styles = uduvudu.options.styles;
+        styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass)).forEach( function (m) {
+            var propArray = [];
+            styles.match(m.subject, null, null).forEach( function (p) {
+                propArray.push([uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]);
+            });
+
+            // fold duplicated properties into an array
+            var def = _.object(
+                _.map(
+                    _.groupBy(
+                        propArray,
+                        function(a) {return _.first(a);}
+                    ),
+                    function (b) {
+                        if (b.length == 1){
+                            return _.first(b);
+                        } else {
+                            return [_.first(_.first(b)), _.map(b, function(c) {return _.last(c);})];
+                        }
+                    })
+                );
+            // use factory function to create new matcher
+            uduvudu.helper.addMatcher(matcherFunction(def));
+        });
+    };
 }
 
 
