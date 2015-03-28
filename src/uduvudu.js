@@ -317,6 +317,9 @@ uduvudu.helper.handleUnknown = function (graph) {
             predicate: {l: {undefined:  t.predicate.toString()}},
             name: {l: {undefined: uduvudu.helper.nameFromPredicate(t.predicate)}},
             text: {l: {undefined:  t.object.toString()}},
+            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.nominalValue) }},
+            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.nominalValue) }},
+            o: {l: {undefined: uduvudu.helper.getTerm(t.object.nominalValue) }},
             t: {
                 name: "literal"
             },
@@ -345,6 +348,9 @@ uduvudu.helper.handleUnknown = function (graph) {
             subject: {l: {undefined: uduvudu.helper.prepareTriple(t.subject)}},
             predicate: {l: {undefined: uduvudu.helper.prepareTriple(t.predicate)}},
             object: {l: {undefined: uduvudu.helper.prepareTriple(t.object)}},
+            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.nominalValue) }},
+            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.nominalValue) }},
+            o: {l: {undefined: uduvudu.helper.getTerm(t.object.nominalValue) }},
             t: {
                 name: "unknown"
             },
