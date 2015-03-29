@@ -312,7 +312,7 @@ uduvudu.helper.matchArrayOfFuncs = function(graph, resource, names) {
 };
 
 uduvudu.helper.prepareTriple = function(element) {
-    return '<a href="?uri='+element.nominalValue+'">'+uduvudu.helper.getTerm(element.nominalValue)+'</a>';
+    return '<a href="?res='+element.nominalValue+'">'+uduvudu.helper.getTerm(element.nominalValue)+'</a>';
 };
 
 uduvudu.helper.nameFromPredicate = function(element) {
