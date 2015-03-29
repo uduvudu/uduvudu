@@ -201,8 +201,30 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
               uduvudu.templateCache[templateName] = compTemplate;
           } else {
               // fallback if no template found
-              console.debug('Uduvudu:','NoTemplateFound', "There was no template with the name '"+templateName+"' found.");
-              compTemplate = uduvudu.helper.compileTemplate('<div><span title="missing template">'+templateName+'</span>: <%-'+_.first(_.keys(finalContext))+'.u%></div>');
+              console.debug('Uduvudu:','NoTemplateFound', "There was no template with the name '"+templateName+"' found.", finalContext);
+              var currentContext = '';
+              // get object
+              var contextObject = _.find(
+                      finalContext,
+                      function(p) {currentContext = p; return _.isObject(p);}
+                      );
+              // get all subtemplates
+              var subTemplates = _.map(
+                      _.filter( contextObject
+                          ,
+                          function (m) {return m.m;}
+                          ),
+                      function (t) {return '<%=template('+currentContext.v+'.'+t.v+')%>\n';}
+                      );
+              // no subtemplates found
+              if(_.isEmpty(subTemplates)) {
+                  // render text plain
+                  compTemplate = uduvudu.helper.compileTemplate('<div>' + contextObject.v +': ' + contextObject.u  + '</div>');
+              } else {
+                  // get subTemplates
+                  compTemplate = uduvudu.helper.compileTemplate('<div>' + subTemplates.join('')  + '</div>');
+              }
+              console.log(subTemplates.join(''));
           }
       }
 
