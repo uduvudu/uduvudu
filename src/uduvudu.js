@@ -341,7 +341,7 @@ uduvudu.helper.handleUnknown = function (graph) {
             text: {l: {undefined:  t.object.toString()}},
             s: {l: {undefined: uduvudu.helper.getTerm(t.subject.nominalValue) }},
             p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.nominalValue) }},
-            o: {l: {undefined: uduvudu.helper.getTerm(t.object.nominalValue) }},
+            o: {l: {undefined: t.object.nominalValue }},
             t: {
                 name: "literal"
             },
