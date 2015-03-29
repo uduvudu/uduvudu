@@ -12,12 +12,12 @@ uvsb:template_mtitle a uv:Template ;
 uvsb:template_community a uv:Template ;
     uv:templateId 'community' ;
     uv:template '''
-  <div style="max-height: 270px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
-  <div style=" width: 235px; overflow: hidden; margin: -4px;" class="pull-right">
-      <img style="min-width: 235px; min-height: 235px; max-width: 300px; max-height: 300px; margin-left: 10px;" src="<%-community.img_url.u%>" />
-  </div>
-    <%=template(community.label_comment)%>
-  </div>
+    <div style="max-height: 300px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
+    <div style=" width: 235px; overflow: hidden; margin: -4px; text-align: right;" class="pull-right">
+        <img style="max-height: 300px; max-width: 235px; margin-bottom: 10px; margin-left: 10px;" src="<%-community.img_url.u%>" />
+    </div>
+        <%=template(community.label_comment)%>
+    </div>
 ''' .
 
 uvsb:template_label_comment a uv:Template ;
@@ -38,16 +38,16 @@ uvsb:template_location a uv:Template ;
 uvsb:template_location_js a uv:Template ;
     uv:templateId 'location_js' ;
     uv:template '''
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAFRTcPPyYit9ERj9COlgpgYW-Ve-lUeUs&sensor=false&callback=initializeMap";
-        document.body.appendChild(script);
-        
-        initializeMap = function () {
-            var myLatlng = new google.maps.LatLng(<%-location.lat.u%>, <%-location.long.u%>);
-            var mapOptions = { center: myLatlng, disableDefaultUI: true, zoomControl: true, zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP };
-            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        };
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAFRTcPPyYit9ERj9COlgpgYW-Ve-lUeUs&sensor=false&callback=initializeMap";
+    document.body.appendChild(script);
+    
+    initializeMap = function () {
+        var myLatlng = new google.maps.LatLng(<%-location.lat.u%>, <%-location.long.u%>);
+        var mapOptions = { center: myLatlng, disableDefaultUI: true, zoomControl: true, zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    };
 ''' .
 
 uvsb:template_community a uv:Template ;
