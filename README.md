@@ -1,7 +1,7 @@
 UDUVUDU 
 -------
 <img src="/doc/pr/logo.png" align="right" alt="Triple Mustache. Yo." />
-**Uduvudu** aims to be an easy to use **extensible** and **adaptive** RDF visualization library. With Uduvudu you can create an inteface screen by defining a graph and providing reusable __matchers__ as also __templates__. 
+**Uduvudu** aims to be an easy to use **extensible** and **adaptive** RDF visualization library. With Uduvudu you can create an interface screen by defining a graph and providing reusable __matchers__ as also __templates__. 
 
 The aim of this framework is to consume/render roughly the amount of triples which can be presented on one page or one screen. This can be done in a extremly flexible and also reusable way. The cost you are paying it that the framework is inherently not able to process big ( >10'000 triples ) amounts of data.
 
