@@ -58,6 +58,7 @@ var predicateMatchers = [
     {matcherName: "street", predicate: "http://www.w3.org/2000/10/swap/pim/contact#street", templateId: "text", order: 90000 },
     {matcherName: "street2", predicate: "http://www.w3.org/2000/10/swap/pim/contact#street2", templateId: "text", order: 90000 },
     {matcherName: "postalCode", predicate: "http://www.w3.org/2000/10/swap/pim/contact#postalCode", templateId: "text", order: 90000 },
+    {matcherName: "canton", predicate: "http://dbpedia.org/ontology/canton",templateVariable: "link", templateId: "link", order: 90000 },
     {matcherName: "janMeanC", predicate: "http://dbpedia.org/property/janMeanC", templateId: "text", templateVariable: "jan", order: 9000000 },
     {matcherName: "febMeanC", predicate: "http://dbpedia.org/property/febMeanC", templateId: "text", templateVariable: "feb", order: 9000000 },
     {matcherName: "marMeanC", predicate: "http://dbpedia.org/property/marMeanC", templateId: "text", templateVariable: "mar", order: 9000000 },
