@@ -30,26 +30,26 @@ uduvudu_edit.stage_combine = function (name, resource) {
     uduvudu_edit.stageCombines = _.union(uduvudu_edit.stageCombines, [{name: name, resource: resource}]);
     var template = _.template(uduvudu_edit.tpl.combine);
     var id = _.uniqueId('tpl_');
-    var html = template({def: {combines: uduvudu_edit.stageCombines, templateVariable: id, matcherName: id, templateId: id, order: 100000}});
+    var html = template({def: {combines: uduvudu_edit.stageCombines, templateVariable: id, matcherName: id, asbtractTemplate: id, order: 100000}});
     document.getElementById('edit_area').innerHTML = html
 }
 
 uduvudu_edit.stage_predicate = function (predicate, term) {
     var template = _.template(uduvudu_edit.tpl.predicate);
-    var html = template({def: {predicate: predicate, templateVariable: term, matcherName: term, templateId: term, order: 100000}});
+    var html = template({def: {predicate: predicate, templateVariable: term, matcherName: term, abstractTemplate: term, order: 100000}});
     document.getElementById('edit_area').innerHTML = html;
 }
 
 uduvudu_edit.add_predicate = function () {
     var def = {};
     def.templateVariable = document.getElementById('frm_templateVariable').value;
-    def.templateId = document.getElementById('frm_templateId').value;
+    def.asbtractTemplate = document.getElementById('frm_asbtractTemplate').value;
     def.predicate = document.getElementById('frm_predicate').value;
     def.matcherName = document.getElementById('frm_matcherName').value;
     def.order = document.getElementById('frm_order').value;
     var matcher = uduvudu.matchers.createPredicate(def)
     uduvudu.helper.addMatcher(matcher);
-    uduvudu.helper.addVisualizer(document.getElementById('frm_template').value, def.templateId);
+    uduvudu.helper.addVisualizer(document.getElementById('frm_template').value, def.asbtractTemplate);
     document.getElementById('edit_area').innerHTML = "";
     uduvudu.process();
 }
@@ -57,14 +57,14 @@ uduvudu_edit.add_predicate = function () {
 uduvudu_edit.add_combine = function () {
     var def = {};
     def.templateVariable = document.getElementById('frm_templateVariable').value;
-    def.templateId = document.getElementById('frm_templateId').value;
+    def.asbtractTemplate = document.getElementById('frm_asbtractTemplate').value;
     def.matcherName = document.getElementById('frm_matcherName').value;
     def.combineIds = _.pluck(uduvudu_edit.stageCombines, 'name');
     def.order = document.getElementById('frm_order').value;
     console.log(def);
     var matcher = uduvudu.matchers.createCombine(def)
     uduvudu.helper.addMatcher(matcher);
-    uduvudu.helper.addVisualizer(document.getElementById('frm_template').value, def.templateId);
+    uduvudu.helper.addVisualizer(document.getElementById('frm_template').value, def.asbtractTemplate);
     document.getElementById('edit_area').innerHTML = "";
     uduvudu_edit.stageCombines = [];
     uduvudu.process();
@@ -222,8 +222,8 @@ uduvudu_edit.tpl.combine = ''
 +'<div id="template">\n'
 +'      <h3>template</h3>\n'
 +'      <div class="form-group">\n'
-+'         <label for="frm_templateId">Template ID :</label>\n'
-+'         <input class="form-control" id="frm_templateId" value="<%-def.templateId%>">\n'
++'         <label for="frm_asbtractTemplate">Abstract Template :</label>\n'
++'         <input class="form-control" id="frm_asbtractTemplate" value="<%-def.asbtractTemplate%>">\n'
 +'      </div>\n'
 +'      <div class="form-group">\n'
 +'          <textarea rows="5" class="form-control" id="frm_template">&lt;div class="uv"&gt;\n'
@@ -257,8 +257,8 @@ uduvudu_edit.tpl.predicate = ''
 +'<div id="template">\n'
 +'      <h3>template</h3>\n'
 +'      <div class="form-group">\n'
-+'         <label for="frm_templateId">Template ID :</label>\n'
-+'         <input class="form-control" id="frm_templateId" value="<%-def.templateId%>">\n'
++'         <label for="frm_asbtractTemplate">Abstract Template :</label>\n'
++'         <input class="form-control" id="frm_asbtractTemplate" value="<%-def.asbtractTemplate%>">\n'
 +'      </div>\n'
 +'      <div class="form-group">\n'
 +'          <textarea rows="5" style="font-family: Courier New" class="form-control" id="frm_template">&lt;div class="uv"&gt;\n'

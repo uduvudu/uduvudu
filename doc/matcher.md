@@ -9,7 +9,7 @@ The predicateMatcher does simply match predicates which have a literal in subjec
 ## predicateMatcher
 A predicate matcher is e.g. specified the following:
 
-`{matcherName: "lastName", predicate: "http://xmlns.com/foaf/0.1/lastName", templateId: "person_name", order: 60000 }`
+`{matcherName: "lastName", predicate: "http://xmlns.com/foaf/0.1/lastName", abstractTemplate: "person_name", order: 60000 }`
 
   * matcherName
   
@@ -17,7 +17,7 @@ A predicate matcher is e.g. specified the following:
   * predicate
   
     The fully specified name of the predicate.
-  * templateId
+  * abstractTemplate
   
     The attached template which can render this predicate best.
   * order
@@ -33,26 +33,26 @@ A predicate matcher is e.g. specified the following:
 ## combineMatcher
 To group different values together on a logical level, and to be able to reuse the same templates we can use the combine matcher. It takes multiple matchers and puts them together.
 
-`{matcherName: "person_name", templateId: "person_name", combineIds: ['lastName','firstName'], order: 10000000 }`
+`{matcherName: "person_name", abstractTemplate: "person_name", combineIds: ['lastName','firstName'], order: 10000000 }`
   * combineIds
   
     Specifies which matcher output is combine together.
   * matcherName
   * predicate
-  * templateId
+  * abstractTemplate
   * order
   * (optional)templateVariable
 
 ## linkMatcher
 The different single or combined predicates can be connected to other groups by the help of the link matcher. Like this a matched structure is able to be combined using multiple levels of a tree. 
 
-`{matcherName: "inventor", predicate: "http://www.patexpert.org/ontologies/pmo.owl#inventorOf", resourcePosition: "object", templateVariable: "inventor", templateId: "inventor", order: 1000000, linkIds: ['lastName']}`
+`{matcherName: "inventor", predicate: "http://www.patexpert.org/ontologies/pmo.owl#inventorOf", resourcePosition: "object", templateVariable: "inventor", abstractTemplate: "inventor", order: 1000000, linkIds: ['lastName']}`
   * linkIds
   
     Specifies which matcher is attached to this link. It is possible to name here all kinds of matchers.
   * matcherName
   * predicate
-  * templateId
+  * abstractTemplate
   * order
   * (optional)templateVariable
   * (optional)resourcePosition

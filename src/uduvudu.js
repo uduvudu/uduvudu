@@ -2,7 +2,7 @@
 'use strict';
 
 var uduvudu = {
-  version: "0.5.0",
+  version: "0.6.0",
   matchFuncs: [],
   templateCache: {}
 };
@@ -251,7 +251,7 @@ uduvudu.helper.getTemplate = function (templateName, device, language) {
     if (uduvudu.options.styles) {
         var styles = uduvudu.options.styles;
 
-        styles.match(null, rdf.resolve('uv:templateId'), templateName).forEach(function (t) {
+        styles.match(null, rdf.resolve('uv:abstractTemplate'), templateName).forEach(function (t) {
             styles.match(t.subject, rdf.resolve('uv:template'), null).forEach(function (t) {
                     templateContent = t.object.toString();
             });
@@ -571,7 +571,7 @@ uduvudu.matchers.createCombine = function(defArg) {
                 }, _.first(proposals).context),
                 {
                     t: {
-                           name: def.templateId,
+                           name: def.abstractTemplate,
                        },
                     m: {
                            name: def.matcherName,
@@ -639,7 +639,7 @@ uduvudu.matchers.createLink = function(defArg) {
                   _.map(proposals, function(proposal){return proposal.context;}),
                     {
                         t: {
-                               name: def.templateId
+                               name: def.abstractTemplate
                            },
                         m: {
                                type: 'link',
@@ -717,7 +717,7 @@ uduvudu.matchers.createPredicate = function(defArg) {
                    }
                  })),
                 t: {
-                       name: def.templateId
+                       name: def.abstractTemplate
                    },
                 m: {
                        name: def.matcherName,
