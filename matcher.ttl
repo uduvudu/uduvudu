@@ -1,531 +1,532 @@
 @base <http://styles.uduvudu.org/basic> .
 @prefix uv: <http://www.uduvudu.org/2015/uduvudu#> .
+@prefix uvsat: <http://styles.uduvudu.org/abstractTemplate#> .
 
 <#rdfschema_label> a uv:PredicateMatcher ;
     uv:matcherName "rdfschema_label" ;
     uv:order 1100000 ;
     uv:predicate <http://www.w3.org/2000/01/rdf-schema#label> ;
-    uv:abstractTemplate "title" ;
+    uv:abstractTemplate uvsat:title ;
     uv:templateVariable "title" .
 
 <#abstract> a uv:PredicateMatcher ;
     uv:matcherName "abstract" ;
     uv:order 6000000 ;
     uv:predicate <http://dbpedia.org/ontology/abstract> ;
-    uv:abstractTemplate "abstract" ;
+    uv:abstractTemplate uvsat:abstract ;
     uv:templateVariable "abstract" .
 
 <#elevation> a uv:PredicateMatcher ;
     uv:matcherName "elevation" ;
     uv:order 9400000 ;
     uv:predicate <http://dbpedia.org/ontology/elevation> ;
-    uv:abstractTemplate "elevation" .
+    uv:abstractTemplate uvsat:elevation .
 
 <#wikiPageRevisionID> a uv:PredicateMatcher ;
     uv:matcherName "wikiPageRevisionID" ;
     uv:order 20000 ;
     uv:predicate <http://dbpedia.org/ontology/wikiPageRevisionID> ;
-    uv:abstractTemplate "wikiPageRevisionID" .
+    uv:abstractTemplate uvsat:wikiPageRevisionID .
 
 <#skos_prefLabel> a uv:PredicateMatcher ;
     uv:matcherName "skos_prefLabel" ;
     uv:order 60000 ;
     uv:predicate <http://www.w3.org/2004/02/skos/core#prefLabel> ;
-    uv:abstractTemplate "title" ;
+    uv:abstractTemplate uvsat:title ;
     uv:templateVariable "title" .
 
 <#wikiPageID> a uv:PredicateMatcher ;
     uv:matcherName "wikiPageID" ;
     uv:order 20000 ;
     uv:predicate <http://dbpedia.org/ontology/wikiPageID> ;
-    uv:abstractTemplate "wikiPageID" .
+    uv:abstractTemplate uvsat:wikiPageID .
 
 <#area> a uv:PredicateMatcher ;
     uv:matcherName "area" ;
     uv:order 9300000 ;
     uv:predicate <http://dbpedia.org/property/area> ;
-    uv:abstractTemplate "area" .
+    uv:abstractTemplate uvsat:area .
 
 <#website> a uv:PredicateMatcher ;
     uv:matcherName "website" ;
     uv:order 9500000 ;
     uv:predicate <http://dbpedia.org/property/website> ;
-    uv:abstractTemplate "website" .
+    uv:abstractTemplate uvsat:website .
 
 <#long> a uv:PredicateMatcher ;
     uv:matcherName "long" ;
     uv:order 90000 ;
     uv:predicate <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
-    uv:abstractTemplate "text" .
+    uv:abstractTemplate uvsat:text .
 
 <#lat> a uv:PredicateMatcher ;
     uv:matcherName "lat" ;
     uv:order 90000 ;
     uv:predicate <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
-    uv:abstractTemplate "text" .
+    uv:abstractTemplate uvsat:text .
 
 <#city> a uv:PredicateMatcher ;
     uv:matcherName "city" ;
     uv:order 90000 ;
     uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#city> ;
-    uv:abstractTemplate "text" .
+    uv:abstractTemplate uvsat:text .
 
 <#quote> a uv:PredicateMatcher ;
     uv:matcherName "quote" ;
     uv:order 50000 ;
     uv:predicate <http://dbpedia.org/property/quote> ;
-    uv:abstractTemplate "quote" ;
+    uv:abstractTemplate uvsat:quote ;
     uv:templateVariable "quote" .
 
 <#country> a uv:PredicateMatcher ;
     uv:matcherName "country" ;
     uv:order 90000 ;
     uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#country> ;
-    uv:abstractTemplate "text" .
+    uv:abstractTemplate uvsat:text .
 
 <#street> a uv:PredicateMatcher ;
     uv:matcherName "street" ;
     uv:order 90000 ;
     uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#street> ;
-    uv:abstractTemplate "text" .
+    uv:abstractTemplate uvsat:text .
 
 <#street2> a uv:PredicateMatcher ;
     uv:matcherName "street2" ;
     uv:order 90000 ;
     uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#street2> ;
-    uv:abstractTemplate "text" .
+    uv:abstractTemplate uvsat:text .
 
 <#postalCode> a uv:PredicateMatcher ;
     uv:matcherName "postalCode" ;
     uv:order 90000 ;
     uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#postalCode> ;
-    uv:abstractTemplate "text" .
+    uv:abstractTemplate uvsat:text .
 
 <#skos_altLabel> a uv:PredicateMatcher ;
     uv:matcherName "skos_altLabel" ;
     uv:order 60000 ;
     uv:predicate <http://www.w3.org/2004/02/skos/core#altLabel> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "text" .
 
 <#janMeanC> a uv:PredicateMatcher ;
     uv:matcherName "janMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/janMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jan" .
 
 <#febMeanC> a uv:PredicateMatcher ;
     uv:matcherName "febMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/febMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "feb" .
 
 <#marMeanC> a uv:PredicateMatcher ;
     uv:matcherName "marMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/marMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "mar" .
 
 <#aprMeanC> a uv:PredicateMatcher ;
     uv:matcherName "aprMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/aprMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "apr" .
 
 <#mayMeanC> a uv:PredicateMatcher ;
     uv:matcherName "mayMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/mayMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "may" .
 
 <#firstName> a uv:PredicateMatcher ;
     uv:matcherName "firstName" ;
     uv:order 60000 ;
     uv:predicate <http://xmlns.com/foaf/0.1/firstName> ;
-    uv:abstractTemplate "person_name" .
+    uv:abstractTemplate uvsat:person_name .
 
 <#junMeanC> a uv:PredicateMatcher ;
     uv:matcherName "junMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/junMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jun" .
 
 <#julMeanC> a uv:PredicateMatcher ;
     uv:matcherName "julMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/julMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jul" .
 
 <#augMeanC> a uv:PredicateMatcher ;
     uv:matcherName "augMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/augMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "aug" .
 
 <#sepMeanC> a uv:PredicateMatcher ;
     uv:matcherName "sepMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/sepMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "sep" .
 
 <#octMeanC> a uv:PredicateMatcher ;
     uv:matcherName "octMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/octMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "oct" .
 
 <#schema_name> a uv:PredicateMatcher ;
     uv:matcherName "schema_name" ;
     uv:order 60000 ;
     uv:predicate <http://schema.org/name> ;
-    uv:abstractTemplate "title" ;
+    uv:abstractTemplate uvsat:title ;
     uv:templateVariable "title" .
 
 <#novMeanC> a uv:PredicateMatcher ;
     uv:matcherName "novMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/novMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "nov" .
 
 <#decMeanC> a uv:PredicateMatcher ;
     uv:matcherName "decMeanC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/decMeanC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "dec" .
 
 <#janHighC> a uv:PredicateMatcher ;
     uv:matcherName "janHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/janHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jan" .
 
 <#febHighC> a uv:PredicateMatcher ;
     uv:matcherName "febHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/febHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "feb" .
 
 <#lastName> a uv:PredicateMatcher ;
     uv:matcherName "lastName" ;
     uv:order 60000 ;
     uv:predicate <http://xmlns.com/foaf/0.1/lastName> ;
-    uv:abstractTemplate "person_name" .
+    uv:abstractTemplate uvsat:person_name .
 
 <#marHighC> a uv:PredicateMatcher ;
     uv:matcherName "marHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/marHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "mar" .
 
 <#aprHighC> a uv:PredicateMatcher ;
     uv:matcherName "aprHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/aprHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "apr" .
 
 <#mayHighC> a uv:PredicateMatcher ;
     uv:matcherName "mayHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/mayHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "may" .
 
 <#junHighC> a uv:PredicateMatcher ;
     uv:matcherName "junHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/junHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jun" .
 
 <#julHighC> a uv:PredicateMatcher ;
     uv:matcherName "julHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/julHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jul" .
 
 <#augHighC> a uv:PredicateMatcher ;
     uv:matcherName "augHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/augHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "aug" .
 
 <#schema_description> a uv:PredicateMatcher ;
     uv:matcherName "schema_description" ;
     uv:order 90000 ;
     uv:predicate <http://schema.org/description> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "text" .
 
 <#sepHighC> a uv:PredicateMatcher ;
     uv:matcherName "sepHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/sepHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "sep" .
 
 <#octHighC> a uv:PredicateMatcher ;
     uv:matcherName "octHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/octHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "oct" .
 
 <#novHighC> a uv:PredicateMatcher ;
     uv:matcherName "novHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/novHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "nov" .
 
 <#name> a uv:PredicateMatcher ;
     uv:matcherName "name" ;
     uv:order 60000 ;
     uv:predicate <http://xmlns.com/foaf/0.1/name> ;
-    uv:abstractTemplate "name" .
+    uv:abstractTemplate uvsat:name .
 
 <#decHighC> a uv:PredicateMatcher ;
     uv:matcherName "decHighC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/decHighC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "dec" .
 
 <#janLowC> a uv:PredicateMatcher ;
     uv:matcherName "janLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/janLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jan" .
 
 <#febLowC> a uv:PredicateMatcher ;
     uv:matcherName "febLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/febLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "feb" .
 
 <#marLowC> a uv:PredicateMatcher ;
     uv:matcherName "marLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/marLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "mar" .
 
 <#aprLowC> a uv:PredicateMatcher ;
     uv:matcherName "aprLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/aprLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "apr" .
 
 <#mayLowC> a uv:PredicateMatcher ;
     uv:matcherName "mayLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/mayLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "may" .
 
 <#junLowC> a uv:PredicateMatcher ;
     uv:matcherName "junLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/junLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jun" .
 
 <#purl_description> a uv:PredicateMatcher ;
     uv:matcherName "purl_description" ;
     uv:order 90000 ;
     uv:predicate <http://purl.org/dc/elements/1.1/description> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "text" .
 
 <#julLowC> a uv:PredicateMatcher ;
     uv:matcherName "julLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/julLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jul" .
 
 <#augLowC> a uv:PredicateMatcher ;
     uv:matcherName "augLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/augLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "aug" .
 
 <#license> a uv:PredicateMatcher ;
     uv:matcherName "license" ;
     uv:order 20000 ;
     uv:predicate <http://purl.org/dc/terms/license> ;
-    uv:abstractTemplate "license" .
+    uv:abstractTemplate uvsat:license .
 
 <#sepLowC> a uv:PredicateMatcher ;
     uv:matcherName "sepLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/sepLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "sep" .
 
 <#octLowC> a uv:PredicateMatcher ;
     uv:matcherName "octLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/octLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "oct" .
 
 <#novLowC> a uv:PredicateMatcher ;
     uv:matcherName "novLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/novLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "nov" .
 
 <#decLowC> a uv:PredicateMatcher ;
     uv:matcherName "decLowC" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/decLowC> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "dec" .
 
 <#janHumidity> a uv:PredicateMatcher ;
     uv:matcherName "janHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/janHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jan" .
 
 <#febHumidity> a uv:PredicateMatcher ;
     uv:matcherName "febHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/febHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "feb" .
 
 <#marHumidity> a uv:PredicateMatcher ;
     uv:matcherName "marHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/marHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "mar" .
 
 <#aprHumidity> a uv:PredicateMatcher ;
     uv:matcherName "aprHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/aprHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "apr" .
 
 <#purl_title> a uv:PredicateMatcher ;
     uv:matcherName "purl_title" ;
     uv:order 1000000 ;
     uv:predicate <http://purl.org/dc/terms/title> ;
-    uv:abstractTemplate "title" .
+    uv:abstractTemplate uvsat:title .
 
 <#mayHumidity> a uv:PredicateMatcher ;
     uv:matcherName "mayHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/mayHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "may" .
 
 <#created> a uv:PredicateMatcher ;
     uv:matcherName "created" ;
     uv:order 20000 ;
     uv:predicate <http://purl.org/dc/terms/created> ;
-    uv:abstractTemplate "created" .
+    uv:abstractTemplate uvsat:created .
 
 <#junHumidity> a uv:PredicateMatcher ;
     uv:matcherName "junHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/junHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jun" .
 
 <#julHumidity> a uv:PredicateMatcher ;
     uv:matcherName "julHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/julHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "jul" .
 
 <#augHumidity> a uv:PredicateMatcher ;
     uv:matcherName "augHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/augHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "aug" .
 
 <#sepHumidity> a uv:PredicateMatcher ;
     uv:matcherName "sepHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/sepHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "sep" .
 
 <#octHumidity> a uv:PredicateMatcher ;
     uv:matcherName "octHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/octHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "oct" .
 
 <#novHumidity> a uv:PredicateMatcher ;
     uv:matcherName "novHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/novHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "nov" .
 
 <#decHumidity> a uv:PredicateMatcher ;
     uv:matcherName "decHumidity" ;
     uv:order 9000000 ;
     uv:predicate <http://dbpedia.org/property/decHumidity> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "dec" .
 
 <#depiction> a uv:PredicateMatcher ;
     uv:matcherName "depiction" ;
     uv:order 1000000 ;
     uv:predicate <http://xmlns.com/foaf/0.1/depiction> ;
-    uv:abstractTemplate "img" ;
+    uv:abstractTemplate uvsat:img ;
     uv:templateVariable "img_url" .
 
 <#pmid> a uv:PredicateMatcher ;
     uv:matcherName "pmid" ;
     uv:order 80000 ;
     uv:predicate <http://purl.org/ontology/bibo/pmid> ;
-    uv:abstractTemplate "pmid" .
+    uv:abstractTemplate uvsat:pmid .
 
 <#text> a uv:PredicateMatcher ;
     uv:matcherName "text" ;
     uv:order 90000 ;
     uv:predicate <http://rdfs.org/sioc/ns#content> ;
-    uv:abstractTemplate "text" .
+    uv:abstractTemplate uvsat:text .
 
 
 <#comment> a uv:PredicateMatcher ;
     uv:matcherName "comment" ;
     uv:order 90000 ;
     uv:predicate <http://www.w3.org/2000/01/rdf-schema#comment> ;
-    uv:abstractTemplate "text" ;
+    uv:abstractTemplate uvsat:text ;
     uv:templateVariable "text" .
 
 <#link_addressPart> a uv:LinkMatcher ;
@@ -533,7 +534,7 @@
     uv:matcherName "addressPart" ;
     uv:order 1000000 ;
     uv:predicate <http://www.w3.org/2000/10/swap/pim/contact#address> ;
-    uv:abstractTemplate "address" ;
+    uv:abstractTemplate uvsat:address ;
     uv:templateVariable "addressLink" .
 
 <#link_creator> a uv:LinkMatcher ;
@@ -541,7 +542,7 @@
     uv:matcherName "creator" ;
     uv:order 20000 ;
     uv:predicate <http://purl.org/dc/terms/creator> ;
-    uv:abstractTemplate "creator" ;
+    uv:abstractTemplate uvsat:creator ;
     uv:templateVariable "creator" .
 
 <#link_neighboringMunicipality> a uv:LinkMatcher ;
@@ -549,7 +550,7 @@
     uv:matcherName "neighboringMunicipality" ;
     uv:order 4000000 ;
     uv:predicate <http://dbpedia.org/property/neighboringMunicipalities> ;
-    uv:abstractTemplate "neighboringMunicipality" ;
+    uv:abstractTemplate uvsat:neighboringMunicipality ;
     uv:templateVariable "neighboringMunicipality" .
 
 
@@ -557,118 +558,118 @@
     uv:combineIds "aprHighC", "augHighC", "decHighC", "febHighC", "janHighC", "julHighC", "junHighC", "marHighC", "mayHighC", "novHighC", "octHighC", "sepHighC" ;
     uv:matcherName "highC" ;
     uv:order 8000000 ;
-    uv:abstractTemplate "temp" .
+    uv:abstractTemplate uvsat:temp .
 
 <#combine_tempC> a uv:CombineMatcher ;
     uv:combineIds "highC", "lowC", "meanC" ;
     uv:matcherName "tempC" ;
     uv:order 8000000 ;
-    uv:abstractTemplate "mhltemp" .
+    uv:abstractTemplate uvsat:mhltemp .
 
 <#combine_multiple_name_4> a uv:CombineMatcher ;
     uv:combineIds "schema_name", "skos_prefLabel" ;
     uv:matcherName "multiple_name_4" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "title" .
+    uv:abstractTemplate uvsat:title .
 
 <#combine_meanC> a uv:CombineMatcher ;
     uv:combineIds "aprMeanC", "augMeanC", "decMeanC", "febMeanC", "janMeanC", "julMeanC", "junMeanC", "marMeanC", "mayMeanC", "novMeanC", "octMeanC", "sepMeanC" ;
     uv:matcherName "meanC" ;
     uv:order 8000000 ;
-    uv:abstractTemplate "temp" .
+    uv:abstractTemplate uvsat:temp .
 
 <#combine_multiple_name_2> a uv:CombineMatcher ;
     uv:combineIds "rdfschema_label", "schema_name" ;
     uv:matcherName "multiple_name_2" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "title" .
+    uv:abstractTemplate uvsat:title .
 
 <#combine_humi> a uv:CombineMatcher ;
     uv:combineIds "aprHumidity", "augHumidity", "decHumidity", "febHumidity", "janHumidity", "julHumidity", "junHumidity", "marHumidity", "mayHumidity", "novHumidity", "octHumidity", "sepHumidity" ;
     uv:matcherName "humi" ;
     uv:order 8000000 ;
-    uv:abstractTemplate "humidity" .
+    uv:abstractTemplate uvsat:humidity .
 
 <#combine_community> a uv:CombineMatcher ;
     uv:combineIds "depiction", "label_comment" ;
     uv:matcherName "community" ;
     uv:order 10010000 ;
-    uv:abstractTemplate "community" .
+    uv:abstractTemplate uvsat:community .
 
 <#combine_wikiInfo> a uv:CombineMatcher ;
     uv:combineIds "wikiPageID", "wikiPageRevisionID" ;
     uv:matcherName "wikiInfo" ;
     uv:order 20000 ;
-    uv:abstractTemplate "wikiInfo" .
+    uv:abstractTemplate uvsat:wikiInfo .
 
 <#combine_addressBlock> a uv:CombineMatcher ;
     uv:combineIds "addressPart", "person_name" ;
     uv:matcherName "addressBlock" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "address" .
+    uv:abstractTemplate uvsat:address .
 
 <#combine_multiple_name_1> a uv:CombineMatcher ;
     uv:combineIds "rdfschema_label", "schema_name", "skos_prefLabel" ;
     uv:matcherName "multiple_name_1" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "title" .
+    uv:abstractTemplate uvsat:title .
 
 <#combine_address_line2> a uv:CombineMatcher ;
     uv:combineIds "street", "street2" ;
     uv:matcherName "address_line2" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "address_line2" .
+    uv:abstractTemplate uvsat:address_line2 .
 
 <#combine_person_name> a uv:CombineMatcher ;
     uv:combineIds "firstName", "lastName" ;
     uv:matcherName "person_name" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "person_name" .
+    uv:abstractTemplate uvsat:person_name .
 
 <#combine_createMeta> a uv:CombineMatcher ;
     uv:combineIds "created", "creator" ;
     uv:matcherName "createMeta" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "createMeta" .
+    uv:abstractTemplate uvsat:createMeta .
 
 <#combine_lowC> a uv:CombineMatcher ;
     uv:combineIds "aprLowC", "augLowC", "decLowC", "febLowC", "janLowC", "julLowC", "junLowC", "marLowC", "mayLowC", "novLowC", "octLowC", "sepLowC" ;
     uv:matcherName "lowC" ;
     uv:order 8000000 ;
-    uv:abstractTemplate "temp" .
+    uv:abstractTemplate uvsat:temp .
 
 <#combine_multiple_name_3> a uv:CombineMatcher ;
     uv:combineIds "rdfschema_label", "skos_prefLabel" ;
     uv:matcherName "multiple_name_3" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "title" .
+    uv:abstractTemplate uvsat:title .
 
 <#combine_location> a uv:CombineMatcher ;
     uv:combineIds "lat", "long" ;
     uv:matcherName "location" ;
     uv:order 9000000 ;
-    uv:abstractTemplate "location" .
+    uv:abstractTemplate uvsat:location .
 
 <#combine_addressPartCombine> a uv:CombineMatcher ;
     uv:combineIds "address_line2", "address_line3" ;
     uv:matcherName "addressPartCombine" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "address" .
+    uv:abstractTemplate uvsat:address .
 
 <#combine_community_stat> a uv:CombineMatcher ;
     uv:combineIds "area", "elevation", "website" ;
     uv:matcherName "community_stat" ;
     uv:order 10010000 ;
-    uv:abstractTemplate "community_stat" .
+    uv:abstractTemplate uvsat:community_stat .
 
 <#combine_label_comment> a uv:CombineMatcher ;
     uv:combineIds "comment", "rdfschema_label" ;
     uv:matcherName "label_comment" ;
     uv:order 10100000 ;
-    uv:abstractTemplate "label_comment" .
+    uv:abstractTemplate uvsat:label_comment .
 
 <#combine_address_line3> a uv:CombineMatcher ;
     uv:combineIds "city", "country", "postalCode" ;
     uv:matcherName "address_line3" ;
     uv:order 10000000 ;
-    uv:abstractTemplate "address_line3" .
+    uv:abstractTemplate uvsat:address_line3 .

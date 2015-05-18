@@ -512,6 +512,7 @@ uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
         styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass)).forEach( function (m) {
             var propArray = [];
             styles.match(m.subject, null, null).forEach( function (p) {
+                console.log(p.object);
                 propArray.push([uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]);
             });
 

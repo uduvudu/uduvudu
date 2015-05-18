@@ -1,16 +1,17 @@
 @prefix uv: <http://www.uduvudu.org/2015/uduvudu#> .
 @prefix uvsb: <http://styles.uduvudu.org/basic#> .
+@prefix uvsat: <http://styles.uduvudu.org/abstractTemplate#> .
 
 uvsb:template_title a uv:Template ;
-    uv:abstractTemplate 'title' ;
+    uv:abstractTemplate uvsat:title ;
     uv:template '<h1><%-title.u%></h1>' .
 
 uvsb:template_mtitle a uv:Template ;
-    uv:abstractTemplate 'mtitle' ;
+    uv:abstractTemplate uvsat:mtitle ;
     uv:template '<h1><%-mtitle.title.u%></h1>' .
 
 uvsb:template_community a uv:Template ;
-    uv:abstractTemplate 'community' ;
+    uv:abstractTemplate uvsat:community ;
     uv:template '''
     <div style="max-height: 300px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
     <div style=" width: 235px; overflow: hidden; margin: -4px; text-align: right;" class="pull-right">
@@ -21,14 +22,14 @@ uvsb:template_community a uv:Template ;
 ''' .
 
 uvsb:template_label_comment a uv:Template ;
-    uv:abstractTemplate 'label_comment' ;
+    uv:abstractTemplate uvsat:label_comment ;
     uv:template '''
     <%=template(label_comment.title)%>
     <%=template(label_comment.text)%>
 ''' .
 
 uvsb:template_location a uv:Template ;
-    uv:abstractTemplate 'location' ;
+    uv:abstractTemplate uvsat:location ;
     uv:template '''
     <div id="map-canvas" style="height: 250px; width: 560px; float: left;">
         <big>&#8982;</big> <%-location.lat.u%> / <%-location.long.u%>
@@ -36,7 +37,7 @@ uvsb:template_location a uv:Template ;
 ''' .
 
 uvsb:template_location_js a uv:Template ;
-    uv:abstractTemplate 'location_js' ;
+    uv:abstractTemplate uvsat:location_js ;
     uv:template '''
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -51,7 +52,7 @@ uvsb:template_location_js a uv:Template ;
 ''' .
 
 uvsb:template_community a uv:Template ;
-    uv:abstractTemplate 'community' ;
+    uv:abstractTemplate uvsat:community ;
     uv:template '''
   <div style="max-height: 270px; width: 560px; background-color: lightgrey; padding: 4px; float: left; overflow-y: scroll;">
   <div style=" width: 235px; overflow: hidden; margin: -4px;" class="pull-right">
