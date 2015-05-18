@@ -1,7 +1,7 @@
 Templates
 ---------
 
-Based on the tree structures (as a Java objects) extracted by the matcher the templates are rendering the output.
+Based on the tree structures (as a JavaScript objects) extracted by the matcher the templates are rendering the output.
 
 Right now we use the [Underscore](http://underscorejs.org/#template) template engine. The templates need to be defined inside a `div` with the id `visualizer`.
 
