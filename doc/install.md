@@ -46,10 +46,6 @@ Prerequisites
 The code is based on rdf-ext.js (which includes different rdf parsers and serializer) and underscore. The demo uses bootstrap for a basic design.
 
 
-Running the included demo
--------------------------
-To make it possible to grab external content on your _local machine_ from the demo page you need to disable cross-site scripting security in your browser. Then open the index.html in your browser.
-
 ## With JS Arrays, and HTML Templates
 By defining the _styles_ (matcher & templates) there is no need to create RDF yourself to consume it.
 
@@ -89,3 +85,7 @@ You need to have a `div` defined like the following where the rendered content i
 
     <div id="main">
     </div>
+
+Running the included demo
+-------------------------
+To make it possible to grab external content on your _local machine_ from the demo page you need to disable cross-site scripting security in your browser. Then open the index.html in your browser.
