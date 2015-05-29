@@ -43,3 +43,12 @@ The following projects are currently also working on adaptive and easy to use fr
 
 [Balloon Synopsis](http://schlegel.github.io/balloon/balloon-synopsis.html)
 <!--[RSLT](https://github.com/fvitali/rslt)-->
+
+References
+----------
+Uduvudu in use examples.
+
+### [Nexa Center for Internet & Society, Politecnico di Torino](http://nexa.polito.it/)
+  * [Public Contracts](http://public-contracts.nexacenter.org/)
+  * [LOD Events eXplorer](http://explorer.nexacenter.org/)
+
