@@ -46,7 +46,7 @@ The following projects are currently also working on adaptive and easy to use fr
 
 References
 ----------
-Uduvudu in use examples.
+Uduvudu in-use examples.
 
 ### [Nexa Center for Internet & Society, Politecnico di Torino](http://nexa.polito.it/)
   * [Public Contracts](http://public-contracts.nexacenter.org/)
