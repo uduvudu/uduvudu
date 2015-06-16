@@ -25,12 +25,11 @@ Use
 
 [Editor](/doc/editor.md): An overlay editor which can be used inplace in your project.
 
-
-(Subject to change! Matchers and Templates can soon be load and persisted through multiple ways, including as RDF itself.)
-
 [Add Matcher](/doc/matcher.md): How to define your own matchers definitions.
 
 [Add Templates](/doc/templates.md): How to define your own templates.
+
+[JsFiddle of the example_styles_rdf.html](http://jsfiddle.net/j862exfp/8/)
 
 Extend
 ------
