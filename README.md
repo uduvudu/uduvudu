@@ -41,7 +41,10 @@ Related Work
 The following projects are currently also working on adaptive and easy to use frameworks with similar goals. Check them out!
 
 [Balloon Synopsis](http://schlegel.github.io/balloon/balloon-synopsis.html)
+
 [RSLT](https://github.com/fvitali/rslt)
+
+[Linked Data Reactor](https://lr-r.org)
 
 References
 ----------
