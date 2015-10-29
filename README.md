@@ -44,7 +44,7 @@ The following projects are currently also working on adaptive and easy to use fr
 
 [RSLT](https://github.com/fvitali/rslt)
 
-[Linked Data Reactor](https://lr-r.org)
+[Linked Data Reactor](http://ld-r.org/)
 
 References
 ----------
