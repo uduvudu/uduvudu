@@ -224,7 +224,6 @@ uduvudu.helper.renderContext = function (templateName, finalContext) {
                   // get subTemplates
                   compTemplate = uduvudu.helper.compileTemplate('<div>' + subTemplates.join('')  + '</div>');
               }
-              console.log(subTemplates.join(''));
           }
       }
 
@@ -512,7 +511,6 @@ uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
         styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass)).forEach( function (m) {
             var propArray = [];
             styles.match(m.subject, null, null).forEach( function (p) {
-                console.log(p.object);
                 propArray.push([uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]);
             });
 
@@ -550,6 +548,9 @@ uduvudu.matchers.createCombine = function(defArg) {
 
       // if no templateVariable is defined get term from predicate
       def.templateVariable = def.templateVariable || def.matcherName;
+
+      def.combineIds = _.isArray(def.combineIds) ? def.combineIds : [def.combineIds];
+
       var proposal = false;
       var proposals = uduvudu.helper.matchArrayOfFuncs(graph,resource,def.combineIds);
       var subgraph = rdf.createGraph();
@@ -601,18 +602,21 @@ uduvudu.matchers.createLink = function(defArg) {
         def = defArg,
         subjectVariable,
         subjectFilter = null,
-        predicateFilter,
+        predicateFilter = null,
         objectFilter = null;
 
       // if no templateVariable is defined get term from predicate
       def.templateVariable = def.templateVariable || uduvudu.helper.getTerm(def.predicate);
+
+      // if linkIds is a value
+      def.linkIds = _.isArray(def.linkIds) ? def.linkIds : [def.linkIds];
 
       // look if subject or object position
       subjectVariable = def.resourcePosition && def.resourcePosition === "object";
 
       if (subjectVariable) {
         predicateFilter = def.predicate;
-        objectFilter =  resource;
+        objectFilter = resource;
       } else {
         subjectFilter = resource;
         predicateFilter = def.predicate;
@@ -620,7 +624,6 @@ uduvudu.matchers.createLink = function(defArg) {
 
       var proposal = false;
       var filteredGraph = graph.match(subjectFilter, predicateFilter, objectFilter);
-
       if (filteredGraph.length !== 0) {
         var proposals = _.compact(filteredGraph.toArray().map(function (t) {
           if (subjectVariable) {
@@ -672,7 +675,7 @@ uduvudu.matchers.createPredicate = function(defArg) {
         def = defArg,
         subjectVariable,
         subjectFilter = null,
-        predicateFilter,
+        predicateFilter = null,
         objectFilter = null;
 
       // if no templateVariable is defined get term from predicate
