@@ -102,6 +102,7 @@ uduvudu.process = function (input) {
  */
 uduvudu.matcher = function (inputGraph, resource, depth) {
   console.debug('Uduvudu:','Matcher in recursion: '+depth,'/' ,uduvudu.helper.showGraph(inputGraph, true) + ' triples still in graph.');
+  console.debug('Uduvudu:','Graph', uduvudu.helper.showGraph(inputGraph));
 
   // use all functions to see what matches
   var proposals =
@@ -633,6 +634,15 @@ uduvudu.matchers.createLink = function(defArg) {
           }
         }));
 
+      var subgraph = rdf.createGraph();
+      proposals.forEach(function(proposal) {
+        if (typeof proposal === 'object' && 'subgraph' in proposal) {
+          subgraph.addAll(proposal.subgraph);
+        }
+      });
+
+
+
         if (_.some(proposals)) {
           proposal = {
             elements: _.reduce(_.pluck(proposals,'elements'), function (m,n){return m+n;},0),
@@ -655,7 +665,7 @@ uduvudu.matchers.createLink = function(defArg) {
                     }
                 )
               ]]),
-            subgraph: filteredGraph,
+            subgraph: subgraph,
             order: def.order || 1000
           };
         }
