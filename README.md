@@ -29,7 +29,7 @@ Use
 
 [Add Templates](/doc/templates.md): How to define your own templates.
 
-[JsFiddle of the example_styles_rdf.html](http://jsfiddle.net/j862exfp/8/)
+[JsFiddle of the example_styles_rdf.html](http://jsfiddle.net/j862exfp/12/)
 
 Extend
 ------
