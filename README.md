@@ -52,6 +52,7 @@ Uduvudu in-use examples.
 
 ### [EIS - Uni Bonn](http://eis.iai.uni-bonn.de/About.html)
   * [Display Team Members](http://aksakalli.github.io/uduvudu-demo/)
+
 ### [Nexa Center for Internet & Society, Politecnico di Torino](http://nexa.polito.it/)
   * [Public Contracts](http://public-contracts.nexacenter.org/)
   * [LOD Events eXplorer](http://explorer.nexacenter.org/)
