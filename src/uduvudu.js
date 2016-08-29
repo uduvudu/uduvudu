@@ -1,5 +1,8 @@
-/* global _:false, $:false, Handlebars:false, rdf:false */
+/* global $:false, Handlebars:false */
 'use strict';
+
+var _ = require('underscore')
+var rdf = require('rdf-ext')
 
 var uduvudu = {
   version: "0.6.0",
@@ -754,6 +757,4 @@ uduvudu.matchers.createPredicate = function(defArg) {
 uduvudu.matchers.createPredicate.rdfClass = 'uv:PredicateMatcher';
 uduvudu.matchers.createPredicate.jsArray = 'predicateMatchers';
 
-
-// export
-window.uduvudu = uduvudu;
+module.exports = uduvudu

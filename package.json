@@ -1,0 +1,21 @@
+{
+  "name": "uduvudu",
+  "description": "Uduvudu aims to be an easy to use extensible and adaptive RDF User Interface engine",
+  "version": "0.0.1",
+  "main": "src/uduvudu.js",
+  "homepage": "https://github.com/uduvudu/uduvudu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uduvudu/uduvudu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uduvudu/uduvudu/issues"
+  },
+  "dependencies": {
+    "rdf-ext": "^0.3.0",
+    "underscore": "^1.8.3"
+  },
+  "license": "MIT",
+  "scripts": {},
+  "devDependencies": {}
+}
