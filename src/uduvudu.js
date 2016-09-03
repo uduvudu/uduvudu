@@ -2,6 +2,9 @@
 'use strict';
 
 var _ = require('underscore')
+//var _ = require('lodash')
+// we plan to switch, current problems:
+// - .object() ?
 var rdf = require('rdf-ext')
 
 var uduvudu = {
@@ -717,20 +720,20 @@ uduvudu.matchers.createPredicate = function(defArg) {
               def.templateVariable,
               {
                 l: _.object(filteredGraph.toArray().map(function(t) {
-                   if (subjectVariable) {$
+                   if (subjectVariable) {
                      l = t.subject.language;
                      s = t.subject.toString();
-                   } else {$
+                   } else {
                      l= t.object.language;
                      s = t.object.toString();
                    }
                    //add a count to duplicated keys
                    if(_.has(keyCount,l)) {
                        keyCount[l] += 1;
-                       return [l+'.'+keyCount[l], s];$
+                       return [l+'.'+keyCount[l], s];
                    } else {
                        keyCount[l] = 1;
-                       return [l, s];$
+                       return [l, s];
                    }
                  })),
                 t: {
@@ -756,5 +759,11 @@ uduvudu.matchers.createPredicate = function(defArg) {
 };
 uduvudu.matchers.createPredicate.rdfClass = 'uv:PredicateMatcher';
 uduvudu.matchers.createPredicate.jsArray = 'predicateMatchers';
+
+//for convinience attach to window
+if (typeof window !== 'undefined') {
+  window.rdf.LdpStore = require('rdf-store-ldp')
+  window.uduvudu = uduvudu
+}
 
 module.exports = uduvudu

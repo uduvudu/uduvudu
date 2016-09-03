@@ -2,11 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <link href="lib/bootstrap.min.css" rel="stylesheet">
-    <script src="lib/underscore-min.js" type="text/javascript"></script>
-    <script src="lib/jquery-2.1.3.min.js" type="text/javascript"></script>
-    <script src="lib/rdf-ext.min.js"></script>
     <script src="matcher.js" type="text/javascript"></script>
-    <script src="src/uduvudu.js" type="text/javascript"></script>
+    <script src="dist/uduvudu.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="container">
@@ -22,6 +19,7 @@
     </div>
 
     <script type="text/javascript">
+    window.onload = function () {
         // instantiate rdf-ext object
         var store = new rdf.LdpStore();
 //        var source = 'http://dbpedia.org/resource/Fribourg';
@@ -35,26 +33,51 @@
         + '  <strong>Loading</strong> '+source+' is being loaded ...'
         + '</div>';
 
-        // prepare visualizer templates for uduvudu
-        $("#templates").load("templates.html");
+        // prepare visualizer templates (html) for uduvudu
+        var request = new XMLHttpRequest();
+        request.open('GET', 'templates.html', true);
+
+        request.onload = function(error) {
+          if (request.status >= 200 && request.status < 400) {
+            // Success!
+            document.getElementById('templates').innerHTML = request.responseText;
+          } else {
+              console.error('Could not load templates.');
+          }
+        };
+
+        request.onerror = function(error) {
+              console.error('Could not load templates.');
+        };
+
+        request.send(); 
 
         // load triples
-        store.graph(source, function (graph, error) {
+        store.graph(source, function (error, graph) {
                 if (error == null) {
                     console.debug("successfully loaded "+graph.toArray().length+" triples");
                     // resource (entry for template search) is same as source in this example
                     uduvudu.process(graph, {'resource': resource} , function (out) {
+                        // where to add the processed html
+                        var main = document.getElementById('main')
                         // write the result of the processing in the main div
-                        $('#main').html(out);
-                        });
-                    } else {
-                        document.getElementById('main').innerHTML =  ''
-                        + '<div class="alert alert-danger">'
-                        + '  <button type="button" class="close" data-dismiss="alert">&times;</button>'
-                        + '  <strong>Error:</strong> '+ error +'.'
-                        + '</div>';
-                    };
+                        main.innerHTML = out;
+                        // run scripts which were added
+                        var codes = main.getElementsByTagName("script");   
+                        for(var i=0;i<codes.length;i++)  
+                        {  
+                          eval(codes[i].text);
+                        }
+                    });
+                } else {
+                    document.getElementById('main').innerHTML =  ''
+                    + '<div class="alert alert-danger">'
+                    + '  <button type="button" class="close" data-dismiss="alert">&times;</button>'
+                    + '  <strong>Error:</strong> '+ error +'.'
+                    + '</div>';
+                };
             });
+    }
     </script>
 </body>
 </html>

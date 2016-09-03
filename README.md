@@ -35,6 +35,10 @@ Extend
 ------
 You can extend the library by adding new matcher factories. Please study the functions `uduvudu.matchers.*` in `src/uduvudu.js` which define the current available matcher as factories.
 
+Development
+----------
+
+To build the JavaScript files to distribute run `node build.js`
 
 Related Work
 ------------
