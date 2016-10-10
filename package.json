@@ -17,6 +17,13 @@
     "underscore": "^1.8.3"
   },
   "license": "MIT",
-  "scripts": {},
-  "devDependencies": {}
+  "scripts": {
+    "build": "node build.js",
+    "start": "http-server ./"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "http-server": "^0.9.0",
+    "shelljs": "^0.7.4"
+  }
 }
