@@ -5,9 +5,7 @@
 You need to include the following scripts:
 
     <head>
-        <script src="lib/underscore-1.6.0.js" type="text/javascript"></script>
-        <script src="lib/rdf-ext.min.js"></script>
-        <script src="src/uduvudu.js" type="text/javascript"></script>
+        <script src="dist/uduvudu.js" type="text/javascript"></script>
     </head>
 
 Prepare a RDF graph with the matchers and templates combined.
@@ -52,10 +50,8 @@ By defining the _styles_ (matcher & templates) there is no need to create RDF yo
 You need to include the following scripts:
 
     <head>
-        <script src="lib/underscore-1.6.0.js" type="text/javascript"></script>
-        <script src="lib/rdf-ext.min.js"></script>
         <script src="matcher.js" type="text/javascript"></script>
-        <script src="src/uduvudu.js" type="text/javascript"></script>
+        <script src="dist/uduvudu.js" type="text/javascript"></script>
     </head>
 
 Where `matcher.js` is the database of matchers defined in JS.
