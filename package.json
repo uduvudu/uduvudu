@@ -1,7 +1,7 @@
 {
   "name": "uduvudu",
   "description": "Uduvudu aims to be an easy to use extensible and adaptive RDF User Interface engine",
-  "version": "0.0.1",
+  "version": "0.7.0",
   "main": "src/uduvudu.js",
   "homepage": "https://github.com/uduvudu/uduvudu",
   "repository": {
