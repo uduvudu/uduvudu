@@ -53,6 +53,8 @@ The following projects are currently also working on adaptive and easy to use fr
 
 [phuzzy.link](http://phuzzy.link/)
 
+Also find an extensive overview of approaches in [Customised Visualisations of Linked Open Data](http://ceur-ws.org/Vol-1947/paper03.pdf).
+
 References
 ----------
 Uduvudu in-use examples.
