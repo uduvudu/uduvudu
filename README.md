@@ -51,6 +51,8 @@ The following projects are currently also working on adaptive and easy to use fr
 
 [Linked Data Reactor](http://ld-r.org/)
 
+[phuzzy.link](http://phuzzy.link/)
+
 References
 ----------
 Uduvudu in-use examples.
