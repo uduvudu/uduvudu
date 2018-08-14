@@ -762,7 +762,6 @@ uduvudu.matchers.createPredicate.jsArray = 'predicateMatchers';
 
 //for convinience attach to window
 if (typeof window !== 'undefined') {
-  window.rdf.LdpStore = require('rdf-store-ldp')
   window.uduvudu = uduvudu
 }
 
