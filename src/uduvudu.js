@@ -25,16 +25,16 @@ uduvudu.css = ''+
 '}'
 
 
-/** 
+/**
  * Initialize uduvudu
  */
-uduvudu.initialize = function () {
+uduvudu.initialize = function (matchers = window) {
     if(_.isUndefined(uduvudu.ready)) {
 
         // load, if provided, matchers in JSON
         _.each(uduvudu.matchers, function(factory) {
-            if (! _.isUndefined(window[factory.jsArray])) {
-                var matcherFuncs = _.map(window[factory.jsArray], function (m) {
+            if (! _.isUndefined(matchers[factory.jsArray])) {
+                var matcherFuncs = _.map(matchers[factory.jsArray], function (m) {
                     return factory(m);
                 });
                 uduvudu.matchFuncs = _.union(matcherFuncs, uduvudu.matchFuncs);
@@ -91,9 +91,9 @@ uduvudu.process = function (input) {
 
   var visuals = uduvudu.matcher(uduvudu.input.match(), uduvudu.options.resource, 0);
   var output = uduvudu.visualizer(visuals, uduvudu.options.language, uduvudu.options.device);
-  
+
   uduvudu.helper.injectCss(uduvudu.css);
-  
+
   if (uduvudu.cb) {
       uduvudu.cb(output)
   }
@@ -275,7 +275,7 @@ uduvudu.helper.getTemplate = function (templateName, device, language) {
 uduvudu.helper.templateHelper = {
     // fetch the template of the subcontext provided
     template: function(subcontext) {
-         if(subcontext.t && subcontext.t.name && subcontext.v) { 
+         if(subcontext.t && subcontext.t.name && subcontext.v) {
             var context = _.object([[subcontext.v, subcontext]]);
             _.extend(context, uduvudu.helper.templateHelper);
             return uduvudu.helper.renderContext(subcontext.t.name, context);
