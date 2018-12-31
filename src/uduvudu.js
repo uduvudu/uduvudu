@@ -561,7 +561,7 @@ uduvudu.matchers.createCombine = function(defArg) {
 
       var proposal = false;
       var proposals = uduvudu.helper.matchArrayOfFuncs(graph,resource,def.combineIds);
-      var subgraph = rdf.createGraph();
+      var subgraph = rdf.graph();
 
       proposals.forEach(function(proposal) {
         if (typeof proposal === 'object' && 'subgraph' in proposal) {
@@ -641,7 +641,7 @@ uduvudu.matchers.createLink = function(defArg) {
           }
         }));
 
-      var subgraph = rdf.createGraph();
+      var subgraph = rdf.graph();
       proposals.forEach(function(proposal) {
         if (typeof proposal === 'object' && 'subgraph' in proposal) {
           subgraph.addAll(proposal.subgraph);
