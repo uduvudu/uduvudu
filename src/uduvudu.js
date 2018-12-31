@@ -10,7 +10,8 @@ var rdf = require('rdf-ext')
 var uduvudu = {
   version: "0.7.0",
   matchFuncs: [],
-  templateCache: {}
+  templateCache: {},
+  options: {}
 };
 
 /**
