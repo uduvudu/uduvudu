@@ -623,11 +623,11 @@ uduvudu.matchers.createLink = function(defArg) {
       subjectVariable = def.resourcePosition && def.resourcePosition === "object";
 
       if (subjectVariable) {
-        predicateFilter = def.predicate;
-        objectFilter = resource;
+        predicateFilter = rdf.namedNode(def.predicate);
+        objectFilter = rdf.namedNode(resource);
       } else {
-        subjectFilter = resource;
-        predicateFilter = def.predicate;
+        subjectFilter = rdf.namedNode(resource);
+        predicateFilter = rdf.namedNode(def.predicate);
       }
 
       var proposal = false;
@@ -702,11 +702,11 @@ uduvudu.matchers.createPredicate = function(defArg) {
       subjectVariable = def.resourcePosition && def.resourcePosition === "object";
 
       if (subjectVariable) {
-        predicateFilter = def.predicate;
-        objectFilter = resource;
+        predicateFilter = rdf.namedNode(def.predicate);
+        objectFilter = rdf.namedNode(resource);
       } else {
-        subjectFilter = resource;
-        predicateFilter = def.predicate;
+        subjectFilter = rdf.namedNode(resource);
+        predicateFilter = rdf.namedNode(def.predicate);
       }
 
       var proposal = false;
