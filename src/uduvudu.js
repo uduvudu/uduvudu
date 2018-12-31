@@ -260,7 +260,7 @@ uduvudu.helper.getTemplate = function (templateName, device, language) {
 
         styles.match(null, rdf.resolve('uv:abstractTemplate'), templateName).forEach(function (t) {
             styles.match(t.subject, rdf.resolve('uv:template'), null).forEach(function (t) {
-                    templateContent = t.object.toString();
+                    templateContent = t.object.value;
             });
         });
     }
@@ -342,10 +342,10 @@ uduvudu.helper.handleUnknown = function (graph) {
         elements: 1,
         context: {
           literal: {
-            subject: {l: {undefined:  t.subject.toString()}},
-            predicate: {l: {undefined:  t.predicate.toString()}},
+            subject: {l: {undefined:  t.subject.value}},
+            predicate: {l: {undefined:  t.predicate.value}},
             name: {l: {undefined: uduvudu.helper.nameFromPredicate(t.predicate)}},
-            text: {l: {undefined:  t.object.toString()}},
+            text: {l: {undefined:  t.object.value}},
             s: {l: {undefined: uduvudu.helper.getTerm(t.subject.nominalValue) }},
             p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.nominalValue) }},
             o: {l: {undefined: t.object.nominalValue }},
@@ -465,9 +465,9 @@ uduvudu.helper.showGraph = function(graph, simple) {
     graph.length,
     graph.toArray().map(function (t) {
       return (
-        t.subject.toString() + ' - ' +
-        t.predicate.toString() + ' - ' +
-        t.object.toString()
+        t.subject.value + ' - ' +
+        t.predicate.value + ' - ' +
+        t.object.value
       );
     })
   ];
@@ -519,7 +519,7 @@ uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
         styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass)).forEach( function (m) {
             var propArray = [];
             styles.match(m.subject, null, null).forEach( function (p) {
-                propArray.push([uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]);
+                propArray.push([uduvudu.helper.getTerm(p.predicate.value), p.object.value]);
             });
 
             // fold duplicated properties into an array
@@ -635,9 +635,9 @@ uduvudu.matchers.createLink = function(defArg) {
       if (filteredGraph.length !== 0) {
         var proposals = _.compact(filteredGraph.toArray().map(function (t) {
           if (subjectVariable) {
-            return uduvudu.helper.matchArrayOfFuncs(graph, t.subject.toString(), def.linkIds)[0];
+            return uduvudu.helper.matchArrayOfFuncs(graph, t.subject.value, def.linkIds)[0];
           } else {
-            return uduvudu.helper.matchArrayOfFuncs(graph, t.object.toString(), def.linkIds)[0];
+            return uduvudu.helper.matchArrayOfFuncs(graph, t.object.value, def.linkIds)[0];
           }
         }));
 
@@ -723,10 +723,10 @@ uduvudu.matchers.createPredicate = function(defArg) {
                 l: _.object(filteredGraph.toArray().map(function(t) {
                    if (subjectVariable) {
                      l = t.subject.language;
-                     s = t.subject.toString();
+                     s = t.subject.value;
                    } else {
                      l= t.object.language;
-                     s = t.object.toString();
+                     s = t.object.value;
                    }
                    //add a count to duplicated keys
                    if(_.has(keyCount,l)) {
