@@ -318,13 +318,9 @@ uduvudu.helper.matchArrayOfFuncs = function(graph, resource, names) {
   );
 };
 
-uduvudu.helper.prepareTriple = function(element) {
-    return '<a href="?res='+element.nominalValue+'">'+uduvudu.helper.getTerm(element.nominalValue)+'</a>';
-};
-
 uduvudu.helper.nameFromPredicate = function(element) {
   if (element.interfaceName === 'NamedNode') {
-    return uduvudu.helper.getTerm(element.nominalValue);
+    return uduvudu.helper.getTerm(element.value);
   }
 };
 
@@ -346,17 +342,17 @@ uduvudu.helper.handleUnknown = function (graph) {
             predicate: {l: {undefined:  t.predicate.value}},
             name: {l: {undefined: uduvudu.helper.nameFromPredicate(t.predicate)}},
             text: {l: {undefined:  t.object.value}},
-            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.nominalValue) }},
-            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.nominalValue) }},
-            o: {l: {undefined: t.object.nominalValue }},
+            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.value) }},
+            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.value) }},
+            o: {l: {undefined: t.object.value }},
             t: {
                 name: "literal"
             },
             m: {
                 name: "literal",
                 type: "literal",
-                p: t.predicate.nominalValue,
-                r: t.subject.nominalValue
+                p: t.predicate.value,
+                r: t.subject.value
             },
             v: "literal"
           }
@@ -374,20 +370,20 @@ uduvudu.helper.handleUnknown = function (graph) {
         elements: 1,
         context: {
           unknown: {
-            subject: {l: {undefined: uduvudu.helper.prepareTriple(t.subject)}},
-            predicate: {l: {undefined: uduvudu.helper.prepareTriple(t.predicate)}},
-            object: {l: {undefined: uduvudu.helper.prepareTriple(t.object)}},
-            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.nominalValue) }},
-            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.nominalValue) }},
-            o: {l: {undefined: uduvudu.helper.getTerm(t.object.nominalValue) }},
+            subject: {l: {undefined: t.subject.value}},
+            predicate: {l: {undefined: t.predicate.value}},
+            object: {l: {undefined: t.object.value}},
+            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.value) }},
+            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.value) }},
+            o: {l: {undefined: uduvudu.helper.getTerm(t.object.value) }},
             t: {
                 name: "unknown"
             },
             m: {
                 name: "unknown",
                 type: "unknown",
-                p: t.predicate.nominalValue,
-                r: t.object.nominalValue
+                p: t.predicate.value,
+                r: t.object.value
             },
             v: "unknown"
           }
