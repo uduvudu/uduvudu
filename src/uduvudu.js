@@ -319,7 +319,7 @@ uduvudu.helper.matchArrayOfFuncs = function(graph, resource, names) {
 };
 
 uduvudu.helper.nameFromPredicate = function(element) {
-  if (element.interfaceName === 'NamedNode') {
+  if (element.termType === 'NamedNode') {
     return uduvudu.helper.getTerm(element.value);
   }
 };
@@ -332,7 +332,7 @@ uduvudu.helper.getTerm = function(string) {
 uduvudu.helper.handleUnknown = function (graph) {
   // get all literals with proposal structure
   var literals = _.compact(graph.toArray().map(function (t) {
-    if(t.object.interfaceName == "Literal") {
+    if(t.object.termType === "Literal") {
       // literal template
       return {
         elements: 1,
@@ -364,7 +364,7 @@ uduvudu.helper.handleUnknown = function (graph) {
 
   // get all unknowns with proposal structure
   var unknowns = _.compact(graph.toArray().map(function (t) {
-    if(t.object.interfaceName != 'Literal') {
+    if(t.object.termType !== 'Literal') {
       // unknown template
       return {
         elements: 1,
