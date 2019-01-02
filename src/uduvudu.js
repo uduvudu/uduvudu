@@ -10,7 +10,8 @@ var rdf = require('rdf-ext')
 var uduvudu = {
   version: "0.7.0",
   matchFuncs: [],
-  templateCache: {}
+  templateCache: {},
+  options: {}
 };
 
 /**
@@ -25,16 +26,16 @@ uduvudu.css = ''+
 '}'
 
 
-/** 
+/**
  * Initialize uduvudu
  */
-uduvudu.initialize = function () {
+uduvudu.initialize = function (matchers = window) {
     if(_.isUndefined(uduvudu.ready)) {
 
         // load, if provided, matchers in JSON
         _.each(uduvudu.matchers, function(factory) {
-            if (! _.isUndefined(window[factory.jsArray])) {
-                var matcherFuncs = _.map(window[factory.jsArray], function (m) {
+            if (! _.isUndefined(matchers[factory.jsArray])) {
+                var matcherFuncs = _.map(matchers[factory.jsArray], function (m) {
                     return factory(m);
                 });
                 uduvudu.matchFuncs = _.union(matcherFuncs, uduvudu.matchFuncs);
@@ -91,9 +92,9 @@ uduvudu.process = function (input) {
 
   var visuals = uduvudu.matcher(uduvudu.input.match(), uduvudu.options.resource, 0);
   var output = uduvudu.visualizer(visuals, uduvudu.options.language, uduvudu.options.device);
-  
+
   uduvudu.helper.injectCss(uduvudu.css);
-  
+
   if (uduvudu.cb) {
       uduvudu.cb(output)
   }
@@ -259,7 +260,7 @@ uduvudu.helper.getTemplate = function (templateName, device, language) {
 
         styles.match(null, rdf.resolve('uv:abstractTemplate'), templateName).forEach(function (t) {
             styles.match(t.subject, rdf.resolve('uv:template'), null).forEach(function (t) {
-                    templateContent = t.object.toString();
+                    templateContent = t.object.value;
             });
         });
     }
@@ -275,7 +276,7 @@ uduvudu.helper.getTemplate = function (templateName, device, language) {
 uduvudu.helper.templateHelper = {
     // fetch the template of the subcontext provided
     template: function(subcontext) {
-         if(subcontext.t && subcontext.t.name && subcontext.v) { 
+         if(subcontext.t && subcontext.t.name && subcontext.v) {
             var context = _.object([[subcontext.v, subcontext]]);
             _.extend(context, uduvudu.helper.templateHelper);
             return uduvudu.helper.renderContext(subcontext.t.name, context);
@@ -317,13 +318,9 @@ uduvudu.helper.matchArrayOfFuncs = function(graph, resource, names) {
   );
 };
 
-uduvudu.helper.prepareTriple = function(element) {
-    return '<a href="?res='+element.nominalValue+'">'+uduvudu.helper.getTerm(element.nominalValue)+'</a>';
-};
-
 uduvudu.helper.nameFromPredicate = function(element) {
-  if (element.interfaceName === 'NamedNode') {
-    return uduvudu.helper.getTerm(element.nominalValue);
+  if (element.termType === 'NamedNode') {
+    return uduvudu.helper.getTerm(element.value);
   }
 };
 
@@ -335,27 +332,27 @@ uduvudu.helper.getTerm = function(string) {
 uduvudu.helper.handleUnknown = function (graph) {
   // get all literals with proposal structure
   var literals = _.compact(graph.toArray().map(function (t) {
-    if(t.object.interfaceName == "Literal") {
+    if(t.object.termType === "Literal") {
       // literal template
       return {
         elements: 1,
         context: {
           literal: {
-            subject: {l: {undefined:  t.subject.toString()}},
-            predicate: {l: {undefined:  t.predicate.toString()}},
+            subject: {l: {undefined:  t.subject.value}},
+            predicate: {l: {undefined:  t.predicate.value}},
             name: {l: {undefined: uduvudu.helper.nameFromPredicate(t.predicate)}},
-            text: {l: {undefined:  t.object.toString()}},
-            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.nominalValue) }},
-            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.nominalValue) }},
-            o: {l: {undefined: t.object.nominalValue }},
+            text: {l: {undefined:  t.object.value}},
+            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.value) }},
+            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.value) }},
+            o: {l: {undefined: t.object.value }},
             t: {
                 name: "literal"
             },
             m: {
                 name: "literal",
                 type: "literal",
-                p: t.predicate.nominalValue,
-                r: t.subject.nominalValue
+                p: t.predicate.value,
+                r: t.subject.value
             },
             v: "literal"
           }
@@ -367,26 +364,26 @@ uduvudu.helper.handleUnknown = function (graph) {
 
   // get all unknowns with proposal structure
   var unknowns = _.compact(graph.toArray().map(function (t) {
-    if(t.object.interfaceName != 'Literal') {
+    if(t.object.termType !== 'Literal') {
       // unknown template
       return {
         elements: 1,
         context: {
           unknown: {
-            subject: {l: {undefined: uduvudu.helper.prepareTriple(t.subject)}},
-            predicate: {l: {undefined: uduvudu.helper.prepareTriple(t.predicate)}},
-            object: {l: {undefined: uduvudu.helper.prepareTriple(t.object)}},
-            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.nominalValue) }},
-            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.nominalValue) }},
-            o: {l: {undefined: uduvudu.helper.getTerm(t.object.nominalValue) }},
+            subject: {l: {undefined: t.subject.value}},
+            predicate: {l: {undefined: t.predicate.value}},
+            object: {l: {undefined: t.object.value}},
+            s: {l: {undefined: uduvudu.helper.getTerm(t.subject.value) }},
+            p: {l: {undefined: uduvudu.helper.getTerm(t.predicate.value) }},
+            o: {l: {undefined: uduvudu.helper.getTerm(t.object.value) }},
             t: {
                 name: "unknown"
             },
             m: {
                 name: "unknown",
                 type: "unknown",
-                p: t.predicate.nominalValue,
-                r: t.object.nominalValue
+                p: t.predicate.value,
+                r: t.object.value
             },
             v: "unknown"
           }
@@ -464,9 +461,9 @@ uduvudu.helper.showGraph = function(graph, simple) {
     graph.length,
     graph.toArray().map(function (t) {
       return (
-        t.subject.toString() + ' - ' +
-        t.predicate.toString() + ' - ' +
-        t.object.toString()
+        t.subject.value + ' - ' +
+        t.predicate.value + ' - ' +
+        t.object.value
       );
     })
   ];
@@ -518,7 +515,7 @@ uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
         styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass)).forEach( function (m) {
             var propArray = [];
             styles.match(m.subject, null, null).forEach( function (p) {
-                propArray.push([uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]);
+                propArray.push([uduvudu.helper.getTerm(p.predicate.value), p.object.value]);
             });
 
             // fold duplicated properties into an array
@@ -560,7 +557,7 @@ uduvudu.matchers.createCombine = function(defArg) {
 
       var proposal = false;
       var proposals = uduvudu.helper.matchArrayOfFuncs(graph,resource,def.combineIds);
-      var subgraph = rdf.createGraph();
+      var subgraph = rdf.graph();
 
       proposals.forEach(function(proposal) {
         if (typeof proposal === 'object' && 'subgraph' in proposal) {
@@ -622,11 +619,11 @@ uduvudu.matchers.createLink = function(defArg) {
       subjectVariable = def.resourcePosition && def.resourcePosition === "object";
 
       if (subjectVariable) {
-        predicateFilter = def.predicate;
-        objectFilter = resource;
+        predicateFilter = rdf.namedNode(def.predicate);
+        objectFilter = rdf.namedNode(resource);
       } else {
-        subjectFilter = resource;
-        predicateFilter = def.predicate;
+        subjectFilter = rdf.namedNode(resource);
+        predicateFilter = rdf.namedNode(def.predicate);
       }
 
       var proposal = false;
@@ -634,13 +631,13 @@ uduvudu.matchers.createLink = function(defArg) {
       if (filteredGraph.length !== 0) {
         var proposals = _.compact(filteredGraph.toArray().map(function (t) {
           if (subjectVariable) {
-            return uduvudu.helper.matchArrayOfFuncs(graph, t.subject.toString(), def.linkIds)[0];
+            return uduvudu.helper.matchArrayOfFuncs(graph, t.subject.value, def.linkIds)[0];
           } else {
-            return uduvudu.helper.matchArrayOfFuncs(graph, t.object.toString(), def.linkIds)[0];
+            return uduvudu.helper.matchArrayOfFuncs(graph, t.object.value, def.linkIds)[0];
           }
         }));
 
-      var subgraph = rdf.createGraph();
+      var subgraph = rdf.graph();
       proposals.forEach(function(proposal) {
         if (typeof proposal === 'object' && 'subgraph' in proposal) {
           subgraph.addAll(proposal.subgraph);
@@ -701,11 +698,11 @@ uduvudu.matchers.createPredicate = function(defArg) {
       subjectVariable = def.resourcePosition && def.resourcePosition === "object";
 
       if (subjectVariable) {
-        predicateFilter = def.predicate;
-        objectFilter = resource;
+        predicateFilter = rdf.namedNode(def.predicate);
+        objectFilter = rdf.namedNode(resource);
       } else {
-        subjectFilter = resource;
-        predicateFilter = def.predicate;
+        subjectFilter = rdf.namedNode(resource);
+        predicateFilter = rdf.namedNode(def.predicate);
       }
 
       var proposal = false;
@@ -722,10 +719,10 @@ uduvudu.matchers.createPredicate = function(defArg) {
                 l: _.object(filteredGraph.toArray().map(function(t) {
                    if (subjectVariable) {
                      l = t.subject.language;
-                     s = t.subject.toString();
+                     s = t.subject.value;
                    } else {
                      l= t.object.language;
-                     s = t.object.toString();
+                     s = t.object.value;
                    }
                    //add a count to duplicated keys
                    if(_.has(keyCount,l)) {
