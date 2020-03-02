@@ -29,7 +29,7 @@
         + '</div>';
 
         // load styles (matcher and templates) from files
-        var styles = rdf.createGraph();
+        var styles = rdf.graph();
         var matcher = new rdf.LdpStore();
         matcher.graph('matcher.ttl', function(error, graph) {
             if (!error) {styles.addAll(graph);}
@@ -38,7 +38,7 @@
         template.graph('templates.ttl', function(error, graph) {
             if (!error) {styles.addAll(graph);}
         });
-        console.log(styles);
+//        console.log(styles);
 
         // load triples
         store.graph(source, function (error, graph) {

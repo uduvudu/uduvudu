@@ -6,6 +6,7 @@ var _ = require('underscore')
 // we plan to switch, current problems:
 // - .object() ?
 var rdf = require('rdf-ext')
+rdf.LdpStore = require('rdf-store-ldp')
 
 var uduvudu = {
   version: "0.7.0",
@@ -257,8 +258,8 @@ uduvudu.helper.getTemplate = function (templateName, device, language) {
     if (uduvudu.options.styles) {
         var styles = uduvudu.options.styles;
 
-        styles.match(null, rdf.resolve('uv:abstractTemplate'), templateName).forEach(function (t) {
-            styles.match(t.subject, rdf.resolve('uv:template'), null).forEach(function (t) {
+        styles.match(null, rdf.namedNode('http://www.uduvudu.org/2015/uduvudu#abstractTemplate'), templateName).forEach(function (t) {
+            styles.match(t.subject, rdf.namedNode('http://www.uduvudu.org/2015/uduvudu#template'), null).forEach(function (t) {
                     templateContent = t.object.toString();
             });
         });
@@ -515,7 +516,7 @@ uduvudu.helper.addMatcher = function (matcher) {
 uduvudu.helper.loadMatcher = function (matcherClass, matcherFunction) {
     if (uduvudu.options.styles) {
         var styles = uduvudu.options.styles;
-        styles.match(null, rdf.resolve('a'), rdf.resolve(matcherClass)).forEach( function (m) {
+        styles.match(null, rdf.namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdf.namedNode('http://www.uduvudu.org/2015/uduvudu#'+matcherClass)).forEach( function (m) {
             var propArray = [];
             styles.match(m.subject, null, null).forEach( function (p) {
                 propArray.push([uduvudu.helper.getTerm(p.predicate.toString()), p.object.toString()]);
@@ -560,7 +561,7 @@ uduvudu.matchers.createCombine = function(defArg) {
 
       var proposal = false;
       var proposals = uduvudu.helper.matchArrayOfFuncs(graph,resource,def.combineIds);
-      var subgraph = rdf.createGraph();
+      var subgraph = rdf.graph();
 
       proposals.forEach(function(proposal) {
         if (typeof proposal === 'object' && 'subgraph' in proposal) {
@@ -640,7 +641,7 @@ uduvudu.matchers.createLink = function(defArg) {
           }
         }));
 
-      var subgraph = rdf.createGraph();
+      var subgraph = rdf.graph();
       proposals.forEach(function(proposal) {
         if (typeof proposal === 'object' && 'subgraph' in proposal) {
           subgraph.addAll(proposal.subgraph);
@@ -763,6 +764,9 @@ uduvudu.matchers.createPredicate.jsArray = 'predicateMatchers';
 //for convinience attach to window
 if (typeof window !== 'undefined') {
   window.uduvudu = uduvudu
+  window.rdf = rdf
+  window.rdf.LdpStore = rdf.LdpStore
 }
 
 module.exports = uduvudu
+module.exports = rdf
